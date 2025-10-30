@@ -35,6 +35,7 @@ function insertFooterDirectly() {
     standartPath = 'standart.html';
     calculatorPath = 'calculator.html';
     constructorPath = 'constructor.html';
+    termsPath = 'terms.html';
     logoPath = '../../data/img/logo.png';
     jsPath = '../../assets/js/layout/footer.js';
   } else {
@@ -43,6 +44,7 @@ function insertFooterDirectly() {
     standartPath = 'pages/main/standart.html';
     calculatorPath = 'pages/main/calculator.html';
     constructorPath = 'pages/main/constructor.html';
+    termsPath = 'pages/main/terms.html';
     logoPath = 'data/img/logo.png';
     jsPath = 'assets/js/layout/footer.js';
   }
@@ -65,6 +67,7 @@ function insertFooterDirectly() {
                     <!-- <li><a href="/pages/main/star.html">Зіркове меню</a> -->
                     <li><a href="${calculatorPath}">Калькулятор раціону</a></li>
                     <li><a href="${constructorPath}">Конструктор меню</a></li>
+                    <li><a href="${termsPath}">Умови та положення</a></li>
                 </ul>
             </div>
             <div class="footer-col footer-contacts">
