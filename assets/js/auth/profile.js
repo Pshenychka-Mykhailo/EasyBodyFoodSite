@@ -1,6 +1,9 @@
 // Переменная для отслеживания показа сообщения об ошибке
 let authErrorShown = false;
 
+// Змінна для відстеження завантаження конетну умов та положень
+let termLoaded = false;
+
 // Переключение вкладок профиля
 async function initProfilePage() {
     // Инициализация переключения вкладок
@@ -69,6 +72,11 @@ function initProfileTabs() {
                 if (typeof renderFavorites === 'function') {
                     renderFavorites();
                 }
+            }
+
+            // Якщо відкрита вкладка умов та положень, завантажуємо контент
+            if (tab === 'terms') {
+                loadTermsContent();
             }
         });
     });
@@ -451,6 +459,29 @@ async function initFavorites() {
             renderFavorites();
         }
     });
+}
+
+// Завантеження контенту умов та положень
+function loadTermsContent() {
+    if (termLoaded) return;
+
+    const container = document.getElementById('tab-terms');
+    if (!container) return;
+
+    fetch('../partials/_terms-content.html')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Помилка завантаження умов та положень.');
+            }
+            return response.text();
+        })
+        .then(html => {
+            container.innerHTML = html;
+            termLoaded = true; // Відмічаємо, що контент завантажено
+        })
+        .catch(error => {
+            container.innerHTML = `<p style="color:red;">${error.message}</p>`;
+        });
 }
 
 // Поддержка обеих систем - старой и новой
