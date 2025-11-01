@@ -38,7 +38,7 @@ const DATA_PATHS = {
 
 // Настройки сервера
 const SERVER_SETTINGS = {
-  serverBaseUrl: 'http://localhost:3000',
+  serverBaseUrl: '__SERVER_URL__',
   apiVersion: '1.0',
   timeout: 5000,
   retryAttempts: 3
