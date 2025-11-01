@@ -26,7 +26,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            fetch('../partials/_terms-content.html')
+            fetch('../partials/terms-content.html')
                 .then(response => response.text())
                 .then(html => {
                     document.getElementById('terms-loader').innerHTML = html;

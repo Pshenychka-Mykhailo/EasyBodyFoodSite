@@ -468,7 +468,7 @@ function loadTermsContent() {
     const container = document.getElementById('tab-terms');
     if (!container) return;
 
-    fetch('../partials/_terms-content.html')
+    fetch('../partials/terms-content.html')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Помилка завантаження умов та положень.');
