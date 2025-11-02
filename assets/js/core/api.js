@@ -120,7 +120,33 @@ async function apiRequest(endpoint, options = {}) {
       clearTimeout(timeoutId);
       
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        let errorMessage = `HTTP error! status: ${response.status}`;ґ
+
+        try {
+          errorBody = await response.json();
+          if (errorBody.title && typeof errorBody.title === 'string') {
+            errorMessage = errorBody.title;
+          } else if (errorBody.detail && typeof errorBody.detail === 'string') {
+            errorMessage = errorBody.detail;
+          } else if (errorBody.message && typeof errorBody.message === 'string') {
+            errorMessage = errorBody.message;
+          } else if (typeof errorBody === 'string') {
+            errorMessage = errorBody;
+          }
+        } catch (e) {
+          // якщо тіло не є JSON, спробуємо прочитати як текст
+          try {
+            const errorText = await response.text();
+            if (errorText && errorText.trim() !== "") {
+              errorMessage = errorText;
+            }
+          }
+          catch (textError) {
+            // не вдалося прочитати тіло відповіді
+          }
+        }
+
+        throw new Error(errorMessage);
       }
       
       return await response.json();
