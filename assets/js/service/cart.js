@@ -458,17 +458,15 @@ function setupOrderFormValidation() {
 
 // Функция для отображения корзины на странице cart.html
 function loadCart() {
-    
     const cartContent = document.getElementById('cart-content');
     if (!cartContent) {
         return;
     }
 
     const orders = window.cartManager.getOrders();
-
+    
     if (orders.length === 0) {
-        
-        // Скрываем кнопку "Очистити кошик"
+        // Кошик порожній
         const clearCartBtn = document.querySelector('.clear-cart-btn');
         if (clearCartBtn) {
             clearCartBtn.style.display = 'none';
@@ -479,19 +477,18 @@ function loadCart() {
                 <div class="profile-cart-empty-title">Упс! Кошик порожній</div>
                 <div class="profile-cart-empty-desc">Саме час для правильного харчування!</div>
                 <div class="profile-cart-btns">
-                    <a href="../../index.html" class="profile-cart-btn">Повернутися на головну</a>
+                    <a href="index.html" class="profile-cart-btn">Повернутися на головну</a>
                 </div>
             </div>
         `;
-
+        // Ховаємо загальний підсумок, якщо він є
         const summary = document.getElementById('cart-summary-total');
-        if (summary) summary.style.display = 'none';
+        if(summary) summary.style.display = 'none';
 
         return;
     }
-    
-    
-    // Показываем кнопку "Очистити кошик" если корзина не пуста
+
+    // Показуємо кнопку "Очистити кошик"
     const clearCartBtn = document.querySelector('.clear-cart-btn');
     if (clearCartBtn) {
         clearCartBtn.style.display = 'block';
@@ -499,46 +496,57 @@ function loadCart() {
     
     let cartHTML = '';
 
+    // --- Цикл по Замовленнях ---
     orders.forEach((order, orderIndex) => {
+        // Групуємо страви за днем
         const dishesByDay = {};
         order.dishes.forEach(dish => {
             if (!dishesByDay[dish.day]) {
                 dishesByDay[dish.day] = {
-                    dayName: dish.dayName || `День ${dish.day}`,
+                    dayName: dish.dayName || dish.day, // Використовуємо dayName, якщо є
                     dishes: []
                 };
             }
             dishesByDay[dish.day].dishes.push(dish);
         });
 
+        // Сортуємо дні (Пн, Вт, Ср...)
         const sortedDays = Object.keys(dishesByDay).sort((a, b) => {
             const dayOrder = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
             return dayOrder.indexOf(a) - dayOrder.indexOf(b);
         });
+        
+        // Унікальний ID для тіла замовлення
+        const orderCollapseId = `order-body-${order.id}`;
 
         cartHTML += `
             <div class="cart-order-group">
-                <div class="cart-order-header">
+                <div class="cart-order-header" onclick="toggleCartCollapse('${orderCollapseId}')">
                     <h2 class="cart-order-title">${order.name} (Замовлення ${orderIndex + 1})</h2>
-                    <button class="delete-btn order-delete-btn" onclick="removeOrder('${order.id}')">Видалити замовлення</button>
+                    <div class="cart-order-header-right">
+                        <span class="order-toggle-icon" id="toggle-icon-${orderCollapseId}">+</span>
+                        <button class="delete-btn order-delete-btn" onclick="event.stopPropagation(); removeOrder('${order.id}')">Видалити</button>
+                    </div>
                 </div>
+                
+                <div class="collapsible-content" id="${orderCollapseId}">
         `;
 
         // --- Цикл по Днях ---
         sortedDays.forEach((dayKey, dayIndex) => {
             const dayData = dishesByDay[dayKey];
             
-            // Унікальний ID для блоку, що згортається
-            const collapseId = `order-${order.id}-day-${dayIndex}`;
+            // Унікальний ID для блоку страв дня
+            const dayCollapseId = `order-${order.id}-day-${dayIndex}`;
             
             cartHTML += `
                 <div class="cart-day-group">
-                    <h3 class="cart-day-title" onclick="toggleCartDay('${collapseId}')">
+                    <h3 class="cart-day-title" onclick="toggleCartCollapse('${dayCollapseId}')">
                         ${dayData.dayName}
-                        <span class="day-toggle-icon" id="toggle-icon-${collapseId}">−</span>
+                        <span class="day-toggle-icon" id="toggle-icon-${dayCollapseId}">+</span>
                     </h3>
                     
-                    <div class="cart-items collapsible-content show" id="${collapseId}">
+                    <div class="cart-items collapsible-content" id="${dayCollapseId}">
             `;
 
             // --- Цикл по Стравах ---
@@ -568,15 +576,15 @@ function loadCart() {
                         </div>
                     </div>
                 `;
-            });
+            }); // Кінець циклу страв
 
             cartHTML += `
                     </div> </div> `;
-        });
+        }); // Кінець циклу днів
 
         cartHTML += `
-            </div> `;
-    });
+                </div> </div> `;
+    }); // Кінець циклу замовлень
 
     cartContent.innerHTML = cartHTML;
     
@@ -658,7 +666,8 @@ function setupClearCartButtons() {
     }
 }
 
-window.toggleCartDay = function(contentId) {
+// --- УНІВЕРСАЛЬНА ФУНКЦІЯ ЗГОРТАННЯ/РОЗГОРТАННЯ ---
+window.toggleCartCollapse = function(contentId) {
     const content = document.getElementById(contentId);
     const icon = document.getElementById(`toggle-icon-${contentId}`);
     

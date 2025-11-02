@@ -312,44 +312,73 @@
 
 /* === СТИЛІ ДЛЯ ЗГОРТАННЯ (Collapse) === */
 
+.cart-order-header,
 .cart-day-title {
     cursor: pointer; /* Вказуємо, що на заголовок можна натиснути */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     user-select: none; /* Забороняємо виділення тексту заголовка */
-    transition: color 0.2s ease;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.cart-order-header:hover {
+    background: #e8f5e9; /* Трохи темніший фон при наведенні */
 }
 
 .cart-day-title:hover {
     color: #388e3c; /* Робимо текст темнішим при наведенні */
 }
 
-.day-toggle-icon {
+/* Контейнер для іконки та кнопки видалення у заголовку замовлення */
+.cart-order-header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Іконки +/- */
+.day-toggle-icon,
+.order-toggle-icon {
     font-size: 24px;
     font-weight: 700;
     color: #4CAF50;
+    width: 24px; /* Фіксована ширина для вирівнювання */
+    text-align: center;
     transition: transform 0.3s ease;
 }
 
-/* Коли блок згорнутий (немає класу 'show'), іконка - це "+" */
-.cart-day-title:not(:has(+ .show)) .day-toggle-icon {
-    transform: rotate(45deg);
-}
-
+/* Загальні стилі для контенту, що згортається */
 .collapsible-content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.4s ease-out; /* Плавна анімація "згортання" */
+    transition: max-height 0.4s ease-out, opacity 0.2s ease-out;
     opacity: 0;
     visibility: hidden;
+    /* Додаємо відступ для плавності анімації */
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 .collapsible-content.show {
-    max-height: 2000px; /* Велике значення, щоб вмістити будь-яку к-ть страв */
+    max-height: 4000px; /* Велике значення, щоб вмістити будь-яку к-ть страв */
     opacity: 1;
     visibility: visible;
-    transition: max-height 0.4s ease-in, opacity 0.3s ease-in; /* Плавна анімація "розгортання" */
+    transition: max-height 0.5s ease-in, opacity 0.3s ease-in 0.1s;
+}
+
+/* Специфічні відступи для вкладених рівнів */
+.collapsible-content#order-body {
+    /* Цей блок містить дні, йому не потрібні відступи */
+    padding: 0;
+}
+.collapsible-content.show[id*="-day-"] {
+    /* Цей блок містить страви, повертаємо йому відступи */
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+/* Оновлюємо стилі для .cart-items, щоб він не мав власних відступів */
+.cart-items {
+    padding: 0;
+    margin: 0;
 }
 
 /* Адаптивность для мобильных устройств */
