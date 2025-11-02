@@ -406,7 +406,7 @@ window.renderFavorites = function() {
                     <div class="profile-cart-empty-title">У вас поки немає улюблених страв</div>
                     <div class="profile-cart-empty-desc">Додайте їх, натиснувши на сердечко біля блюда!</div>
                     <div class="profile-cart-btns">
-                        <a href="../../../index.html" class="profile-cart-btn">Повернутися на головну</a>
+                        <a href="../../index.html" class="profile-cart-btn">Повернутися на головну</a>
                     </div>
                 </div>
             </div>
@@ -441,7 +441,7 @@ window.renderFavorites = function() {
             <div class="cart-summary">
                 <div class="cart-total">Загалом у улюблених: ${totalMacros.protein} Білки ${totalMacros.fat} Жири ${totalMacros.carbs} Вуглеводи, ${totalCalories} ккал.</div>
                 <div class="cart-actions">
-                    <a href="../../../index.html" class="continue-shopping-btn">Повернутися на головну</a>
+                    <a href="../../index.html" class="continue-shopping-btn">Повернутися на головну</a>
                 </div>
             </div>
         </div>
