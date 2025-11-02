@@ -102,7 +102,7 @@ async function handleRegister(event) {
   };
 
   if (data.Password !== data.ConfirmPassword) {
-    showAuthError('register-modal', 'Пароли не совпадают');
+    showAuthError('register-modal', 'Паролі не співпадають');
     return;
   }
   
@@ -114,17 +114,17 @@ async function handleRegister(event) {
       closeModal('register-modal');
       
       // Показываем уведомление об успехе
-      showSuccess('Регистрация прошла успешно!');
+      showSuccess('Реєстрація пройшла успішно!');
       
       // Обновляем интерфейс
       if (typeof window.updateAuthUI === 'function') {
         window.updateAuthUI();
       }
     } else {
-      showAuthError('register-modal', result.message || 'Ошибка при регистрации');
+      showAuthError('register-modal', result.message || 'Помилка при реєстрації');
     }
   } catch (err) {
-    showAuthError('Ошибка при регистрации');
+    showAuthError('Помилка при реєстрації');
   }
 }
 
@@ -149,17 +149,17 @@ async function handleLogin(event) {
       closeModal('login-modal');
       
       // Показываем уведомление об успехе
-      showSuccess('Вход выполнен успешно!');
+      showSuccess('Вхід виконано успішно!');
       
       // Обновляем интерфейс
       if (typeof window.updateAuthUI === 'function') {
         window.updateAuthUI();
       }
     } else {
-      showAuthError('login-modal', result.message || 'Ошибка при входе');
+      showAuthError('login-modal', result.message || 'Помилка при вході');
     }
   } catch (err) {
-    showAuthError('login-modal', 'Ошибка при входе');
+    showAuthError('login-modal', 'Помилка при вході');
   }
 }
 
