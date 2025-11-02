@@ -371,7 +371,7 @@ function createFavoriteCard(dish) {
             </div>
             <div class="cart-item-controls">
                 <div class="cart-item-actions">
-                    <button class="delete-btn" onclick="removeFromFavorites(${dish.id})">Видалити з улюблених</button>
+                    <button class="delete-btn" onclick="handleRemoveFromFavorites(${dish.id})">Видалити з улюблених</button>
                 </div>
             </div>
         </div>
@@ -379,12 +379,19 @@ function createFavoriteCard(dish) {
 }
 
 // Функция удаления из избранного
-window.removeFromFavorites = function(dishId) {
+window.handleRemoveFromFavorites = function(dishId) {
     if (confirm('Ви впевнені, що хочете видалити це блюдо з улюблених?')) {
         const heartsState = JSON.parse(localStorage.getItem('heartsState') || '{}');
         heartsState[dishId] = false;
         localStorage.setItem('heartsState', JSON.stringify(heartsState));
         renderFavorites();
+
+        // видаляємо з бази даних
+        if (typeof window.removeFromFavorites === 'function') {
+            window.removeFromFavorites(dishId);
+        } else {
+            console.error('Глобальна функція window.removeFromFavorites (api.js) не знайдена.');
+        }
     }
 };
 
