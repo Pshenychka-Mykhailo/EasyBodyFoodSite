@@ -147,7 +147,16 @@ async function apiRequest(endpoint, options = {}) {
         throw new Error(errorMessage);
       }
       
-      return await response.json();
+      const resText = await response.text();
+      if (resText && resText.trim() !== "") {  
+         try {
+           return await response.json();
+         } catch (resTextErr) {
+           return resText;
+         }
+      } else {
+        return resText;
+      }
     } catch (error) {
       clearTimeout(timeoutId);
       throw error;
