@@ -35,6 +35,7 @@ function setupModalEvents() {
       const modal = this.closest('.auth-modal-wrapper');
       if (modal) {
         modal.style.display = 'none';
+        hideAuthError(modal.id);
       }
     });
   });
@@ -57,6 +58,7 @@ function setupModalEvents() {
     openLoginLink.addEventListener('click', function(e) {
       e.preventDefault();
       closeModal('register-modal');
+      hideAuthError('register-modal');
       showLoginModal();
     });
   }
@@ -66,6 +68,7 @@ function setupModalEvents() {
     openRegisterLink.addEventListener('click', function(e) {
       e.preventDefault();
       closeModal('login-modal');
+      hideAuthError('login-modal');
       showRegisterModal();
     });
   }
@@ -84,6 +87,7 @@ function setupModalEvents() {
 // Обработка регистрации
 async function handleRegister(event) {
   event.preventDefault();
+  hideAuthError('register-modal');
   
   const form = event.target;
   const formData = new FormData(form);
@@ -96,6 +100,11 @@ async function handleRegister(event) {
     Password: formData.get('Password'),
     ConfirmPassword: formData.get('ConfirmPassword')
   };
+
+  if (data.Password !== data.ConfirmPassword) {
+    showAuthError('register-modal', 'Пароли не совпадают');
+    return;
+  }
   
   try {
     const result = await window.registerUser(data);
@@ -112,16 +121,17 @@ async function handleRegister(event) {
         window.updateAuthUI();
       }
     } else {
-      showError(result.message || 'Ошибка при регистрации');
+      showAuthError('register-modal', result.message || 'Ошибка при регистрации');
     }
   } catch (err) {
-    showError('Ошибка при регистрации');
+    showAuthError('Ошибка при регистрации');
   }
 }
 
 // Обработка входа
 async function handleLogin(event) {
   event.preventDefault();
+  hideAuthError('login-modal');
   
   const form = event.target;
   const formData = new FormData(form);
@@ -146,10 +156,29 @@ async function handleLogin(event) {
         window.updateAuthUI();
       }
     } else {
-      showError(result.message || 'Ошибка при входе');
+      showAuthError('login-modal', result.message || 'Ошибка при входе');
     }
   } catch (err) {
-    showError('Ошибка при входе');
+    showAuthError('login-modal', 'Ошибка при входе');
+  }
+}
+
+// Показать сообщение об ошибке
+function showAuthError(modalId, message) {
+  const errorId = modalId === 'register-modal' ? 'registerError' : 'loginError';
+  const errorElement = document.getElementById(errorId);
+  if (errorElement) {
+    errorElement.textContent = message;
+    errorElement.style.display = 'block';
+  }
+}
+
+// Скрить сообщение об ошибке
+function hideAuthError(modalId) {
+  const errorId = modalId === 'register-modal' ? 'registerError' : 'loginError';
+  const errorElement = document.getElementById(errorId);
+  if (errorElement) {
+    errorElement.style.display = 'none';
   }
 }
 
