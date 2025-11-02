@@ -120,7 +120,7 @@ async function apiRequest(endpoint, options = {}) {
       clearTimeout(timeoutId);
       
       if (!response.ok) {
-        let errorMessage = `HTTP error! status: ${response.status}`;ґ
+        let errorMessage = `HTTP error! status: ${response.status}`;
 
         try {
           errorBody = await response.json();
