@@ -267,7 +267,7 @@ body {
 
 .section1 .team-main-photo {
     width: 600px;
-    height: 399px;
+    height: 600px;
     object-fit: cover;
     border-radius: 32px;
     flex-shrink: 0;
