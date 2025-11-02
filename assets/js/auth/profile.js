@@ -124,7 +124,7 @@ function initButtonHandlers() {
     document.getElementById('logout-btn').addEventListener('click', function() {
         localStorage.clear();
         sessionStorage.clear();
-        window.location.href = '../../index.html';
+        window.location.href = '../../../index.html';
     });
 
     // Обработчик для кнопки "Змінити" - сохранение профиля
