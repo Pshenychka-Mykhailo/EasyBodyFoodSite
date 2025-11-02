@@ -524,13 +524,21 @@ function loadCart() {
                 </div>
         `;
 
-        sortedDays.forEach(dayKey => {
+        // --- Цикл по Днях ---
+        sortedDays.forEach((dayKey, dayIndex) => {
             const dayData = dishesByDay[dayKey];
+            
+            // Унікальний ID для блоку, що згортається
+            const collapseId = `order-${order.id}-day-${dayIndex}`;
             
             cartHTML += `
                 <div class="cart-day-group">
-                    <h3 class="cart-day-title">${dayData.dayName}</h3>
-                    <div class="cart-items">
+                    <h3 class="cart-day-title" onclick="toggleCartDay('${collapseId}')">
+                        ${dayData.dayName}
+                        <span class="day-toggle-icon" id="toggle-icon-${collapseId}">−</span>
+                    </h3>
+                    
+                    <div class="cart-items collapsible-content show" id="${collapseId}">
             `;
 
             // --- Цикл по Стравах ---
@@ -566,24 +574,27 @@ function loadCart() {
                     </div> </div> `;
         });
 
-        cartContent.innerHTML = cartHTML;
-    
-        // --- Оновлюємо загальний підсумок ---
-        const macros = window.cartManager.getTotalMacros();
-        const totalCalories = window.cartManager.getTotalCalories();
-
-        const summaryDiv = document.getElementById('cart-summary-total');
-        if (summaryDiv) {
-            summaryDiv.style.display = 'block'; // Показуємо його
-            summaryDiv.innerHTML = `
-                <div class="cart-total">Загалом у замовленні: ${Math.round(macros.protein)} Білки ${Math.round(macros.fat)} Жири ${Math.round(macros.carbs)} Вуглеводи, ${totalCalories} ккал.</div>
-                <div class="cart-actions">
-                    <button class="checkout-btn" onclick="proceedToCheckout()">Оформити замовлення</button>
-                    <a href="index.html" class="continue-shopping-btn">Повернутися на головну</a>
-                </div>
-            `;
-        }
+        cartHTML += `
+            </div> `;
     });
+
+    cartContent.innerHTML = cartHTML;
+    
+    // --- Оновлюємо загальний підсумок ---
+    const macros = window.cartManager.getTotalMacros();
+    const totalCalories = window.cartManager.getTotalCalories();
+
+    const summaryDiv = document.getElementById('cart-summary-total');
+    if (summaryDiv) {
+        summaryDiv.style.display = 'block'; // Показуємо його
+        summaryDiv.innerHTML = `
+            <div class="cart-total">Загалом у замовленні: ${Math.round(macros.protein)} Білки ${Math.round(macros.fat)} Жири ${Math.round(macros.carbs)} Вуглеводи, ${totalCalories} ккал.</div>
+            <div class="cart-actions">
+                <button class="checkout-btn" onclick="proceedToCheckout()">Оформити замовлення</button>
+                <a href="index.html" class="continue-shopping-btn">Повернутися на головну</a>
+            </div>
+        `;
+    }
 }
 
 // Инициализация корзины при загрузке страницы
@@ -646,6 +657,24 @@ function setupClearCartButtons() {
         });
     }
 }
+
+window.toggleCartDay = function(contentId) {
+    const content = document.getElementById(contentId);
+    const icon = document.getElementById(`toggle-icon-${contentId}`);
+    
+    if (content) {
+        // Перевіряємо, чи блок зараз видимий (має клас 'show')
+        if (content.classList.contains('show')) {
+            // Згортаємо
+            content.classList.remove('show');
+            if (icon) icon.textContent = '+';
+        } else {
+            // Розгортаємо
+            content.classList.add('show');
+            if (icon) icon.textContent = '−';
+        }
+    }
+};
 
 // Экспорт функций для использования в main.js
 window.initCartPage = initCartPage;
