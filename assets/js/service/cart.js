@@ -173,22 +173,17 @@ window.proceedToCheckout = function() {
     const modal = document.getElementById('order-modal');
     if (modal) {
         // Загружаем содержимое order.html с правильным путем
-        const orderPaths = [
-            '/pages/partials/order.html',
-            'pages/partials/order.html',
-            '../pages/partials/order.html'
-        ];
-        
+        const orderPath = '../../pages/partials/order.html';
+
         // Пробуем разные пути
         const tryLoadOrder = (pathIndex) => {
-            if (pathIndex >= orderPaths.length) {
-        
-                showError('Помилка завантаження форми замовлення');
-                return;
-            }
+            //if (pathIndex >= orderPaths.length) {
+            //    showError('Помилка завантаження форми замовлення');
+            //    return;
+            //}
             
 
-            fetch(orderPaths[pathIndex])
+            fetch(orderPath)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
@@ -222,9 +217,8 @@ window.proceedToCheckout = function() {
                     }
                 })
                 .catch(error => {
-    
-                    // Пробуем следующий путь
-                    tryLoadOrder(pathIndex + 1);
+                    console.error('Помилка завантаження форми замовлення:', error);
+                    showError('Помилка завантаження форми замовлення');
                 });
         };
         
