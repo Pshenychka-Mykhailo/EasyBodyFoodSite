@@ -6,7 +6,11 @@ class CartManager {
 
     // Загрузка корзины из localStorage
     loadCart() {
-        return window.getStorageItem(window.STORAGE_KEYS?.CART || 'cart', []);
+        const cardData = window.getStorageItem(window.STORAGE_KEYS?.CART || 'cart', { orders: [] });
+        if (!cardData.orders) {
+            return { orders: [] };
+        }
+        return cardData;
     }
 
     // Сохранение корзины в localStorage
@@ -14,51 +18,70 @@ class CartManager {
         localStorage.setItem('cart', JSON.stringify(this.cart));
     }
 
-    // Добавление товара в корзину
-    addItem(item) {
-        const existingItemIndex = this.cart.findIndex(cartItem => 
-            cartItem.id === item.id && cartItem.day === item.day
-        );
-
-        if (existingItemIndex !== -1) {
-            // Если товар уже есть, увеличиваем количество только на 1
-            this.cart[existingItemIndex].quantity += 1;
-        } else {
-            // Если товара нет, добавляем с количеством 1
-            this.cart.push({
-                ...item,
-                quantity: 1
-            });
+    // додавання замовлень
+    addOrder(dishes, orderName) {
+        if (!dishes || dishes.length === 0) {
+            return;
         }
-
-        this.saveCart();
         
-        // Синхронизируем с сервером, если пользователь авторизован
+        const orderId = `order_${new Date().getTime()}_${Math.floor(Math.random() * 1000)}`;
+
+        const newOrder = {
+            id: orderId,
+            name: orderName || `Замовлення #${this.cart.length + 1}`,
+            dishes: dishes.map(dish => ({
+                ...dish,
+                quantity: dish.quantity || 1
+            })),
+        };
+
+        this.cart.orders.push(newOrder);
+        this.saveCart();
+
         if (window.isUserAuthenticated()) {
             this.syncWithServer();
         }
     }
 
-    // Обновление количества товара
-    updateQuantity(index, quantity) {
-        if (this.cart[index]) {
-            this.cart[index].quantity = Math.max(1, parseInt(quantity) || 1);
-            this.saveCart();
-        }
+    // Добавление товара в корзину
+    addItem(item) {
+        const orderName = `Окрема страва: ${item.title || 'Без назви'}`;
+        this.addOrder([item], orderName);
     }
 
-    // Изменение количества товара
-    changeQuantity(index, change) {
-        if (this.cart[index]) {
-            this.cart[index].quantity = Math.max(1, this.cart[index].quantity + change);
-            this.saveCart();
-        }
+    // Обновление количества товара
+    updateQuantity(orderId, dishId, day, newQuantity) {
+        const order = this.cart.orders.find(o => o.id === orderId);
+        if (!order) return;
+
+        const dish = order.dishes.find(d => d.id === dishId && d.day === day);
+        if (!dish) return;
+
+        dish.quantity = Math.max(1, parseInt(newQuantity) || 1);
+        this.saveCart();
+        this.syncWithServer();
     }
 
     // Удаление товара из корзины
-    removeItem(index) {
-        this.cart.splice(index, 1);
+    removeDish(orderId, dishId, day) {
+        const order = this.cart.orders.find(o => o.id === orderId);
+        if (!order) return;
+
+        order.dishes = order.dishes.filter(d => !(d.id === dishId && d.day === day));
+
+        if (order.dishes.length === 0) {
+            this. removeOrder(orderId);
+        } else {
+            this.saveCart();
+            this.syncWithServer();
+        }
+    }
+
+    // Видалити замовлення
+    removeOrder(orderId) {
+        this.cart.orders = this.cart.orders.filter(o => o.id !== orderId);
         this.saveCart();
+        this.syncWithServer();
     }
 
     // Очистка корзины
@@ -72,31 +95,34 @@ class CartManager {
         }
     }
 
-    // Получение общего количества товаров
-    getTotalItems() {
-        return this.cart.reduce((total, item) => total + item.quantity, 0);
-    }
-
-    // Получение общей стоимости (если есть цены)
-    getTotalPrice() {
-        return this.cart.reduce((total, item) => total + (item.price || 0) * item.quantity, 0);
+    // Получение общих макронутриентов
+    getTotalMacros() {
+        let total = { protein: 0, fat: 0, carbs: 0 };
+        this.cart.orders.forEach(order => {
+            order.dishes.forEach(item => {
+                total.protein += (item.p || 0) * item.quantity;
+                total.fat += (item.f || 0) * item.quantity;
+                total.carbs += (item.c || 0) * item.quantity;
+            });
+        });
+        return total;
     }
 
     // Получение общей калорийности
     getTotalCalories() {
-        return this.cart.reduce((total, item) => {
-            const calories = window.calculateCaloriesFromMacros(item.p || 0, item.f || 0, item.c || 0);
-            return total + (calories * item.quantity);
-        }, 0);
+        let totalKcal = 0;
+        this.cart.orders.forEach(order => {
+            order.dishes.forEach(item => {
+                const calories = window.calculateCaloriesFromMacros(item.p || 0, item.f || 0, item.c || 0);
+                totalKcal += calories * item.quantity;
+            });
+        });
+        return Math.round(totalKcal);
     }
 
-    // Получение общих макронутриентов
-    getTotalMacros() {
-        return this.cart.reduce((total, item) => ({
-            protein: total.protein + ((item.p || 0) * item.quantity),
-            fat: total.fat + ((item.f || 0) * item.quantity),
-            carbs: total.carbs + ((item.c || 0) * item.quantity)
-        }), { protein: 0, fat: 0, carbs: 0 });
+    // Получение всех заказов
+    getOrders() {
+        return this.cart.orders;
     }
 
     // Синхронизация с сервером
@@ -122,7 +148,7 @@ class CartManager {
             }
 
             const serverCart = await window.getCart();
-            if (serverCart && Array.isArray(serverCart)) {
+            if (serverCart && Array.isArray(serverCart.orders)) {
                 this.cart = serverCart;
                 this.saveCart();
             }
@@ -137,27 +163,38 @@ class CartManager {
 window.cartManager = new CartManager();
 
 // Функции для работы с корзиной на странице
-window.changeQuantity = function(index, change) {
-    const cart = window.cartManager.loadCart();
-    if (cart[index]) {
-        const newQuantity = Math.max(1, cart[index].quantity + change);
-        window.cartManager.updateQuantity(index, newQuantity);
-        loadCart();
-    }
-};
-
-window.updateQuantity = function(index, value) {
-    const newQuantity = Math.max(1, parseInt(value) || 1);
-    window.cartManager.updateQuantity(index, newQuantity);
+window.changeQuantity = function(orderId, dishId, day, change) {
+    const order = window.cartManager.getOrders().find(o => o.id === index.orderId);
+    if (!order) return;
+    
+    const dish = order.dishes.find(d => d.id === dishId && d.day === day);
+    if (!dish) return;
+    const newQuantity = Math.max(1, dish.quantity + change);
+    window.cartManager.updateQuantity(orderId, dishId, day, newQuantity);
     loadCart();
 };
 
-window.removeItem = function(index) {
-    window.cartManager.removeItem(index);
+window.updateQuantityInput = function(orderId, dishId, day, inputElement) {
+    const newQuantity = Math.max(1, parseInt(inputElement.value) || 1);
+    window.cartManager.updateQuantity(orderId, dishId, day, newQuantity);
+    loadCart();
+};
+
+window.removeDish = function(orderId, dishId, day) {
+    window.cartManager.removeItem(orderId, dishId, day);
     if (typeof loadCart === 'function') {
         loadCart();
     }
 };
+
+window.removeOrder = function(orderId) {
+    if (confirm('Ви впевнені, що хочете видалити це замовлення?')) {
+        window.cartManager.removeOrder(orderId);
+        if (typeof loadCart === 'function') {
+            loadCart();
+        }
+    }
+}
 
 window.clearCart = function() {
     if (confirm('Ви впевнені, що хочете очистити кошик?')) {
@@ -427,9 +464,9 @@ function loadCart() {
         return;
     }
 
-    const cart = window.cartManager.loadCart();
-    
-    if (cart.length === 0) {
+    const orders = window.cartManager.getOrders();
+
+    if (orders.length === 0) {
         
         // Скрываем кнопку "Очистити кошик"
         const clearCartBtn = document.querySelector('.clear-cart-btn');
@@ -442,10 +479,14 @@ function loadCart() {
                 <div class="profile-cart-empty-title">Упс! Кошик порожній</div>
                 <div class="profile-cart-empty-desc">Саме час для правильного харчування!</div>
                 <div class="profile-cart-btns">
-                    <a href="index.html" class="profile-cart-btn">Повернутися на головну</a>
+                    <a href="../../index.html" class="profile-cart-btn">Повернутися на головну</a>
                 </div>
             </div>
         `;
+
+        const summary = document.getElementById('cart-summary-total');
+        if (summary) summary.style.display = 'none';
+
         return;
     }
     
@@ -456,50 +497,85 @@ function loadCart() {
         clearCartBtn.style.display = 'block';
     }
     
-    let cartHTML = '<div class="cart-items">';
-    const macros = window.cartManager.getTotalMacros();
-    const totalCalories = window.cartManager.getTotalCalories();
-    
-    cart.forEach((item, index) => {
-        const calories = (item.p * 4) + (item.f * 9) + (item.c * 4);
-        
+    let cartHTML = '';
+
+    orders.forEach((order, orderIndex) => {
+        const dishesByDay = {};
+        order.dishes.forEach(dish => {
+            if (!dishesByDay[dish.day]) {
+                dishesByDay[dish.day] = {
+                    dayName: dish.dayName || `День ${dish.day}`,
+                    dishes: []
+                };
+            }
+            dishesByDay[dish.day].dishes.push(dish);
+        });
+
+        const sortedDays = Object.keys(dishesByDay).sort((a, b) => {
+            const dayOrder = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+            return dayOrder.indexOf(a) - dayOrder.indexOf(b);
+        });
+
         cartHTML += `
-            <div class="cart-item" data-index="${index}">
-                <img src="${window.getDishImage ? window.getDishImage(item) : (item.img || 'data/img/food1.jpg')}" alt="${item.title}" class="cart-item-img">
-                <div class="cart-item-content">
-                    <div class="cart-item-day">${item.dayName}</div>
-                    <div class="cart-item-title">${item.title}</div>
-                    <div class="cart-item-macros">Б: ${item.p}г Ж: ${item.f}г В: ${item.c}г, ${calories} ккал</div>
-                    <div class="cart-item-description">${item.subtitle || ''}</div>
+            <div class="cart-order-group">
+                <div class="cart-order-header">
+                    <h2 class="cart-order-title">${order.name} (Замовлення ${orderIndex + 1})</h2>
+                    <button class="delete-btn order-delete-btn" onclick="removeOrder('${order.id}')">Видалити замовлення</button>
                 </div>
-                <div class="cart-item-controls">
-                    <div class="quantity-controls">
-                        <span class="quantity-label">Кількість:</span>
-                        <button class="quantity-btn" onclick="changeQuantity(${index}, -1)">−</button>
-                        <input type="number" class="quantity-input" value="${item.quantity}" min="1" onchange="updateQuantity(${index}, this.value)" oninput="updateQuantity(${index}, this.value)">
-                        <button class="quantity-btn" onclick="changeQuantity(${index}, 1)">+</button>
-                    </div>
-                    <div class="cart-item-actions">
-                        <button class="delete-btn" onclick="removeItem(${index})">Видалити</button>
-                    </div>
-                </div>
-            </div>
         `;
+
+        sortedDays.forEach(dayKey => {
+            // --- Цикл по Стравах ---
+            dayData.dishes.forEach(item => {
+                const calories = Math.round(window.calculateCaloriesFromMacros(item.p || 0, item.f || 0, item.c || 0));
+                
+                cartHTML += `
+                    <div class="cart-item">
+                        <img src="${window.getDishImage ? window.getDishImage(item) : (item.img || 'data/img/food1.jpg')}" alt="${item.title}" class="cart-item-img">
+                        <div class="cart-item-content">
+                            <div class="cart-item-title">${item.title}</div>
+                            <div class="cart-item-macros">Б: ${item.p}г Ж: ${item.f}г В: ${item.c}г, ${calories} ккал</div>
+                            <div class="cart-item-description">${item.subtitle || ''}</div>
+                        </div>
+                        <div class="cart-item-controls">
+                            <div class="quantity-controls">
+                                <span class="quantity-label">К-ть:</span>
+                                <button class="quantity-btn" onclick="changeQuantity('${order.id}', ${item.id}, '${item.day}', -1)">−</button>
+                                <input type="number" class="quantity-input" value="${item.quantity}" min="1" 
+                                       onchange="updateQuantityInput('${order.id}', ${item.id}, '${item.day}', this)" 
+                                       oninput="updateQuantityInput('${order.id}', ${item.id}, '${item.day}', this)">
+                                <button class="quantity-btn" onclick="changeQuantity('${order.id}', ${item.id}, '${item.day}', 1)">+</button>
+                            </div>
+                            <div class="cart-item-actions">
+                                <button class="delete-btn" onclick="removeDish('${order.id}', ${item.id}, '${item.day}')">Видалити</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            cartHTML += `
+                    </div> </div> `;
+        });
+
+        cartContent.innerHTML = cartHTML;
+    
+        // --- Оновлюємо загальний підсумок ---
+        const macros = window.cartManager.getTotalMacros();
+        const totalCalories = window.cartManager.getTotalCalories();
+
+        const summaryDiv = document.getElementById('cart-summary-total');
+        if (summaryDiv) {
+            summaryDiv.style.display = 'block'; // Показуємо його
+            summaryDiv.innerHTML = `
+                <div class="cart-total">Загалом у замовленні: ${Math.round(macros.protein)} Білки ${Math.round(macros.fat)} Жири ${Math.round(macros.carbs)} Вуглеводи, ${totalCalories} ккал.</div>
+                <div class="cart-actions">
+                    <button class="checkout-btn" onclick="proceedToCheckout()">Оформити замовлення</button>
+                    <a href="index.html" class="continue-shopping-btn">Повернутися на головну</a>
+                </div>
+            `;
+        }
     });
-    
-    cartHTML += '</div>';
-    
-    cartHTML += `
-        <div class="cart-summary">
-            <div class="cart-total">Загалом у замовленні: ${macros.protein} Білки ${macros.fat} Жири ${macros.carbs} Вуглеводи, ${totalCalories} ккал.</div>
-            <div class="cart-actions">
-                <button class="checkout-btn" onclick="proceedToCheckout()">Оформити замовлення</button>
-                <a href="index.html" class="continue-shopping-btn">Повернутися на головну</a>
-            </div>
-        </div>
-    `;
-    
-    cartContent.innerHTML = cartHTML;
 }
 
 // Инициализация корзины при загрузке страницы
@@ -568,3 +644,4 @@ window.initCartPage = initCartPage;
 window.setupClearCartButtons = setupClearCartButtons;
 window.proceedToCheckout = proceedToCheckout;
 window.clearCart = clearCart;
+window.loadCart = loadCart;

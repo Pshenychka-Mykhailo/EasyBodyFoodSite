@@ -243,9 +243,8 @@ async function initStandartPage() {
 
     // Используем CartManager для добавления блюд в корзину
     if (window.cartManager) {
-      selectedDishes.forEach(dish => {
-        window.cartManager.addItem(dish);
-      });
+      const calories = globalSelectedCalories || 'Стандартне';
+      window.cartManager.addOrder(selectedDishes, `Меню на ${calories} ккал`);
     } else {
       // Fallback для случая, если CartManager не загружен
       let cart = JSON.parse(localStorage.getItem('cart') || '[]');

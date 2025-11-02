@@ -206,10 +206,8 @@ async function initConstructorPage() {
   function saveTemplateToCart() {
     // Защита от повторного вызова
     if (isSaving) {
-      
       return;
     }
-    
     
     isSaving = true;
     
@@ -229,15 +227,13 @@ async function initConstructorPage() {
 
     // Используем CartManager для добавления блюд в корзину
     if (window.cartManager) {
-      selectedDishes.forEach(dish => {
-        window.cartManager.addItem(dish);
-      });
+      window.cartManager.addOrder(selectedDishes, 'Меню з конструктора');
       
       // Проверяем, что данные действительно сохранились
       setTimeout(() => {
-        const savedCart = window.cartManager.loadCart();
+        const savedOrders = window.cartManager.getOrders();
         
-        if (savedCart.length === 0) {
+        if (savedOrders.length === 0) {
           showError('Помилка: дані не збереглися в корзині. Спробуйте ще раз.');
           isSaving = false;
           return;
