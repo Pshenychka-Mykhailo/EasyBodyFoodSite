@@ -525,6 +525,14 @@ function loadCart() {
         `;
 
         sortedDays.forEach(dayKey => {
+            const dayData = dishesByDay[dayKey];
+            
+            cartHTML += `
+                <div class="cart-day-group">
+                    <h3 class="cart-day-title">${dayData.dayName}</h3>
+                    <div class="cart-items">
+            `;
+
             // --- Цикл по Стравах ---
             dayData.dishes.forEach(item => {
                 const calories = Math.round(window.calculateCaloriesFromMacros(item.p || 0, item.f || 0, item.c || 0));
