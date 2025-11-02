@@ -465,7 +465,7 @@ function loadCart() {
 
     const orders = window.cartManager.getOrders();
     
-    if (orders.length === 0) {
+    if (!orders || orders.length === 0) {
         // Кошик порожній
         const clearCartBtn = document.querySelector('.clear-cart-btn');
         if (clearCartBtn) {
