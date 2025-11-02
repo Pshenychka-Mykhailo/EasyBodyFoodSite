@@ -341,7 +341,7 @@ function initModalHandlers() {
 let dishesData = [];
 
 // Загрузка данных блюд
-async function loadDishesData() {
+async function loadDishes() {
     try {
         dishesData = await window.loadDishesData();
     } catch (error) {
@@ -450,7 +450,7 @@ window.renderFavorites = function() {
 
 // Инициализация избранных
 async function initFavorites() {
-    await loadDishesData();
+    await loadDishes();
     renderFavorites();
 
     // Обновляем избранное при изменении localStorage
