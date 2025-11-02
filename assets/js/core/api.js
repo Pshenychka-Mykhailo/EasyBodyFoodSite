@@ -123,27 +123,25 @@ async function apiRequest(endpoint, options = {}) {
         let errorMessage = `HTTP error! status: ${response.status}`;
 
         try {
-          errorBody = await response.json();
-          if (errorBody.title && typeof errorBody.title === 'string') {
-            errorMessage = errorBody.title;
-          } else if (errorBody.detail && typeof errorBody.detail === 'string') {
-            errorMessage = errorBody.detail;
-          } else if (errorBody.message && typeof errorBody.message === 'string') {
-            errorMessage = errorBody.message;
-          } else if (typeof errorBody === 'string') {
-            errorMessage = errorBody;
-          }
-        } catch (e) {
-          // якщо тіло не є JSON, спробуємо прочитати як текст
-          try {
-            const errorText = await response.text();
-            if (errorText && errorText.trim() !== "") {
+          const errorText = await response.text();
+          if (errorText && errorText.trim() !== "") {
+            try {
+              errorBody = await response.json();
+              if (errorBody.title && typeof errorBody.title === 'string') {
+                errorMessage = errorBody.title;
+              } else if (errorBody.detail && typeof errorBody.detail === 'string') {
+                errorMessage = errorBody.detail;
+              } else if (errorBody.message && typeof errorBody.message === 'string') {
+                errorMessage = errorBody.message;
+              } else if (typeof errorBody === 'string') {
+                errorMessage = errorBody;
+              }
+            } catch (e) {
               errorMessage = errorText;
             }
           }
-          catch (textError) {
-            // не вдалося прочитати тіло відповіді
-          }
+        } catch (textError) {
+          // не вдалося прочитати тіло відповіді
         }
 
         throw new Error(errorMessage);

@@ -177,12 +177,6 @@ window.proceedToCheckout = function() {
 
         // Пробуем разные пути
         const tryLoadOrder = (pathIndex) => {
-            //if (pathIndex >= orderPaths.length) {
-            //    showError('Помилка завантаження форми замовлення');
-            //    return;
-            //}
-            
-
             fetch(orderPath)
                 .then(response => {
                     if (!response.ok) {
