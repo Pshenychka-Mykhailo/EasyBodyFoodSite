@@ -700,9 +700,7 @@ function setupDietSectionAnimation() {
 
     // Используем CartManager для добавления блюд в корзину
     if (window.cartManager) {
-      selectedDishes.forEach(dish => {
-        window.cartManager.addItem(dish);
-      });
+      window.cartManager.addOrder(selectedDishes, `Меню з калькулятора`);
     } else {
       // Fallback для случая, если CartManager не загружен
       let cart = JSON.parse(localStorage.getItem('cart') || '[]');
@@ -758,9 +756,7 @@ function setupDietSectionAnimation() {
 
       // Используем CartManager для добавления блюд в корзину
       if (window.cartManager) {
-        selectedDishes.forEach(dish => {
-          window.cartManager.addItem(dish);
-        });
+        window.cartManager.addOrder(selectedDishes, `Меню з калькулятора`);
       } else {
         // Fallback для случая, если CartManager не загружен
         let cart = JSON.parse(localStorage.getItem('cart') || '[]');
