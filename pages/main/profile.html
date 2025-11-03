@@ -52,61 +52,77 @@
                         <input class="profile-input" id="email-input" type="email" value="">
                         <div class="profile-error" id="email-error" style="display:none;">Поле є обов'язковим для відправки інформації!</div>
                     </div>
-                    <div>
-                        <div class="profile-label">Стать <svg class="profile-edit-icon" width="18" height="18" viewBox="0 0 20 20"><path d="M14.846 2.854a2.5 2.5 0 0 1 3.536 3.535l-9.193 9.193a2 2 0 0 1-.707.464l-3.25 1.083a.5.5 0 0 1-.632-.632l1.083-3.25a2 2 0 0 1 .464-.707l9.193-9.193Zm2.122 1.414a1.5 1.5 0 0 0-2.122 0l-9.193 9.193a1 1 0 0 0-.232.354l-.89 2.67 2.67-.89a1 1 0 0 0 .354-.232l9.193-9.193a1.5 1.5 0 0 0 0-2.122Z" fill="#bdbdbd"/></svg></div>
-                        <select class="profile-input" id="gender-input">
-                            <option value="female">Жіноча</option>
-                            <option value="male">Чоловіча</option>
-                        </select>
-                        <div class="profile-error" id="gender-error" style="display:none;">Поле є обов'язковим для відправки інформації!</div>
-                    </div>
-                    <div>
-                        <div class="profile-label">Алергени <svg class="profile-edit-icon" width="18" height="18" viewBox="0 0 20 20"><path d="M14.846 2.854a2.5 2.5 0 0 1 3.536 3.535l-9.193 9.193a2 2 0 0 1-.707.464l-3.25 1.083a.5.5 0 0 1-.632-.632l1.083-3.25a2 2 0 0 1 .464-.707l9.193-9.193Zm2.122 1.414a1.5 1.5 0 0 0-2.122 0l-9.193 9.193a1 1 0 0 0-.232.354l-.89 2.67 2.67-.89a1 1 0 0 0 .354-.232l9.193-9.193a1.5 1.5 0 0 0 0-2.122Z" fill="#bdbdbd"/></svg></div>
-                        <input class="profile-input" id="allergens-input" type="text" placeholder="Вкажіть ваші алергени, якщо є">
-                    </div>
-                    <div class="profile-form-row">
-                        <div style="flex:1;">
-                            <div class="profile-label">Telegram <svg class="profile-edit-icon" width="18" height="18" viewBox="0 0 20 20"><path d="M14.846 2.854a2.5 2.5 0 0 1 3.536 3.535l-9.193 9.193a2 2 0 0 1-.707.464l-3.25 1.083a.5.5 0 0 1-.632-.632l1.083-3.25a2 2 0 0 1 .464-.707l9.193-9.193Zm2.122 1.414a1.5 1.5 0 0 0-2.122 0l-9.193 9.193a1 1 0 0 0-.232.354l-.89 2.67 2.67-.89a1 1 0 0 0 .354-.232l9.193-9.193a1.5 1.5 0 0 0 0-2.122Z" fill="#bdbdbd"/></svg></div>
-                            <input class="profile-input" id="telegram-input" type="text" value="">
-                            <div class="profile-error" id="telegram-error" style="display:none;">Поле є обов'язковим для відправки інформації!</div>
+                    <details class="profile-details-group">
+                        <summary class="profile-details-summary">
+                            Персональна інформація (стать, алергени, соцмережі)
+                            <span class="collapse-icon">+</span>
+                        </summary>
+                        <div class="profile-details-content">
+                            <div>
+                                <div class="profile-label">Стать <svg class="profile-edit-icon" width="18" height="18" viewBox="0 0 20 20"><path d="M14.846 2.854a2.5 2.5 0 0 1 3.536 3.535l-9.193 9.193a2 2 0 0 1-.707.464l-3.25 1.083a.5.5 0 0 1-.632-.632l1.083-3.25a2 2 0 0 1 .464-.707l9.193-9.193Zm2.122 1.414a1.5 1.5 0 0 0-2.122 0l-9.193 9.193a1 1 0 0 0-.232.354l-.89 2.67 2.67-.89a1 1 0 0 0 .354-.232l9.193-9.193a1.5 1.5 0 0 0 0-2.122Z" fill="#bdbdbd"/></svg></div>
+                                <select class="profile-input" id="gender-input">
+                                    <option value="female">Жіноча</option>
+                                    <option value="male">Чоловіча</option>
+                                </select>
+                                <div class="profile-error" id="gender-error" style="display:none;">Поле є обов'язковим для відправки інформації!</div>
+                            </div>
+                            <div>
+                                <div class="profile-label">Алергени <svg class="profile-edit-icon" width="18" height="18" viewBox="0 0 20 20"><path d="M14.846 2.854a2.5 2.5 0 0 1 3.536 3.535l-9.193 9.193a2 2 0 0 1-.707.464l-3.25 1.083a.5.5 0 0 1-.632-.632l1.083-3.25a2 2 0 0 1 .464-.707l9.193-9.193Zm2.122 1.414a1.5 1.5 0 0 0-2.122 0l-9.193 9.193a1 1 0 0 0-.232.354l-.89 2.67 2.67-.89a1 1 0 0 0 .354-.232l9.193-9.193a1.5 1.5 0 0 0 0-2.122Z" fill="#bdbdbd"/></svg></div>
+                                <input class="profile-input" id="allergens-input" type="text" placeholder="Вкажіть ваші алергени, якщо є">
+                            </div>
+                            <div class="profile-form-row">
+                                <div style="flex:1;">
+                                    <div class="profile-label">Telegram <svg class="profile-edit-icon" width="18" height="18" viewBox="0 0 20 20"><path d="M14.846 2.854a2.5 2.5 0 0 1 3.536 3.535l-9.193 9.193a2 2 0 0 1-.707.464l-3.25 1.083a.5.5 0 0 1-.632-.632l1.083-3.25a2 2 0 0 1 .464-.707l9.193-9.193Zm2.122 1.414a1.5 1.5 0 0 0-2.122 0l-9.193 9.193a1 1 0 0 0-.232.354l-.89 2.67 2.67-.89a1 1 0 0 0 .354-.232l9.193-9.193a1.5 1.5 0 0 0 0-2.122Z" fill="#bdbdbd"/></svg></div>
+                                    <input class="profile-input" id="telegram-input" type="text" value="">
+                                    <div class="profile-error" id="telegram-error" style="display:none;">Поле є обов'язковим для відправки інформації!</div>
+                                </div>
+                                <div style="flex:1;">
+                                    <div class="profile-label">Instagram <svg class="profile-edit-icon" width="18" height="18" viewBox="0 0 20 20"><path d="M14.846 2.854a2.5 2.5 0 0 1 3.536 3.535l-9.193 9.193a2 2 0 0 1-.707.464l-3.25 1.083a.5.5 0 0 1-.632-.632l1.083-3.25a2 2 0 0 1 .464-.707l9.193-9.193Zm2.122 1.414a1.5 1.5 0 0 0-2.122 0l-9.193 9.193a1 1 0 0 0-.232.354l-.89 2.67 2.67-.89a1 1 0 0 0 .354-.232l9.193-9.193a1.5 1.5 0 0 0 0-2.122Z" fill="#bdbdbd"/></svg></div>
+                                    <input class="profile-input" id="instagram-input" type="text" value="">
+                                    <div class="profile-error" id="instagram-error" style="display:none;">Поле є обов'язковим для відправки інформації!</div>
+                                </div>
+                            </div>
                         </div>
-                        <div style="flex:1;">
-                            <div class="profile-label">Instagram <svg class="profile-edit-icon" width="18" height="18" viewBox="0 0 20 20"><path d="M14.846 2.854a2.5 2.5 0 0 1 3.536 3.535l-9.193 9.193a2 2 0 0 1-.707.464l-3.25 1.083a.5.5 0 0 1-.632-.632l1.083-3.25a2 2 0 0 1 .464-.707l9.193-9.193Zm2.122 1.414a1.5 1.5 0 0 0-2.122 0l-9.193 9.193a1 1 0 0 0-.232.354l-.89 2.67 2.67-.89a1 1 0 0 0 .354-.232l9.193-9.193a1.5 1.5 0 0 0 0-2.122Z" fill="#bdbdbd"/></svg></div>
-                            <input class="profile-input" id="instagram-input" type="text" value="">
-                            <div class="profile-error" id="instagram-error" style="display:none;">Поле є обов'язковим для відправки інформації!</div>
+                    </details>
+
+                    <details class="profile-details-group">
+                        <summary class="profile-details-summary">
+                            Адреса доставки
+                            <span class="collapse-icon">+</span>
+                        </summary>
+                        <div class="profile-details-content">
+                            <div class="profile-form-row">
+                                <div style="flex:1;">
+                                    <div class="profile-label">Місто <svg class="profile-edit-icon" width="18" height="18" viewBox="0 0 20 20"><path d="M14.846 2.854a2.5 2.5 0 0 1 3.536 3.535l-9.193 9.193a2 2 0 0 1-.707.464l-3.25 1.083a.5.5 0 0 1-.632-.632l1.083-3.25a2 2 0 0 1 .464-.707l9.193-9.193Zm2.122 1.414a1.5 1.5 0 0 0-2.122 0l-9.193 9.193a1 1 0 0 0-.232.354l-.89 2.67 2.67-.89a1 1 0 0 0 .354-.232l9.193-9.193a1.5 1.5 0 0 0 0-2.122Z" fill="#bdbdbd"/></svg></div>
+                                    <select class="profile-input" id="city-input">
+                                        <option value="Київ">Київ</option>
+                                    </select>
+                                </div>
+                                <div style="flex:1;">
+                                    <div class="profile-label">Вулиця <svg class="profile-edit-icon" width="18" height="18" viewBox="0 0 20 20"><path d="M14.846 2.854a2.5 2.5 0 0 1 3.536 3.535l-9.193 9.193a2 2 0 0 1-.707.464l-3.25 1.083a.5.5 0 0 1-.632-.632l1.083-3.25a2 2 0 0 1 .464-.707l9.193-9.193Zm2.122 1.414a1.5 1.5 0 0 0-2.122 0l-9.193 9.193a1 1 0 0 0-.232.354l-.89 2.67 2.67-.89a1 1 0 0 0 .354-.232l9.193-9.193a1.5 1.5 0 0 0 0-2.122Z" fill="#bdbdbd"/></svg></div>
+                                    <input class="profile-input" id="street-input" type="text" value="">
+                                    <div class="profile-error" id="street-error" style="display:none;">Поле є обов'язковим для відправки інформації!</div>
+                                </div>
+                            </div>
+                            <div class="profile-form-row">
+                                <div style="flex:1;">
+                                    <div class="profile-label">Будинок <svg class="profile-edit-icon" width="18" height="18" viewBox="0 0 20 20"><path d="M14.846 2.854a2.5 2.5 0 0 1 3.536 3.535l-9.193 9.193a2 2 0 0 1-.707.464l-3.25 1.083a.5.5 0 0 1-.632-.632l1.083-3.25a2 2 0 0 1 .464-.707l9.193-9.193Zm2.122 1.414a1.5 1.5 0 0 0-2.122 0l-9.193 9.193a1 1 0 0 0-.232.354l-.89 2.67 2.67-.89a1 1 0 0 0 .354-.232l9.193-9.193a1.5 1.5 0 0 0 0-2.122Z" fill="#bdbdbd"/></svg></div>
+                                    <input class="profile-input" id="house-input" type="text" value="">
+                                    <div class="profile-error" id="house-error" style="display:none;">Поле є обов'язковим для відправки інформації!</div>
+                                </div>
+                                <div style="flex:1;">
+                                    <div class="profile-label">Підʼїзд <svg class="profile-edit-icon" width="18" height="18" viewBox="0 0 20 20"><path d="M14.846 2.854a2.5 2.5 0 0 1 3.536 3.535l-9.193 9.193a2 2 0 0 1-.707.464l-3.25 1.083a.5.5 0 0 1-.632-.632l1.083-3.25a2 2 0 0 1 .464-.707l9.193-9.193Zm2.122 1.414a1.5 1.5 0 0 0-2.122 0l-9.193 9.193a1 1 0 0 0-.232.354l-.89 2.67 2.67-.89a1 1 0 0 0 .354-.232l9.193-9.193a1.5 1.5 0 0 0 0-2.122Z" fill="#bdbdbd"/></svg></div>
+                                    <input class="profile-input" id="entrance-input" type="text" value="">
+                                    <div class="profile-error" id="entrance-error" style="display:none;">Поле є обов'язковим для відправки інформації!</div>
+                                </div>
+                                <div style="flex:1;">
+                                    <div class="profile-label">Квартира <svg class="profile-edit-icon" width="18" height="18" viewBox="0 0 20 20"><path d="M14.846 2.854a2.5 2.5 0 0 1 3.536 3.535l-9.193 9.193a2 2 0 0 1-.707.464l-3.25 1.083a.5.5 0 0 1-.632-.632l1.083-3.25a2 2 0 0 1 .464-.707l9.193-9.193Zm2.122 1.414a1.5 1.5 0 0 0-2.122 0l-9.193 9.193a1 1 0 0 0-.232.354l-.89 2.67 2.67-.89a1 1 0 0 0 .354-.232l9.193-9.193a1.5 1.5 0 0 0 0-2.122Z" fill="#bdbdbd"/></svg></div>
+                                    <input class="profile-input" id="apartment-input" type="text" value="">
+                                    <div class="profile-error" id="apartment-error" style="display:none;">Поле є обов'язковим для відправки інформації!</div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="profile-label" style="margin-top:12px;">Адреса доставки:</div>
-                    <div class="profile-form-row">
-                        <div style="flex:1;">
-                            <div class="profile-label">Місто <svg class="profile-edit-icon" width="18" height="18" viewBox="0 0 20 20"><path d="M14.846 2.854a2.5 2.5 0 0 1 3.536 3.535l-9.193 9.193a2 2 0 0 1-.707.464l-3.25 1.083a.5.5 0 0 1-.632-.632l1.083-3.25a2 2 0 0 1 .464-.707l9.193-9.193Zm2.122 1.414a1.5 1.5 0 0 0-2.122 0l-9.193 9.193a1 1 0 0 0-.232.354l-.89 2.67 2.67-.89a1 1 0 0 0 .354-.232l9.193-9.193a1.5 1.5 0 0 0 0-2.122Z" fill="#bdbdbd"/></svg></div>
-                            <select class="profile-input" id="city-input">
-                                <option value="Київ">Київ</option>
-                            </select>
-                        </div>
-                        <div style="flex:1;">
-                            <div class="profile-label">Вулиця <svg class="profile-edit-icon" width="18" height="18" viewBox="0 0 20 20"><path d="M14.846 2.854a2.5 2.5 0 0 1 3.536 3.535l-9.193 9.193a2 2 0 0 1-.707.464l-3.25 1.083a.5.5 0 0 1-.632-.632l1.083-3.25a2 2 0 0 1 .464-.707l9.193-9.193Zm2.122 1.414a1.5 1.5 0 0 0-2.122 0l-9.193 9.193a1 1 0 0 0-.232.354l-.89 2.67 2.67-.89a1 1 0 0 0 .354-.232l9.193-9.193a1.5 1.5 0 0 0 0-2.122Z" fill="#bdbdbd"/></svg></div>
-                            <input class="profile-input" id="street-input" type="text" value="">
-                            <div class="profile-error" id="street-error" style="display:none;">Поле є обов'язковим для відправки інформації!</div>
-                        </div>
-                    </div>
-                    <div class="profile-form-row">
-                        <div style="flex:1;">
-                            <div class="profile-label">Будинок <svg class="profile-edit-icon" width="18" height="18" viewBox="0 0 20 20"><path d="M14.846 2.854a2.5 2.5 0 0 1 3.536 3.535l-9.193 9.193a2 2 0 0 1-.707.464l-3.25 1.083a.5.5 0 0 1-.632-.632l1.083-3.25a2 2 0 0 1 .464-.707l9.193-9.193Zm2.122 1.414a1.5 1.5 0 0 0-2.122 0l-9.193 9.193a1 1 0 0 0-.232.354l-.89 2.67 2.67-.89a1 1 0 0 0 .354-.232l9.193-9.193a1.5 1.5 0 0 0 0-2.122Z" fill="#bdbdbd"/></svg></div>
-                            <input class="profile-input" id="house-input" type="text" value="">
-                            <div class="profile-error" id="house-error" style="display:none;">Поле є обов'язковим для відправки інформації!</div>
-                        </div>
-                        <div style="flex:1;">
-                            <div class="profile-label">Підʼїзд <svg class="profile-edit-icon" width="18" height="18" viewBox="0 0 20 20"><path d="M14.846 2.854a2.5 2.5 0 0 1 3.536 3.535l-9.193 9.193a2 2 0 0 1-.707.464l-3.25 1.083a.5.5 0 0 1-.632-.632l1.083-3.25a2 2 0 0 1 .464-.707l9.193-9.193Zm2.122 1.414a1.5 1.5 0 0 0-2.122 0l-9.193 9.193a1 1 0 0 0-.232.354l-.89 2.67 2.67-.89a1 1 0 0 0 .354-.232l9.193-9.193a1.5 1.5 0 0 0 0-2.122Z" fill="#bdbdbd"/></svg></div>
-                            <input class="profile-input" id="entrance-input" type="text" value="">
-                            <div class="profile-error" id="entrance-error" style="display:none;">Поле є обов'язковим для відправки інформації!</div>
-                        </div>
-                        <div style="flex:1;">
-                            <div class="profile-label">Квартира <svg class="profile-edit-icon" width="18" height="18" viewBox="0 0 20 20"><path d="M14.846 2.854a2.5 2.5 0 0 1 3.536 3.535l-9.193 9.193a2 2 0 0 1-.707.464l-3.25 1.083a.5.5 0 0 1-.632-.632l1.083-3.25a2 2 0 0 1 .464-.707l9.193-9.193Zm2.122 1.414a1.5 1.5 0 0 0-2.122 0l-9.193 9.193a1 1 0 0 0-.232.354l-.89 2.67 2.67-.89a1 1 0 0 0 .354-.232l9.193-9.193a1.5 1.5 0 0 0 0-2.122Z" fill="#bdbdbd"/></svg></div>
-                            <input class="profile-input" id="apartment-input" type="text" value="">
-                            <div class="profile-error" id="apartment-error" style="display:none;">Поле є обов'язковим для відправки інформації!</div>
-                        </div>
-                    </div>
+                    </details>
                 </form>
             </div>
         </section>

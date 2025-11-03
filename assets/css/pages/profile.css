@@ -270,19 +270,78 @@
   transition: stroke 0.3s ease;
 }
 
+/* === СТИЛІ ДЛЯ ВИПАДАШОК (АККОРДЕОНА) В ПРОФІЛІ === */
+
+.profile-details-group {
+    border: 1.5px solid #e0e0e0;
+    border-radius: 12px;
+    margin-top: 8px;
+    overflow: hidden; /* Важливо для плавної анімації */
+}
+
+.profile-details-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 600;
+    color: #4CAF50;
+    background: #f8f9fa;
+    transition: background-color 0.2s;
+}
+
+.profile-details-summary:hover {
+    background: #f1f8e9;
+}
+
+/* Прибираємо стандартну стрілку браузера */
+.profile-details-summary::-webkit-details-marker {
+    display: none;
+}
+.profile-details-summary {
+    list-style: none; /* Для Firefox */
+}
+
+.collapse-icon {
+    font-size: 24px;
+    font-weight: 700;
+    color: #4CAF50;
+    transition: transform 0.3s ease;
+}
+
+/* Анімація іконки +/- */
+.profile-details-group[open] > .profile-details-summary .collapse-icon {
+    transform: rotate(45deg);
+    content: "−"; /* Хоча ми використовуємо '+', поворот робить 'x' (мінус) */
+}
+
+/* Контент, що випадає */
+.profile-details-content {
+    padding: 20px 16px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px; /* Відступ між полями всередині випадашки */
+    border-top: 1px solid #e0e0e0;
+}
+
 /* Адаптивность для мобильных устройств */
 @media (max-width: 900px) {
-  .profile-main-row { flex-direction: column; gap: 32px; }
+  .profile-main-row { 
+    flex-direction: column; 
+    gap: 32px;
+    align-items: center; 
+  }
   .profile-form { 
     max-width: 100%;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
   }
-  .profile-avatar-block { margin-left: 1rem; }
+  .profile-avatar-block { 
+    margin-left: 1.5rem; 
+  }
   .profile-cart-empty { padding: 32px 8px; }
-  .profile-tabs :first-child {
-    margin-left: 1rem;
-  }
 }
 
 @media (max-width: 600px) {
