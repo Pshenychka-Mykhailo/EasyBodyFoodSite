@@ -273,8 +273,16 @@
 /* Адаптивность для мобильных устройств */
 @media (max-width: 900px) {
   .profile-main-row { flex-direction: column; gap: 32px; }
-  .profile-form { max-width: 100%; }
+  .profile-form { 
+    max-width: 100%;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+  .profile-avatar-block { margin-left: 1rem; }
   .profile-cart-empty { padding: 32px 8px; }
+  .profile-tabs :first-child {
+    margin-left: 1rem;
+  }
 }
 
 @media (max-width: 600px) {
