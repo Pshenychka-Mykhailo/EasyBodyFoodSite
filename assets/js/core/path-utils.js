@@ -8,7 +8,7 @@
 /**
  * Определение базового пути для текущей страницы
  */
-function getBasePath() {
+function getRootPath() {
   const path = window.location.pathname;
   
   // Если мы в подпапке pages/main/, то нужно вернуться на 2 уровня вверх
@@ -18,6 +18,13 @@ function getBasePath() {
   
   // Если мы в корне сайта
   return './';
+}
+
+/** 
+ * Получение пути к главной странице
+*/
+function getHomePath() {
+  return getRootPath() + 'index.html';
 }
 
 /**
@@ -51,13 +58,19 @@ function updatePathsInHtml(html) {
  * Получение правильного пути к странице (без дублирования)
  */
 function getPagePath(pageName) {
-  const path = window.location.pathname;
+  const rootPath = getRootPath();
   
   // Если мы уже в pages/main/, то используем относительные пути
-  if (path.includes('/pages/main/')) {
+  if (rootPath === '../../') {
+    if (pageName === 'index') {
+      return rootPath + 'index.html';
+    }
     return `${pageName}.html`;
   }
   
+  if (pageName === 'index') {
+    return 'index.html';
+  }
   // Если мы в корне, то добавляем полный путь
   return `pages/main/${pageName}.html`;
 }
@@ -66,7 +79,7 @@ function getPagePath(pageName) {
  * Получение правильного пути к файлу
  */
 function getPath(filePath) {
-  const basePath = getBasePath();
+  const basePath = getRootPath();
   return basePath + filePath;
 }
 
@@ -101,8 +114,9 @@ function getJsPath(fileName) {
 
 
 // Экспорт функций для использования в других модулях
-window.getBasePath = getBasePath;
+window.getRootPath = getRootPath;
 window.updatePathsInHtml = updatePathsInHtml;
+window.getHomePath = getHomePath;
 window.getPath = getPath;
 window.getDataPath = getDataPath;
 window.getImagePath = getImagePath;

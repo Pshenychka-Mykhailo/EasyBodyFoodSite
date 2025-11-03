@@ -27,27 +27,14 @@ function insertFooterDirectly() {
   const path = window.location.pathname;
   
   // Определяем правильные пути в зависимости от текущего расположения
-  let homePath, standartPath, calculatorPath, constructorPath, logoPath, jsPath;
+  let homePath, standartPath, calculatorPath, constructorPath, logoPath;
   
-  if (path.includes('/pages/main/')) {
-    // Мы в подпапке pages/main/
-    homePath = '../../index.html';
-    standartPath = 'standart.html';
-    calculatorPath = 'calculator.html';
-    constructorPath = 'constructor.html';
-    termsPath = 'terms.html';
-    logoPath = '../../data/img/logo.png';
-    jsPath = '../../assets/js/layout/footer.js';
-  } else {
-    // Мы в корне сайта
-    homePath = 'index.html';
-    standartPath = 'pages/main/standart.html';
-    calculatorPath = 'pages/main/calculator.html';
-    constructorPath = 'pages/main/constructor.html';
-    termsPath = 'pages/main/terms.html';
-    logoPath = 'data/img/logo.png';
-    jsPath = 'assets/js/layout/footer.js';
-  }
+  homePath = window.getHomePath();
+  standartPath = window.getPagePath('standart');
+  calculatorPath = window.getPagePath('calculator');
+  constructorPath = window.getPagePath('constructor');
+  termsPath = window.getPagePath('terms');
+  logoPath = window.getPath('data/img/logo.png');
   
   const footerHTML = `
     <footer class="footer">

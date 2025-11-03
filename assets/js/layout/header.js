@@ -19,23 +19,12 @@ function insertHeaderDirectly() {
   // Определяем правильные пути в зависимости от текущего расположения
   let homePath, constructorPath, calculatorPath, standartPath, cartPath, logoPath;
   
-  if (path.includes('/pages/main/')) {
-    // Мы в подпапке pages/main/
-    homePath = '../../index.html';
-    constructorPath = 'constructor.html';
-    calculatorPath = 'calculator.html';
-    standartPath = 'standart.html';
-    cartPath = 'cart.html';
-    logoPath = '../../data/img/logo.png';
-  } else {
-    // Мы в корне сайта
-    homePath = 'index.html';
-    constructorPath = 'pages/main/constructor.html';
-    calculatorPath = 'pages/main/calculator.html';
-    standartPath = 'pages/main/standart.html';
-    cartPath = 'pages/main/cart.html';
-    logoPath = 'data/img/logo.png';
-  }
+  homePath = window.getHomePath();
+  constructorPath = window.getPagePath('constructor');
+  calculatorPath = window.getPagePath('calculator');;
+  standartPath = window.getPagePath('standart');
+  cartPath = window.getPagePath('cart');
+  logoPath = window.getPath('data/img/logo.png');
   
   const headerHTML = `
     <header class="main-header">

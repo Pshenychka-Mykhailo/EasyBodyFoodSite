@@ -426,17 +426,7 @@ function setupOrderFormValidation() {
             }
             
             // 3. Переходим на главную страницу
-            const currentPath = window.location.pathname;
-            let homePath = '/index.html';
-            
-            // Определяем правильный путь к главной странице
-            if (currentPath.includes('/pages/main/')) {
-                homePath = '../../index.html';
-            } else if (currentPath.includes('/pages/partials/')) {
-                homePath = '../index.html';
-            } else if (currentPath.includes('/pages/')) {
-                homePath = '../index.html';
-            }
+            let homePath = window.getHomePath();
             
             // 4. Показываем сообщение об успешном оформлении заказа
             if (typeof showSuccess === 'function') {
@@ -477,7 +467,7 @@ function loadCart() {
                 <div class="profile-cart-empty-title">Упс! Кошик порожній</div>
                 <div class="profile-cart-empty-desc">Саме час для правильного харчування!</div>
                 <div class="profile-cart-btns">
-                    <a href="index.html" class="profile-cart-btn">Повернутися на головну</a>
+                    <a href="${window.getHomePath()}" class="profile-cart-btn">Повернутися на головну</a>
                 </div>
             </div>
         `;
@@ -599,7 +589,7 @@ function loadCart() {
             <div class="cart-total">Загалом у замовленні: ${Math.round(macros.protein)} Білки ${Math.round(macros.fat)} Жири ${Math.round(macros.carbs)} Вуглеводи, ${totalCalories} ккал.</div>
             <div class="cart-actions">
                 <button class="checkout-btn" onclick="proceedToCheckout()">Оформити замовлення</button>
-                <a href="index.html" class="continue-shopping-btn">Повернутися на головну</a>
+                <a href="${window.getHomePath()}" class="continue-shopping-btn">Повернутися на головну</a>
             </div>
         `;
     }

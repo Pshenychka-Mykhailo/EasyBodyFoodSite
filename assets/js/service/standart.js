@@ -268,16 +268,7 @@ async function initStandartPage() {
     }
     
     // Перенаправляем в корзину с правильным путем
-    const path = window.location.pathname;
-    let cartPath;
-    
-    if (path.includes('/pages/main/')) {
-      // Мы в подпапке pages/main/
-      cartPath = 'cart.html';
-    } else {
-      // Мы в корне сайта
-      cartPath = 'pages/main/cart.html';
-    }
+    let cartPath = window.getPagePath('cart');
     
     window.location.href = cartPath;
   }
