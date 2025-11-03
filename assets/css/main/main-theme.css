@@ -1045,7 +1045,9 @@ body {
     }
     .section1 .team-main-photo {
         width: 100%;
-        max-width: 340px;
+        min-height: 280px;
+        min-width: 200px;
+        max-width: 370px;
     }
     .section1 .team-main-info {
         max-width: 100%;
