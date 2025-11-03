@@ -1097,8 +1097,8 @@ a.gallery-btn {
         outline-offset: 2px;
     }
     .menu-slider-wrapper-alt {
-        max-width: 100vw;
-        width: 100vw;
+        max-width: 100%;
+        width: 100%;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
