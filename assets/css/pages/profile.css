@@ -325,9 +325,9 @@
     max-height: 0;
     opacity: 0;
     overflow: hidden;
-    transition: max-height 0.4s ease-out, opacity 0.3s ease-out, padding-top 0.4s ease-out;
-
-    padding-top: 0; 
+    padding-top: 0;
+  
+    transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out;
     
     display: flex;
     flex-direction: column;
@@ -337,9 +337,6 @@
 .profile-details-group[open] > .profile-details-content {
     max-height: 500px; /* Достатньо велике значення для вмісту */
     opacity: 1;
-
-    padding-top: 20px;
-    transition: max-height 0.5s ease-in, opacity 0.3s ease-in 0.1s, padding-top 0.5s ease-in;
 }
 
 /* Адаптивность для мобильных устройств */
