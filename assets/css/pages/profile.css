@@ -276,12 +276,14 @@
 .profile-details-group {
     border: none;
     border-bottom: 1.5px solid #bdbdbd;
-    margin-top: 8px; /* Зберігаємо відступ зверху */
+    margin-top: 8px;
+    transition: border-bottom 0.2s ease-out 0.3s;
 }
 
 /* Коли група відкрита, її власна нижня лінія не потрібна */
 .profile-details-group[open] {
-    border-bottom: none;
+    border-bottom: 1.5px solid transparent;
+    transition-delay: 0s;
 }
 
 /* Заголовок <summary> */
@@ -293,11 +295,11 @@
     /* Робимо його схожим на .profile-input */
     padding: 8px 0 8px 0; 
     font-size: 17px;
-    font-weight: 500; /* Трохи жирніший за звичайний label */
+    font-weight: 500;
     color: #222;
 
     cursor: pointer;
-    list-style: none; /* Прибираємо стандартний маркер/стрілку */
+    list-style: none;
 }
 
 /* Прибираємо стандартний маркер/стрілку (для Safari/Chrome) */
@@ -309,7 +311,7 @@
 .collapse-icon {
     font-size: 24px;
     font-weight: 700;
-    color: #4CAF50; /* Залишаємо іконку зеленою для акценту */
+    color: #4CAF50;
     transition: transform 0.3s ease;
 }
 
@@ -320,12 +322,22 @@
 
 /* Контент, що випадає */
 .profile-details-content {
-    /* Відступ зверху, щоб відділити від заголовка */
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, opacity 0.3s ease-out, padding-top 0.4s ease-out;
+
     padding-top: 20px; 
-    
     display: flex;
     flex-direction: column;
-    gap: 18px; /* Відступ між полями всередині */
+    gap: 18px;
+}
+
+.profile-details-group[open] > .profile-details-content {
+    max-height: 500px; /* Достатньо велике значення для вмісту */
+    opacity: 1;
+    padding-top: 20px;
+    transition: max-height 0.5s ease-in, opacity 0.3s ease-in, padding-top 0.5s ease-in;
 }
 
 /* Адаптивность для мобильных устройств */
