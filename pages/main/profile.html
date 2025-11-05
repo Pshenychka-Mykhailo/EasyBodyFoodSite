@@ -52,12 +52,12 @@
                         <input class="profile-input" id="email-input" type="email" value="">
                         <div class="profile-error" id="email-error" style="display:none;">Поле є обов'язковим для відправки інформації!</div>
                     </div>
-                    <details class="profile-details-group">
-                        <summary class="profile-details-summary">
+                    <div class="profile-details-group">
+                        <div class="profile-summary" onclick="toggleProfileCollapse('personal-info-content')">
                             Персональна інформація (стать, алергени, соцмережі)
-                            <span class="collapse-icon">+</span>
-                        </summary>
-                        <div class="profile-details-content">
+                            <span class="collapse-icon" id="toggle-icon-personal-info-content">+</span>
+                        </div>
+                        <div class="profile-details-content collapsible-content" id="personal-info-content">
                             <div>
                                 <div class="profile-label">Стать <svg class="profile-edit-icon" width="18" height="18" viewBox="0 0 20 20"><path d="M14.846 2.854a2.5 2.5 0 0 1 3.536 3.535l-9.193 9.193a2 2 0 0 1-.707.464l-3.25 1.083a.5.5 0 0 1-.632-.632l1.083-3.25a2 2 0 0 1 .464-.707l9.193-9.193Zm2.122 1.414a1.5 1.5 0 0 0-2.122 0l-9.193 9.193a1 1 0 0 0-.232.354l-.89 2.67 2.67-.89a1 1 0 0 0 .354-.232l9.193-9.193a1.5 1.5 0 0 0 0-2.122Z" fill="#bdbdbd"/></svg></div>
                                 <select class="profile-input" id="gender-input">
@@ -83,14 +83,14 @@
                                 </div>
                             </div>
                         </div>
-                    </details>
+                    </div>
 
-                    <details class="profile-details-group">
-                        <summary class="profile-details-summary">
+                    <div class="profile-details-group">
+                        <div class="profile-summary" onclick="toggleProfileCollapse('address-content')">
                             Адреса доставки
-                            <span class="collapse-icon">+</span>
-                        </summary>
-                        <div class="profile-details-content">
+                            <span class="collapse-icon" id="toggle-icon-address-content">+</span>
+                        </div>
+                        <div class="profile-details-content collapsible-content" id="address-content">
                             <div class="profile-form-row">
                                 <div style="flex:1;">
                                     <div class="profile-label">Місто <svg class="profile-edit-icon" width="18" height="18" viewBox="0 0 20 20"><path d="M14.846 2.854a2.5 2.5 0 0 1 3.536 3.535l-9.193 9.193a2 2 0 0 1-.707.464l-3.25 1.083a.5.5 0 0 1-.632-.632l1.083-3.25a2 2 0 0 1 .464-.707l9.193-9.193Zm2.122 1.414a1.5 1.5 0 0 0-2.122 0l-9.193 9.193a1 1 0 0 0-.232.354l-.89 2.67 2.67-.89a1 1 0 0 0 .354-.232l9.193-9.193a1.5 1.5 0 0 0 0-2.122Z" fill="#bdbdbd"/></svg></div>
@@ -122,7 +122,7 @@
                                 </div>
                             </div>
                         </div>
-                    </details>
+                    </div>
                 </form>
             </div>
         </section>

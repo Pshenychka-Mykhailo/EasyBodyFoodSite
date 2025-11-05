@@ -272,42 +272,35 @@
 
 /* === СТИЛІ ДЛЯ ВИПАДАШОК (АККОРДЕОНА) В ПРОФІЛІ === */
 
-/* Група <details> тепер має лише нижню лінію, як звичайне поле */
 .profile-details-group {
     border: none;
     border-bottom: 1.5px solid #bdbdbd;
     margin-top: 8px;
-    transition: border-bottom 0.2s ease-out 0.3s;
+    transition: border-bottom 0.1s ease-out 0.3s;
 }
 
-/* Коли група відкрита, її власна нижня лінія не потрібна */
-.profile-details-group[open] {
+.profile-details-group.show {
     border-bottom: 1.5px solid transparent;
     transition-delay: 0s;
 }
 
-/* Заголовок <summary> */
-.profile-details-summary {
+.profile-summary {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
-    /* Робимо його схожим на .profile-input */
     padding: 8px 0 8px 0; 
     font-size: 17px;
     font-weight: 500;
     color: #222;
-
     cursor: pointer;
-    list-style: none;
+    list-style: none; 
+    user-select: none;
 }
 
-/* Прибираємо стандартний маркер/стрілку (для Safari/Chrome) */
-.profile-details-summary::-webkit-details-marker {
+.profile-summary::-webkit-details-marker {
     display: none;
 }
 
-/* Іконка +/- */
 .collapse-icon {
     font-size: 24px;
     font-weight: 700;
@@ -315,27 +308,27 @@
     transition: transform 0.3s ease;
 }
 
-/* Анімація іконки: '+' -> 'x' (мінус) */
-.profile-details-group[open] > .profile-details-summary .collapse-icon {
+.profile-summary:has(+ .collapsible-content.show) .collapse-icon {
     transform: rotate(45deg);
 }
 
-/* Контент, що випадає */
-.profile-details-content {
+/* --- ГОЛОВНА ЧАСТИНА АНІМАЦІЇ --- */
+
+.profile-details-content.collapsible-content {
     max-height: 0;
     opacity: 0;
     overflow: hidden;
     padding-top: 0;
-  
-    transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out;
+    
+    transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out, padding-top 0.4s ease-in-out;
     
     display: flex;
     flex-direction: column;
     gap: 18px;
 }
 
-.profile-details-group[open] > .profile-details-content {
-    max-height: 500px; /* Достатньо велике значення для вмісту */
+.profile-details-content.collapsible-content.show {
+    max-height: 500px;
     opacity: 1;
 }
 

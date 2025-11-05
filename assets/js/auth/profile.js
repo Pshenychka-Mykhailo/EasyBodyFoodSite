@@ -455,6 +455,23 @@ window.renderFavorites = function() {
     `;
 };
 
+window.toggleProfileCollapse = function(contentId) {
+    const content = document.getElementById(contentId);
+    const summary = content.previousElementSibling;
+    const group = content.parentElement;
+    
+    if (content) {
+        if (content.classList.contains('show')) {
+            // Згортаємо
+            content.classList.remove('show');
+            group.classList.remove('show');
+            // Розгортаємо
+            content.classList.add('show');
+            group.classList.add('show');
+        }
+    }
+};
+
 // Инициализация избранных
 async function initFavorites() {
     await loadDishes();
@@ -490,6 +507,8 @@ function loadTermsContent() {
             container.innerHTML = `<p style="color:red;">${error.message}</p>`;
         });
 }
+
+
 
 // Поддержка обеих систем - старой и новой
 if (document.readyState === 'loading') {
