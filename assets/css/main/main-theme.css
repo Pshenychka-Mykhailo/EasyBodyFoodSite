@@ -1189,7 +1189,7 @@ body {
         margin-bottom: 20px;
         flex-wrap: wrap;
         justify-content: center;
-        padding: 8px 15px;
+        padding: 8px 0 15px;
         max-width: 100%;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
