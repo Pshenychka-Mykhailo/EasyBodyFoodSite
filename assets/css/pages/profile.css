@@ -332,7 +332,7 @@
     opacity: 1;
 }
 
-.tab-history, .tab-terms {
+#tab-history, #tab-terms {
   margin-left: 1rem;
 }
 
