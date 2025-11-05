@@ -465,6 +465,7 @@ window.toggleProfileCollapse = function(contentId) {
             // Згортаємо
             content.classList.remove('show');
             group.classList.remove('show');
+        } else {
             // Розгортаємо
             content.classList.add('show');
             group.classList.add('show');
