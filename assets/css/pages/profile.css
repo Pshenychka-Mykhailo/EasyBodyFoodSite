@@ -272,58 +272,60 @@
 
 /* === СТИЛІ ДЛЯ ВИПАДАШОК (АККОРДЕОНА) В ПРОФІЛІ === */
 
+/* Група <details> тепер має лише нижню лінію, як звичайне поле */
 .profile-details-group {
-    border: 1.5px solid #e0e0e0;
-    border-radius: 12px;
-    margin-top: 8px;
-    overflow: hidden; /* Важливо для плавної анімації */
+    border: none;
+    border-bottom: 1.5px solid #bdbdbd;
+    margin-top: 8px; /* Зберігаємо відступ зверху */
 }
 
+/* Коли група відкрита, її власна нижня лінія не потрібна */
+.profile-details-group[open] {
+    border-bottom: none;
+}
+
+/* Заголовок <summary> */
 .profile-details-summary {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 14px 16px;
-    cursor: pointer;
+    
+    /* Робимо його схожим на .profile-input */
+    padding: 8px 0 8px 0; 
     font-size: 17px;
-    font-weight: 600;
-    color: #4CAF50;
-    background: #f8f9fa;
-    transition: background-color 0.2s;
+    font-weight: 500; /* Трохи жирніший за звичайний label */
+    color: #222;
+
+    cursor: pointer;
+    list-style: none; /* Прибираємо стандартний маркер/стрілку */
 }
 
-.profile-details-summary:hover {
-    background: #f1f8e9;
-}
-
-/* Прибираємо стандартну стрілку браузера */
+/* Прибираємо стандартний маркер/стрілку (для Safari/Chrome) */
 .profile-details-summary::-webkit-details-marker {
     display: none;
 }
-.profile-details-summary {
-    list-style: none; /* Для Firefox */
-}
 
+/* Іконка +/- */
 .collapse-icon {
     font-size: 24px;
     font-weight: 700;
-    color: #4CAF50;
+    color: #4CAF50; /* Залишаємо іконку зеленою для акценту */
     transition: transform 0.3s ease;
 }
 
-/* Анімація іконки +/- */
+/* Анімація іконки: '+' -> 'x' (мінус) */
 .profile-details-group[open] > .profile-details-summary .collapse-icon {
     transform: rotate(45deg);
-    content: "−"; /* Хоча ми використовуємо '+', поворот робить 'x' (мінус) */
 }
 
 /* Контент, що випадає */
 .profile-details-content {
-    padding: 20px 16px 16px 16px;
+    /* Відступ зверху, щоб відділити від заголовка */
+    padding-top: 20px; 
+    
     display: flex;
     flex-direction: column;
-    gap: 18px; /* Відступ між полями всередині випадашки */
-    border-top: 1px solid #e0e0e0;
+    gap: 18px; /* Відступ між полями всередині */
 }
 
 /* Адаптивность для мобильных устройств */
