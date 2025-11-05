@@ -332,6 +332,10 @@
     opacity: 1;
 }
 
+.tab-history, .tab-terms {
+  margin-left: 1rem;
+}
+
 /* Адаптивность для мобильных устройств */
 @media (max-width: 900px) {
   .profile-main-row { 
