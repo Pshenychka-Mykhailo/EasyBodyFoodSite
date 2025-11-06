@@ -192,13 +192,13 @@ async function registerUser(userData) {
     
     if (res && res.userId) {
       // Сохраняем данные пользователя
-      window.setStorageItem(window.STORAGE_KEYS?.USER_ID || 'userId', result.userId);
+      window.setStorageItem(window.STORAGE_KEYS?.USER_ID || 'userId', res.userId);
       window.setStorageItem(window.STORAGE_KEYS?.USER_NAME || 'userName', userData.FirstName);
       
-      return { success: true, userId: result.userId, userName: userData.FirstName };
+      return { success: true, userId: res.userId, userName: userData.FirstName };
     }
     
-    return { success: false, message: result?.message || 'Помилка реєстрації' };
+    return { success: false, message: res?.message || 'Помилка реєстрації' };
   } catch (error) {
     return { success: false, message: error.message };
   }
@@ -218,14 +218,14 @@ async function loginUser(loginData) {
     
     if (res && res.userId) {
       // Сохраняем данные пользователя
-      window.setStorageItem(window.STORAGE_KEYS?.USER_ID || 'userId', result.userId);
+      window.setStorageItem(window.STORAGE_KEYS?.USER_ID || 'userId', res.userId);
       const userName = loginData.Email.split('@')[0];
       window.setStorageItem(window.STORAGE_KEYS?.USER_NAME || 'userName', userName);
       
-      return { success: true, userId: result.userId, userName };
+      return { success: true, userId: res.userId, userName };
     }
     
-    return { success: false, message: result?.message || 'Помилка входу' };
+    return { success: false, message: res?.message || 'Помилка входу' };
   } catch (error) {
     return { success: false, message: error.message };
   }
