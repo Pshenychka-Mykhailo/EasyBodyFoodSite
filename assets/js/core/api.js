@@ -187,8 +187,10 @@ async function registerUser(userData) {
       method: 'POST',
       body: JSON.stringify(userData)
     });
+
+    let res = JSON.parse(result);
     
-    if (result && result.userId) {
+    if (res && res.userId) {
       // Сохраняем данные пользователя
       window.setStorageItem(window.STORAGE_KEYS?.USER_ID || 'userId', result.userId);
       window.setStorageItem(window.STORAGE_KEYS?.USER_NAME || 'userName', userData.FirstName);
@@ -196,7 +198,7 @@ async function registerUser(userData) {
       return { success: true, userId: result.userId, userName: userData.FirstName };
     }
     
-    return { success: false, message: result?.message || 'Ошибка регистрации' };
+    return { success: false, message: result?.message || 'Помилка реєстрації' };
   } catch (error) {
     return { success: false, message: error.message };
   }
@@ -211,8 +213,10 @@ async function loginUser(loginData) {
       method: 'POST',
       body: JSON.stringify(loginData)
     });
+
+    let res = JSON.parse(result);
     
-    if (result && result.userId) {
+    if (res && res.userId) {
       // Сохраняем данные пользователя
       window.setStorageItem(window.STORAGE_KEYS?.USER_ID || 'userId', result.userId);
       const userName = loginData.Email.split('@')[0];
@@ -221,7 +225,7 @@ async function loginUser(loginData) {
       return { success: true, userId: result.userId, userName };
     }
     
-    return { success: false, message: result?.message || 'Ошибка входа' };
+    return { success: false, message: result?.message || 'Помилка входу' };
   } catch (error) {
     return { success: false, message: error.message };
   }
@@ -234,7 +238,7 @@ async function getUserProfile() {
   try {
     const userId = window.getUserId();
     if (!userId) {
-      throw new Error('Пользователь не авторизован');
+      throw new Error('Користувач не авторизований');
     }
     
     return await apiRequest(`${window.API_ENDPOINTS?.PROFILE || '/user/profile'}/${userId}`, {
@@ -254,7 +258,7 @@ async function addToFavorites(dishId) {
   try {
     const userId = window.getUserId();
     if (!userId) {
-      throw new Error('Пользователь не авторизован');
+      throw new Error('Користувач не авторизований');
     }
     
     return await apiRequest(window.API_ENDPOINTS?.FAVORITE_ADD || '/user/favorite/add', {
@@ -273,7 +277,7 @@ async function removeFromFavorites(dishId) {
   try {
     const userId = window.getUserId();
     if (!userId) {
-      throw new Error('Пользователь не авторизован');
+      throw new Error('Користувач не авторизований');
     }
     
     return await apiRequest(window.API_ENDPOINTS?.FAVORITE_REMOVE || '/user/favorite/remove', {
@@ -292,14 +296,16 @@ async function getFavorites() {
   try {
     const userId = window.getUserId();
     if (!userId) {
-      throw new Error('Пользователь не авторизован');
+      throw new Error('Користувач не авторизований');
     }
     
     const result = await apiRequest(`${window.API_ENDPOINTS?.FAVORITE_GET || '/user/favorite'}/${userId}`, {
       method: 'POST'
     });
+
+    let res = JSON.parse(result);
     
-    return Array.isArray(result) ? result : [];
+    return Array.isArray(res) ? res : [];
   } catch (error) {
     return [];
   }
@@ -312,7 +318,7 @@ async function clearFavorites() {
   try {
     const userId = window.getUserId();
     if (!userId) {
-      throw new Error('Пользователь не авторизован');
+      throw new Error('Користувач не авторизований');
     }
     
     return await apiRequest(window.API_ENDPOINTS?.FAVORITE_CLEAR || '/user/favorite/clear', {
@@ -333,7 +339,7 @@ async function addToCart(cartData) {
   try {
     const userId = window.getUserId();
     if (!userId) {
-      throw new Error('Пользователь не авторизован');
+      throw new Error('Користувач не авторизований');
     }
     
     return await apiRequest(window.API_ENDPOINTS?.CART_ADD || '/cart/add', {
@@ -352,14 +358,16 @@ async function getCart() {
   try {
     const userId = window.getUserId();
     if (!userId) {
-      throw new Error('Пользователь не авторизован');
+      throw new Error('Користувач не авторизований');
     }
     
     const result = await apiRequest(`${window.API_ENDPOINTS?.CART_GET || '/cart/get'}/${userId}`, {
       method: 'POST'
     });
     
-    return Array.isArray(result) ? result : [];
+    let res = JSON.parse(result);
+
+    return Array.isArray(res) ? res : [];
   } catch (error) {
     return [];
   }
@@ -372,7 +380,7 @@ async function clearCart() {
   try {
     const userId = window.getUserId();
     if (!userId) {
-      throw new Error('Пользователь не авторизован');
+      throw new Error('Користувач не авторизований');
     }
     
     return await apiRequest(window.API_ENDPOINTS?.CART_CLEAR || '/cart/clear', {
@@ -452,7 +460,7 @@ async function loadMenuData() {
           }
         }
         
-        throw new Error('Не удалось загрузить данные меню ни из одного источника');
+        throw new Error('Не вдалось завантадити дані меню');
       } catch (error) {
         throw error;
       }
@@ -533,7 +541,7 @@ async function loadDishesData() {
           }
         }
         
-        throw new Error('Не удалось загрузить данные блюд ни из одного источника');
+        throw new Error('Не вдалось завантадити дані страв');
       } catch (error) {
         throw error;
       }
