@@ -40,6 +40,12 @@ function initAuth() {
   }, 100);
 }
 
+function updateAuthUI() {
+  if (typeof setupLoginBtn === 'function') {
+    window.setupLoginBtn();
+  }
+}
+
 // Поддержка обеих систем - старой и новой
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initAuth);
@@ -51,6 +57,7 @@ if (document.readyState === 'loading') {
 // Экспорт функций для использования в main.js
 window.setupLoginBtn = setupLoginBtn;
 window.initAuth = initAuth;
+window.updateAuthUI = updateAuthUI;
 
 // Глобальная функция для проверки авторизации
 window.showRegisterModalIfNotAuth = function() {
