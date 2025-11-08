@@ -1422,8 +1422,8 @@ body {
         position: relative;
         left: 0;
         right: 0;
-        margin-left: calc(-1 * clamp(5vw, 10vw, 100px));
-        margin-right: calc(-1 * clamp(5vw, 10vw, 100px));
+        /* margin-left: calc(-1 * clamp(5vw, 10vw, 100px));
+        margin-right: calc(-1 * clamp(5vw, 10vw, 100px)); */
         width: calc(100vw + 2 * clamp(5vw, 10vw, 100px));
     }
     
@@ -1443,9 +1443,9 @@ body {
     
     .section1 .gallery-card {
         scroll-snap-align: center;
-        width: calc(100vw - 120px);
+        width: calc(100vw - 140px);
         max-width: 220px;
-        min-width: calc(100vw - 120px);
+        min-width: calc(100vw - 140px);
         margin: 0;
         height: 280px;
         flex-shrink: 0;

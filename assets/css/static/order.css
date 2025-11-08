@@ -21,6 +21,13 @@
   gap: 18px;
   margin-top: 0;
 }
+.section2 .order-form-row-nochange {
+  display:flex;
+  margin-top:24px;
+  align-items:center;
+  justify-content:center;
+  gap:16px;
+}
 .section2 .order-form-title {
   font-size: 24px;
   font-weight: 700;
