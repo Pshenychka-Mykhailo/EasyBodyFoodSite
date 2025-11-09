@@ -412,6 +412,18 @@ async function invoiceMonoPayment(paymentData) {
   }
 }
 
+async function sendOrderNotify(fullOrderData) {
+  try {
+    const result = await apiRequest('/notification/notify-order', {
+      method: 'POST',
+      body: JSON.stringify(fullOrderData)
+    });
+    return { success: true };
+  } catch (error) {
+    return { success: false, message: error.message };
+  }
+}
+
 // ===== ДАННЫЕ =====
 
 /**
@@ -636,6 +648,7 @@ window.addToCart = addToCart;
 window.getCart = getCart;
 window.clearCart = clearCart;
 window.invoiceMonoPayment = invoiceMonoPayment;
+window.sendOrderNotify = sendOrderNotify;
 window.loadMenuData = loadMenuData;
 window.loadDishesData = loadDishesData;
 window.loadAllData = loadAllData;

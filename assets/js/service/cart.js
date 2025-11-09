@@ -87,7 +87,7 @@ class CartManager {
 
     // Очистка корзины
     clearCart() {
-        this.cart = [];
+        this.cart = { orders: [] };
         this.saveCart();
         
         // Синхронизируем с сервером, если пользователь авторизован
@@ -268,6 +268,31 @@ window.proceedToCheckout = function() {
     }
 };
 
+/**
+ * Збирає всі дані з полів форми замовлення.
+ */
+function getCutomerFromData() {
+    const getVal = (id) => {
+        const el = document.getElementById(id);
+        return el ? el.value.trim() : '';
+    };
+    const paymentEl = document.getElementById('order-payment');
+
+    return {
+        lastName: getVal('order-lastname'),
+        firstName: getVal('order-firstname'),
+        phone: getVal('order-phone'),
+        email: getVal('order-email'),
+        social: getVal('order-social'),
+        comment: getVal('order-comment'),
+        street: getVal('order-street'),
+        house: getVal('order-house'),
+        floor: getVal('order-floor'), // 'Під'їзд'
+        apartment: getVal('order-apartment'),
+        paymentType: paymentEl ? paymentEl.options[paymentEl.selectedIndex].text : 'Невідомо'
+    };
+}
+
 // Функция для загрузки и заполнения данных пользователя в форме заказа
 function loadUserDataToOrderForm() {
     const userId = localStorage.getItem('userId');
@@ -416,9 +441,9 @@ function setupOrderFormValidation() {
             }
             
             // Если форма валидна, выполняем действия:
-            const selectedPayType = document.getElementById('order-payment');
-            if (selectedPayType.selectedIndex === 0) {
-                try {
+            try {
+                const selectedPayType = document.getElementById('order-payment');
+                if (selectedPayType.selectedIndex === 0) {
                     // 1. Збираємо дані замовлення
                     const totalAmountCents = (window.cartManager.getTotalPrice()*100); // ЗВГЛУШУКА!!! Використовуємо загальну калорійність як суму замовлення
                     const orderId = `EBF-${new Date().getTime()}`; // Для тесту поки не зберігаємо на сервері
@@ -455,7 +480,62 @@ function setupOrderFormValidation() {
                     } else {
                         throw new Error('Не отрмано посилання на оплату');
                     }
-                } catch (error) {
+                }
+                else {
+                    // підготовка даних до відправки
+                    const cutomerData = getCutomerFromData();
+                    const cartData = window.cartManager.getOrders();
+
+                    const fullOrderData = {
+                        customer: cutomerData,
+                        cart: cartData,
+                        totalAmount: window.cartManager.getTotalPrice()
+                    }
+
+                    const res = await window.sendOrderNotify(fullOrderData);
+
+                    if (res.success) {
+                        // 1. Закрываем модальное окно заказа
+                        const orderModal = document.getElementById('order-modal');
+                        if (orderModal) {
+                            orderModal.style.display = 'none';
+                        } else {
+                            // Если модальное окно не найдено, попробуем найти его по классу
+                            const modalElements = document.querySelectorAll('[id*="modal"]');
+                            modalElements.forEach(modal => {
+                                if (modal.style.display === 'flex' || modal.style.display === 'block') {
+                                    modal.style.display = 'none';
+                                }
+                            });
+                        }
+                        
+                        // 2. Очищаем корзину
+                        if (window.cartManager) {
+                            window.cartManager.clearCart();
+                        }
+                        
+                        // 3. Переходим на главную страницу
+                        let homePath = window.getHomePath();
+                        
+                        // 4. Показываем сообщение об успешном оформлении заказа
+                        if (typeof showSuccess === 'function') {
+                            showSuccess('Замовлення успішно оформлено!');
+                        } else if (typeof window.showSuccess === 'function') {
+                            window.showSuccess('Замовлення успішно оформлено!');
+                        } else {
+                            // Fallback если функция showSuccess недоступна
+                            alert('Замовлення успішно оформлено!');
+                        }
+                        
+                        // 5. Переходим на главную страницу с небольшой задержкой
+                        setTimeout(() => {
+                            window.location.href = homePath;
+                        }, 1500); // Задержка 1.5 секунды, чтобы пользователь увидел сообщение
+                    } else {
+                        window.showError('Помилка при оформленні замовлення. Спробуйте ще раз пізніше.');
+                    }
+                }
+            } catch (error) {
                     // 8. Обробляємо будь-які помилки (мережа, сервер, логіка)
                     console.error("Помилка при оформленні замовлення:", error);
                     if (typeof showError === 'function') {
@@ -464,45 +544,6 @@ function setupOrderFormValidation() {
                         alert(`Помилка при оформленні замовлення: ${error.message}`);
                     }
                 }   
-            }
-            else {
-                // 1. Закрываем модальное окно заказа
-                const orderModal = document.getElementById('order-modal');
-                if (orderModal) {
-                    orderModal.style.display = 'none';
-                } else {
-                    // Если модальное окно не найдено, попробуем найти его по классу
-                    const modalElements = document.querySelectorAll('[id*="modal"]');
-                    modalElements.forEach(modal => {
-                        if (modal.style.display === 'flex' || modal.style.display === 'block') {
-                            modal.style.display = 'none';
-                        }
-                    });
-                }
-                
-                // 2. Очищаем корзину
-                if (window.cartManager) {
-                    window.cartManager.clearCart();
-                }
-                
-                // 3. Переходим на главную страницу
-                let homePath = window.getHomePath();
-                
-                // 4. Показываем сообщение об успешном оформлении заказа
-                if (typeof showSuccess === 'function') {
-                    showSuccess('Замовлення успішно оформлено!');
-                } else if (typeof window.showSuccess === 'function') {
-                    window.showSuccess('Замовлення успішно оформлено!');
-                } else {
-                    // Fallback если функция showSuccess недоступна
-                    alert('Замовлення успішно оформлено!');
-                }
-                
-                // 5. Переходим на главную страницу с небольшой задержкой
-                setTimeout(() => {
-                    window.location.href = homePath;
-                }, 1500); // Задержка 1.5 секунды, чтобы пользователь увидел сообщение
-            }
         });
     }
 }
