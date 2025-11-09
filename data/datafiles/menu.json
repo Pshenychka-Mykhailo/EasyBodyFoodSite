@@ -1,462 +1,483 @@
 {
-  "900": [
-    {
-      "type": 900,
-      "weekType": 1,
-      "dayOfWeek": "Mon",
-      "breakfastId": 1,
-      "additionaldishesId": 58,
-      "sweetbreakfastId": 12,
-      "dinnerdishId": 21,
-      "eveningmealdishId": 43
-    },
-    {
-      "type": 900,
-      "weekType": 1,
-      "dayOfWeek": "Tue",
-      "breakfastId": 2,
-      "additionaldishesId": 59,
-      "sweetbreakfastId": 16,
-      "dinnerdishId": 22,
-      "eveningmealdishId": 44
-    },
-    {
-      "type": 900,
-      "weekType": 1,
-      "dayOfWeek": "Wed",
-      "breakfastId": 3,
-      "sweetbreakfastId": 15,
-      "dinnerdishId": 23,
-      "eveningmealdishId": 45
-    },
-    {
-      "type": 900,
-      "weekType": 1,
-      "dayOfWeek": "Thu",
-      "breakfastId": 4,
-      "sweetbreakfastId": 14,
-      "dinnerdishId": 24,
-      "eveningmealdishId": 46
-    },
-    {
-      "type": 900,
-      "weekType": 1,
-      "dayOfWeek": "Fri",
-      "breakfastId": 5,
-      "sweetbreakfastId": 13,
-      "dinnerdishId": 25,
-      "eveningmealdishId": 47
-    },
-    {
-      "type": 900,
-      "weekType": 1,
-      "dayOfWeek": "Sat",
-      "breakfastId": 6,
-      "sweetbreakfastId": 11,
-      "dinnerdishId": 26,
-      "eveningmealdishId": 48
-    }
-  ],
-  "1200": [
-    {
-      "type": 1200,
-      "weekType": 1,
-      "dayOfWeek": "Mon",
-      "breakfastId": 1,
-      "additionaldishesId": 58,
-      "sweetbreakfastId": 12,
-      "sweetafternoonsnaskId": 42,
-      "dinnerdishId": 21,
-      "eveningmealdishId": 43
-    },
-    {
-      "type": 1200,
-      "weekType": 1,
-      "dayOfWeek": "Tue",
-      "breakfastId": 2,
-      "additionaldishesId": 59,
-      "sweetbreakfastId": 16,
-      "sweetafternoonsnaskId": 39,
-      "dinnerdishId": 22,
-      "eveningmealdishId": 44
-    },
-    {
-      "type": 1200,
-      "weekType": 1,
-      "dayOfWeek": "Wed",
-      "breakfastId": 3,
-      "sweetbreakfastId": 15,
-      "sweetafternoonsnaskId": 41,
-      "dinnerdishId": 23,
-      "eveningmealdishId": 45
-    },
-    {
-      "type": 1200,
-      "weekType": 1,
-      "dayOfWeek": "Thu",
-      "breakfastId": 4,
-      "sweetbreakfastId": 14,
-      "sweetafternoonsnaskId": 40,
-      "dinnerdishId": 24,
-      "eveningmealdishId": 46
-    },
-    {
-      "type": 1200,
-      "weekType": 1,
-      "dayOfWeek": "Fri",
-      "breakfastId": 5,
-      "sweetbreakfastId": 13,
-      "sweetafternoonsnaskId": 38,
-      "dinnerdishId": 25,
-      "eveningmealdishId": 47
-    },
-    {
-      "type": 1200,
-      "weekType": 1,
-      "dayOfWeek": "Sat",
-      "breakfastId": 6,
-      "sweetbreakfastId": 11,
-      "sweetafternoonsnaskId": 37,
-      "dinnerdishId": 26,
-      "eveningmealdishId": 48
-    }
-  ],
-  "1600": [
-    {
-      "type": 1600,
-      "weekType": 1,
-      "dayOfWeek": "Mon",
-      "breakfastId": 1,
-      "sweetbreakfastId": 12,
-      "sweetafternoonsnaskId": 42,
-      "dinnerdishId": 21,
-      "eveningmealdishId": 43
-    },
-    {
-      "type": 1600,
-      "weekType": 1,
-      "dayOfWeek": "Tue",
-      "breakfastId": 2,
-      "sweetbreakfastId": 16,
-      "sweetafternoonsnaskId": 39,
-      "dinnerdishId": 22,
-      "eveningmealdishId": 44
-    },
-    {
-      "type": 1600,
-      "weekType": 1,
-      "dayOfWeek": "Wed",
-      "breakfastId": 3,
-      "sweetbreakfastId": 15,
-      "sweetafternoonsnaskId": 41,
-      "dinnerdishId": 23,
-      "eveningmealdishId": 45
-    },
-    {
-      "type": 1600,
-      "weekType": 1,
-      "dayOfWeek": "Thu",
-      "breakfastId": 4,
-      "sweetbreakfastId": 14,
-      "sweetafternoonsnaskId": 40,
-      "dinnerdishId": 24,
-      "eveningmealdishId": 46
-    },
-    {
-      "type": 1600,
-      "weekType": 1,
-      "dayOfWeek": "Fri",
-      "breakfastId": 5,
-      "sweetbreakfastId": 13,
-      "sweetafternoonsnaskId": 38,
-      "dinnerdishId": 25,
-      "eveningmealdishId": 47
-    },
-    {
-      "type": 1600,
-      "weekType": 1,
-      "dayOfWeek": "Sat",
-      "breakfastId": 6,
-      "sweetbreakfastId": 11,
-      "sweetafternoonsnaskId": 37,
-      "dinnerdishId": 26,
-      "eveningmealdishId": 48
-    }
-  ],
-  "1800": [
-    {
-      "type": 1800,
-      "weekType": 1,
-      "dayOfWeek": "Mon",
-      "breakfastId": 1,
-      "additionaldishesId": 58,
-      "sweetbreakfastId": 12,
-      "afternoonsnaskId": 29,
-      "dinnerdishId": 21,
-      "eveningmealdishId": 43
-    },
-    {
-      "type": 1800,
-      "weekType": 1,
-      "dayOfWeek": "Tue",
-      "breakfastId": 2,
-      "additionaldishesId": 59,
-      "sweetbreakfastId": 16,
-      "afternoonsnaskId": 30,
-      "dinnerdishId": 22,
-      "eveningmealdishId": 44
-    },
-    {
-      "type": 1800,
-      "weekType": 1,
-      "dayOfWeek": "Wed",
-      "breakfastId": 3,
-      "sweetbreakfastId": 15,
-      "afternoonsnaskId": 31,
-      "dinnerdishId": 23,
-      "eveningmealdishId": 45
-    },
-    {
-      "type": 1800,
-      "weekType": 1,
-      "dayOfWeek": "Thu",
-      "breakfastId": 4,
-      "sweetbreakfastId": 14,
-      "afternoonsnaskId": 32,
-      "dinnerdishId": 24,
-      "eveningmealdishId": 46
-    },
-    {
-      "type": 1800,
-      "weekType": 1,
-      "dayOfWeek": "Fri",
-      "breakfastId": 5,
-      "sweetbreakfastId": 13,
-      "afternoonsnaskId": 33,
-      "dinnerdishId": 25,
-      "eveningmealdishId": 47
-    },
-    {
-      "type": 1800,
-      "weekType": 1,
-      "dayOfWeek": "Sat",
-      "breakfastId": 6,
-      "sweetbreakfastId": 11,
-      "afternoonsnaskId": 34,
-      "dinnerdishId": 26,
-      "eveningmealdishId": 48
-    }
-  ],
-  "2500": [
-    {
-      "type": 2500,
-      "weekType": 1,
-      "dayOfWeek": "Mon",
-      "breakfastId": 1,
-      "additionaldishesId": 58,
-      "sweetbreakfastId": 12,
-      "afternoonsnaskId": 29,
-      "sweetafternoonsnaskId": 42,
-      "dinnerdishId": 21,
-      "eveningmealdishId": 43
-    },
-    {
-      "type": 2500,
-      "weekType": 1,
-      "dayOfWeek": "Tue",
-      "breakfastId": 2,
-      "additionaldishesId": 59,
-      "sweetbreakfastId": 16,
-      "afternoonsnaskId": 30,
-      "sweetafternoonsnaskId": 39,
-      "dinnerdishId": 22,
-      "eveningmealdishId": 44
-    },
-    {
-      "type": 2500,
-      "weekType": 1,
-      "dayOfWeek": "Wed",
-      "breakfastId": 3,
-      "sweetbreakfastId": 15,
-      "afternoonsnaskId": 31,
-      "sweetafternoonsnaskId": 41,
-      "dinnerdishId": 23,
-      "eveningmealdishId": 45
-    },
-    {
-      "type": 2500,
-      "weekType": 1,
-      "dayOfWeek": "Thu",
-      "breakfastId": 4,
-      "sweetbreakfastId": 14,
-      "afternoonsnaskId": 32,
-      "sweetafternoonsnaskId": 40,
-      "dinnerdishId": 24,
-      "eveningmealdishId": 46
-    },
-    {
-      "type": 2500,
-      "weekType": 1,
-      "dayOfWeek": "Fri",
-      "breakfastId": 5,
-      "sweetbreakfastId": 13,
-      "afternoonsnaskId": 33,
-      "sweetafternoonsnaskId": 38,
-      "dinnerdishId": 25,
-      "eveningmealdishId": 47
-    },
-    {
-      "type": 2500,
-      "weekType": 1,
-      "dayOfWeek": "Sat",
-      "breakfastId": 6,
-      "sweetbreakfastId": 11,
-      "afternoonsnaskId": 34,
-      "sweetafternoonsnaskId": 37,
-      "dinnerdishId": 26,
-      "eveningmealdishId": 48
-    }
-  ],
-  "3000": [
-    {
-      "type": 3000,
-      "weekType": 1,
-      "dayOfWeek": "Mon",
-      "breakfastId": 1,
-      "additionaldishesId": 58,
-      "sweetbreakfastId": 12,
-      "afternoonsnaskId": 29,
-      "sweetafternoonsnaskId": 42,
-      "dinnerdishId": 21,
-      "eveningmealdishId": 43
-    },
-    {
-      "type": 3000,
-      "weekType": 1,
-      "dayOfWeek": "Tue",
-      "breakfastId": 2,
-      "additionaldishesId": 59,
-      "sweetbreakfastId": 16,
-      "afternoonsnaskId": 30,
-      "sweetafternoonsnaskId": 39,
-      "dinnerdishId": 22,
-      "eveningmealdishId": 44
-    },
-    {
-      "type": 3000,
-      "weekType": 1,
-      "dayOfWeek": "Wed",
-      "breakfastId": 3,
-      "sweetbreakfastId": 15,
-      "afternoonsnaskId": 31,
-      "sweetafternoonsnaskId": 41,
-      "dinnerdishId": 23,
-      "eveningmealdishId": 45
-    },
-    {
-      "type": 3000,
-      "weekType": 1,
-      "dayOfWeek": "Thu",
-      "breakfastId": 4,
-      "sweetbreakfastId": 14,
-      "afternoonsnaskId": 32,
-      "sweetafternoonsnaskId": 40,
-      "dinnerdishId": 24,
-      "eveningmealdishId": 46
-    },
-    {
-      "type": 3000,
-      "weekType": 1,
-      "dayOfWeek": "Fri",
-      "breakfastId": 5,
-      "sweetbreakfastId": 13,
-      "afternoonsnaskId": 33,
-      "sweetafternoonsnaskId": 38,
-      "dinnerdishId": 25,
-      "eveningmealdishId": 47
-    },
-    {
-      "type": 3000,
-      "weekType": 1,
-      "dayOfWeek": "Sat",
-      "breakfastId": 6,
-      "sweetbreakfastId": 11,
-      "afternoonsnaskId": 34,
-      "sweetafternoonsnaskId": 37,
-      "dinnerdishId": 26,
-      "eveningmealdishId": 48
-    }
-  ],
-  "3500": [
-    {
-      "type": 3500,
-      "weekType": 1,
-      "dayOfWeek": "Mon",
-      "breakfastId": 1,
-      "additionaldishesId": 58,
-      "sweetbreakfastId": 12,
-      "afternoonsnaskId": 29,
-      "sweetafternoonsnaskId": 42,
-      "dinnerdishId": 21,
-      "eveningmealdishId": 43
-    },
-    {
-      "type": 3500,
-      "weekType": 1,
-      "dayOfWeek": "Tue",
-      "breakfastId": 2,
-      "additionaldishesId": 59,
-      "sweetbreakfastId": 16,
-      "afternoonsnaskId": 30,
-      "sweetafternoonsnaskId": 39,
-      "dinnerdishId": 22,
-      "eveningmealdishId": 44
-    },
-    {
-      "type": 3500,
-      "weekType": 1,
-      "dayOfWeek": "Wed",
-      "breakfastId": 3,
-      "sweetbreakfastId": 15,
-      "afternoonsnaskId": 31,
-      "sweetafternoonsnaskId": 41,
-      "dinnerdishId": 23,
-      "eveningmealdishId": 45
-    },
-    {
-      "type": 3500,
-      "weekType": 1,
-      "dayOfWeek": "Thu",
-      "breakfastId": 4,
-      "sweetbreakfastId": 14,
-      "afternoonsnaskId": 32,
-      "sweetafternoonsnaskId": 40,
-      "dinnerdishId": 24,
-      "eveningmealdishId": 46
-    },
-    {
-      "type": 3500,
-      "weekType": 1,
-      "dayOfWeek": "Fri",
-      "breakfastId": 5,
-      "sweetbreakfastId": 13,
-      "afternoonsnaskId": 33,
-      "sweetafternoonsnaskId": 38,
-      "dinnerdishId": 25,
-      "eveningmealdishId": 47
-    },
-    {
-      "type": 3500,
-      "weekType": 1,
-      "dayOfWeek": "Sat",
-      "breakfastId": 6,
-      "sweetbreakfastId": 11,
-      "afternoonsnaskId": 34,
-      "sweetafternoonsnaskId": 37,
-      "dinnerdishId": 26,
-      "eveningmealdishId": 48
-    }
-  ]
+  "900": {
+    "price": 900,
+    "menus": [
+      {
+        "type": 900,
+        "weekType": 1,
+        "dayOfWeek": "Mon",
+        "breakfastId": 1,
+        "additionaldishesId": 58,
+        "sweetbreakfastId": 12,
+        "dinnerdishId": 21,
+        "eveningmealdishId": 43
+      },
+      {
+        "type": 900,
+        "weekType": 1,
+        "dayOfWeek": "Tue",
+        "breakfastId": 2,
+        "additionaldishesId": 59,
+        "sweetbreakfastId": 16,
+        "dinnerdishId": 22,
+        "eveningmealdishId": 44
+      },
+      {
+        "type": 900,
+        "weekType": 1,
+        "dayOfWeek": "Wed",
+        "breakfastId": 3,
+        "sweetbreakfastId": 15,
+        "dinnerdishId": 23,
+        "eveningmealdishId": 45
+      },
+      {
+        "type": 900,
+        "weekType": 1,
+        "dayOfWeek": "Thu",
+        "breakfastId": 4,
+        "sweetbreakfastId": 14,
+        "dinnerdishId": 24,
+        "eveningmealdishId": 46
+      },
+      {
+        "type": 900,
+        "weekType": 1,
+        "dayOfWeek": "Fri",
+        "breakfastId": 5,
+        "sweetbreakfastId": 13,
+        "dinnerdishId": 25,
+        "eveningmealdishId": 47
+      },
+      {
+        "type": 900,
+        "weekType": 1,
+        "dayOfWeek": "Sat",
+        "breakfastId": 6,
+        "sweetbreakfastId": 11,
+        "dinnerdishId": 26,
+        "eveningmealdishId": 48
+      }
+    ]
+  },
+  "1200": {
+    "price": 950,
+    "menus": [
+      {
+        "type": 1200,
+        "weekType": 1,
+        "dayOfWeek": "Mon",
+        "breakfastId": 1,
+        "additionaldishesId": 58,
+        "sweetbreakfastId": 12,
+        "sweetafternoonsnaskId": 42,
+        "dinnerdishId": 21,
+        "eveningmealdishId": 43
+      },
+      {
+        "type": 1200,
+        "weekType": 1,
+        "dayOfWeek": "Tue",
+        "breakfastId": 2,
+        "additionaldishesId": 59,
+        "sweetbreakfastId": 16,
+        "sweetafternoonsnaskId": 39,
+        "dinnerdishId": 22,
+        "eveningmealdishId": 44
+      },
+      {
+        "type": 1200,
+        "weekType": 1,
+        "dayOfWeek": "Wed",
+        "breakfastId": 3,
+        "sweetbreakfastId": 15,
+        "sweetafternoonsnaskId": 41,
+        "dinnerdishId": 23,
+        "eveningmealdishId": 45
+      },
+      {
+        "type": 1200,
+        "weekType": 1,
+        "dayOfWeek": "Thu",
+        "breakfastId": 4,
+        "sweetbreakfastId": 14,
+        "sweetafternoonsnaskId": 40,
+        "dinnerdishId": 24,
+        "eveningmealdishId": 46
+      },
+      {
+        "type": 1200,
+        "weekType": 1,
+        "dayOfWeek": "Fri",
+        "breakfastId": 5,
+        "sweetbreakfastId": 13,
+        "sweetafternoonsnaskId": 38,
+        "dinnerdishId": 25,
+        "eveningmealdishId": 47
+      },
+      {
+        "type": 1200,
+        "weekType": 1,
+        "dayOfWeek": "Sat",
+        "breakfastId": 6,
+        "sweetbreakfastId": 11,
+        "sweetafternoonsnaskId": 37,
+        "dinnerdishId": 26,
+        "eveningmealdishId": 48
+      }
+    ]
+  },
+  "1600": {
+    "price": 1050,
+    "menus": [
+      {
+        "type": 1600,
+        "weekType": 1,
+        "dayOfWeek": "Mon",
+        "breakfastId": 1,
+        "sweetbreakfastId": 12,
+        "sweetafternoonsnaskId": 42,
+        "dinnerdishId": 21,
+        "eveningmealdishId": 43
+      },
+      {
+        "type": 1600,
+        "weekType": 1,
+        "dayOfWeek": "Tue",
+        "breakfastId": 2,
+        "sweetbreakfastId": 16,
+        "sweetafternoonsnaskId": 39,
+        "dinnerdishId": 22,
+        "eveningmealdishId": 44
+      },
+      {
+        "type": 1600,
+        "weekType": 1,
+        "dayOfWeek": "Wed",
+        "breakfastId": 3,
+        "sweetbreakfastId": 15,
+        "sweetafternoonsnaskId": 41,
+        "dinnerdishId": 23,
+        "eveningmealdishId": 45
+      },
+      {
+        "type": 1600,
+        "weekType": 1,
+        "dayOfWeek": "Thu",
+        "breakfastId": 4,
+        "sweetbreakfastId": 14,
+        "sweetafternoonsnaskId": 40,
+        "dinnerdishId": 24,
+        "eveningmealdishId": 46
+      },
+      {
+        "type": 1600,
+        "weekType": 1,
+        "dayOfWeek": "Fri",
+        "breakfastId": 5,
+        "sweetbreakfastId": 13,
+        "sweetafternoonsnaskId": 38,
+        "dinnerdishId": 25,
+        "eveningmealdishId": 47
+      },
+      {
+        "type": 1600,
+        "weekType": 1,
+        "dayOfWeek": "Sat",
+        "breakfastId": 6,
+        "sweetbreakfastId": 11,
+        "sweetafternoonsnaskId": 37,
+        "dinnerdishId": 26,
+        "eveningmealdishId": 48
+      }
+    ]
+  },
+  "1800": {
+    "price": 1100,
+    "menus": [
+      {
+        "type": 1800,
+        "weekType": 1,
+        "dayOfWeek": "Mon",
+        "breakfastId": 1,
+        "additionaldishesId": 58,
+        "sweetbreakfastId": 12,
+        "afternoonsnaskId": 29,
+        "dinnerdishId": 21,
+        "eveningmealdishId": 43
+      },
+      {
+        "type": 1800,
+        "weekType": 1,
+        "dayOfWeek": "Tue",
+        "breakfastId": 2,
+        "additionaldishesId": 59,
+        "sweetbreakfastId": 16,
+        "afternoonsnaskId": 30,
+        "dinnerdishId": 22,
+        "eveningmealdishId": 44
+      },
+      {
+        "type": 1800,
+        "weekType": 1,
+        "dayOfWeek": "Wed",
+        "breakfastId": 3,
+        "sweetbreakfastId": 15,
+        "afternoonsnaskId": 31,
+        "dinnerdishId": 23,
+        "eveningmealdishId": 45
+      },
+      {
+        "type": 1800,
+        "weekType": 1,
+        "dayOfWeek": "Thu",
+        "breakfastId": 4,
+        "sweetbreakfastId": 14,
+        "afternoonsnaskId": 32,
+        "dinnerdishId": 24,
+        "eveningmealdishId": 46
+      },
+      {
+        "type": 1800,
+        "weekType": 1,
+        "dayOfWeek": "Fri",
+        "breakfastId": 5,
+        "sweetbreakfastId": 13,
+        "afternoonsnaskId": 33,
+        "dinnerdishId": 25,
+        "eveningmealdishId": 47
+      },
+      {
+        "type": 1800,
+        "weekType": 1,
+        "dayOfWeek": "Sat",
+        "breakfastId": 6,
+        "sweetbreakfastId": 11,
+        "afternoonsnaskId": 34,
+        "dinnerdishId": 26,
+        "eveningmealdishId": 48
+      }
+    ]
+  },
+  "2500": {
+    "price": 1250,
+    "menus": [
+      {
+        "type": 2500,
+        "weekType": 1,
+        "dayOfWeek": "Mon",
+        "breakfastId": 1,
+        "additionaldishesId": 58,
+        "sweetbreakfastId": 12,
+        "afternoonsnaskId": 29,
+        "sweetafternoonsnaskId": 42,
+        "dinnerdishId": 21,
+        "eveningmealdishId": 43
+      },
+      {
+        "type": 2500,
+        "weekType": 1,
+        "dayOfWeek": "Tue",
+        "breakfastId": 2,
+        "additionaldishesId": 59,
+        "sweetbreakfastId": 16,
+        "afternoonsnaskId": 30,
+        "sweetafternoonsnaskId": 39,
+        "dinnerdishId": 22,
+        "eveningmealdishId": 44
+      },
+      {
+        "type": 2500,
+        "weekType": 1,
+        "dayOfWeek": "Wed",
+        "breakfastId": 3,
+        "sweetbreakfastId": 15,
+        "afternoonsnaskId": 31,
+        "sweetafternoonsnaskId": 41,
+        "dinnerdishId": 23,
+        "eveningmealdishId": 45
+      },
+      {
+        "type": 2500,
+        "weekType": 1,
+        "dayOfWeek": "Thu",
+        "breakfastId": 4,
+        "sweetbreakfastId": 14,
+        "afternoonsnaskId": 32,
+        "sweetafternoonsnaskId": 40,
+        "dinnerdishId": 24,
+        "eveningmealdishId": 46
+      },
+      {
+        "type": 2500,
+        "weekType": 1,
+        "dayOfWeek": "Fri",
+        "breakfastId": 5,
+        "sweetbreakfastId": 13,
+        "afternoonsnaskId": 33,
+        "sweetafternoonsnaskId": 38,
+        "dinnerdishId": 25,
+        "eveningmealdishId": 47
+      },
+      {
+        "type": 2500,
+        "weekType": 1,
+        "dayOfWeek": "Sat",
+        "breakfastId": 6,
+        "sweetbreakfastId": 11,
+        "afternoonsnaskId": 34,
+        "sweetafternoonsnaskId": 37,
+        "dinnerdishId": 26,
+        "eveningmealdishId": 48
+      }
+    ]
+  },
+  "3000": {
+    "price": 1350,
+    "menus": [
+      {
+        "type": 3000,
+        "weekType": 1,
+        "dayOfWeek": "Mon",
+        "breakfastId": 1,
+        "additionaldishesId": 58,
+        "sweetbreakfastId": 12,
+        "afternoonsnaskId": 29,
+        "sweetafternoonsnaskId": 42,
+        "dinnerdishId": 21,
+        "eveningmealdishId": 43
+      },
+      {
+        "type": 3000,
+        "weekType": 1,
+        "dayOfWeek": "Tue",
+        "breakfastId": 2,
+        "additionaldishesId": 59,
+        "sweetbreakfastId": 16,
+        "afternoonsnaskId": 30,
+        "sweetafternoonsnaskId": 39,
+        "dinnerdishId": 22,
+        "eveningmealdishId": 44
+      },
+      {
+        "type": 3000,
+        "weekType": 1,
+        "dayOfWeek": "Wed",
+        "breakfastId": 3,
+        "sweetbreakfastId": 15,
+        "afternoonsnaskId": 31,
+        "sweetafternoonsnaskId": 41,
+        "dinnerdishId": 23,
+        "eveningmealdishId": 45
+      },
+      {
+        "type": 3000,
+        "weekType": 1,
+        "dayOfWeek": "Thu",
+        "breakfastId": 4,
+        "sweetbreakfastId": 14,
+        "afternoonsnaskId": 32,
+        "sweetafternoonsnaskId": 40,
+        "dinnerdishId": 24,
+        "eveningmealdishId": 46
+      },
+      {
+        "type": 3000,
+        "weekType": 1,
+        "dayOfWeek": "Fri",
+        "breakfastId": 5,
+        "sweetbreakfastId": 13,
+        "afternoonsnaskId": 33,
+        "sweetafternoonsnaskId": 38,
+        "dinnerdishId": 25,
+        "eveningmealdishId": 47
+      },
+      {
+        "type": 3000,
+        "weekType": 1,
+        "dayOfWeek": "Sat",
+        "breakfastId": 6,
+        "sweetbreakfastId": 11,
+        "afternoonsnaskId": 34,
+        "sweetafternoonsnaskId": 37,
+        "dinnerdishId": 26,
+        "eveningmealdishId": 48
+      }
+    ]
+  },
+  "3500": {
+    "price": 1450,
+    "menus": [
+      {
+        "type": 3500,
+        "weekType": 1,
+        "dayOfWeek": "Mon",
+        "breakfastId": 1,
+        "additionaldishesId": 58,
+        "sweetbreakfastId": 12,
+        "afternoonsnaskId": 29,
+        "sweetafternoonsnaskId": 42,
+        "dinnerdishId": 21,
+        "eveningmealdishId": 43
+      },
+      {
+        "type": 3500,
+        "weekType": 1,
+        "dayOfWeek": "Tue",
+        "breakfastId": 2,
+        "additionaldishesId": 59,
+        "sweetbreakfastId": 16,
+        "afternoonsnaskId": 30,
+        "sweetafternoonsnaskId": 39,
+        "dinnerdishId": 22,
+        "eveningmealdishId": 44
+      },
+      {
+        "type": 3500,
+        "weekType": 1,
+        "dayOfWeek": "Wed",
+        "breakfastId": 3,
+        "sweetbreakfastId": 15,
+        "afternoonsnaskId": 31,
+        "sweetafternoonsnaskId": 41,
+        "dinnerdishId": 23,
+        "eveningmealdishId": 45
+      },
+      {
+        "type": 3500,
+        "weekType": 1,
+        "dayOfWeek": "Thu",
+        "breakfastId": 4,
+        "sweetbreakfastId": 14,
+        "afternoonsnaskId": 32,
+        "sweetafternoonsnaskId": 40,
+        "dinnerdishId": 24,
+        "eveningmealdishId": 46
+      },
+      {
+        "type": 3500,
+        "weekType": 1,
+        "dayOfWeek": "Fri",
+        "breakfastId": 5,
+        "sweetbreakfastId": 13,
+        "afternoonsnaskId": 33,
+        "sweetafternoonsnaskId": 38,
+        "dinnerdishId": 25,
+        "eveningmealdishId": 47
+      },
+      {
+        "type": 3500,
+        "weekType": 1,
+        "dayOfWeek": "Sat",
+        "breakfastId": 6,
+        "sweetbreakfastId": 11,
+        "afternoonsnaskId": 34,
+        "sweetafternoonsnaskId": 37,
+        "dinnerdishId": 26,
+        "eveningmealdishId": 48
+      }
+    ]
+  }
 }
 
 

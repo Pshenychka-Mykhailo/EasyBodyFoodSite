@@ -42,13 +42,13 @@ async function initStandartPage() {
 
   // Получить объект меню по калорийности и дню
   function getMenuForSelection(calories, day) {
-    const arr = menuData[calories];
+    const menyTypeData = menuData[calories];
     
-    if (!arr) {
+    if (!menyTypeData || !menyTypeData.menus) {
       return null;
     }
     
-    return arr.find(item => item.dayOfWeek && item.dayOfWeek.toLowerCase().startsWith(day.toLowerCase()));
+    return menyTypeData.menus.find(item => item.dayOfWeek && item.dayOfWeek.toLowerCase().startsWith(day.toLowerCase()));
   }
 
   // Получить блюдо по id
@@ -114,6 +114,10 @@ async function initStandartPage() {
     
     menuSlider.innerHTML = '';
     const menuObj = getMenuForSelection(selectedCalories, selectedDay);
+
+    // Отримуємо ціну для вибраного меню
+    const currentMenuTypeData = menuData[selectedCalories];
+    const currentPrice = (currentMenuTypeData && currentMenuTypeData.price) ? currentMenuTypeData.price : 0;
     
     if (!menuObj) {
       menuSlider.innerHTML = '<div style="padding:2rem">Немає меню для цього дня.</div>';
@@ -141,7 +145,7 @@ async function initStandartPage() {
     const totalKcal = Math.round(window.calculateTotalCalories(selectedDishes));
     
     if (menuTotal) {
-      menuTotal.textContent = `Загалом у меню: ${totalMacros.protein} Білки ${totalMacros.fat} Жири ${totalMacros.carbs} Вуглеводи, ${totalKcal} ккал.`;
+      menuTotal.textContent = `Загалом у меню: ${totalMacros.protein} Білки ${totalMacros.fat} Жири ${totalMacros.carbs} Вуглеводи, ${totalKcal} ккал. Ціна: ${currentPrice} грн/день.`;
     }
     
     attachCardEvents();
@@ -241,10 +245,14 @@ async function initStandartPage() {
       return;
     }
 
+    // Отримуємо ціну для вибраного меню
+    const calories = globalSelectedCalories || '900';
+    const price = (globalMenuData[calories] && globalMenuData[calories].price) ? globalMenuData[calories].price : 0;
+
     // Используем CartManager для добавления блюд в корзину
     if (window.cartManager) {
       const calories = globalSelectedCalories || 'Стандартне';
-      window.cartManager.addOrder(selectedDishes, `Меню на ${calories} ккал`);
+      window.cartManager.addOrder(selectedDishes, `Меню на ${calories} ккал`, price);
     } else {
       // Fallback для случая, если CartManager не загружен
       let cart = JSON.parse(localStorage.getItem('cart') || '[]');

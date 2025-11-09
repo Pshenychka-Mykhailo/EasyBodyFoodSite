@@ -19,7 +19,7 @@ class CartManager {
     }
 
     // додавання замовлень
-    addOrder(dishes, orderName) {
+    addOrder(dishes, orderName, price = 0) {
         if (!dishes || dishes.length === 0) {
             return;
         }
@@ -33,6 +33,7 @@ class CartManager {
                 ...dish,
                 quantity: dish.quantity || 1
             })),
+            price: price
         };
 
         this.cart.orders.push(newOrder);
@@ -118,6 +119,16 @@ class CartManager {
             });
         });
         return Math.round(totalKcal);
+    }
+
+    getTotalPrice() {
+        let totalPrice = 0;
+        if (this.cart && this.cart.orders) {
+            this.cart.orders.forEach(order => {
+                totalPrice += order.price || 0;
+            });
+        }
+        return totalPrice;
     }
 
     // Получение всех заказов
@@ -409,7 +420,7 @@ function setupOrderFormValidation() {
             if (selectedPayType.selectedIndex === 0) {
                 try {
                     // 1. Збираємо дані замовлення
-                    const totalAmountCents = window.cartManager.getTotalCalories(); // ЗВГЛУШУКА!!! Використовуємо загальну калорійність як суму замовлення
+                    const totalAmountCents = (window.cartManager.getTotalPrice()*100); // ЗВГЛУШУКА!!! Використовуємо загальну калорійність як суму замовлення
                     const orderId = `EBF-${new Date().getTime()}`; // Для тесту поки не зберігаємо на сервері
 
                     const paymentData = {
@@ -559,10 +570,16 @@ function loadCart() {
         // Унікальний ID для тіла замовлення
         const orderCollapseId = `order-body-${order.id}`;
 
+        // Ціна замовлення
+        const orderPrice = order.price || 0;
+
         cartHTML += `
             <div class="cart-order-group">
                 <div class="cart-order-header" onclick="toggleCartCollapse('${orderCollapseId}')">
-                    <h2 class="cart-order-title">${order.name} (Замовлення ${orderIndex + 1})</h2>
+                    <div>
+                        <h2 class="cart-order-title">${order.name} (Замовлення ${orderIndex + 1})</h2>
+                        <div style="cart-order-price">Ціна: ${orderPrice} грн</div>
+                    </div>
                     <div class="cart-order-header-right">
                         <span class="order-toggle-icon" id="toggle-icon-${orderCollapseId}">+</span>
                         <button class="delete-btn order-delete-btn" onclick="event.stopPropagation(); removeOrder('${order.id}')">Видалити</button>
@@ -631,12 +648,14 @@ function loadCart() {
     // --- Оновлюємо загальний підсумок ---
     const macros = window.cartManager.getTotalMacros();
     const totalCalories = window.cartManager.getTotalCalories();
+    const totalPrice = window.cartManager.getTotalPrice();
 
     const summaryDiv = document.getElementById('cart-summary-total');
     if (summaryDiv) {
         summaryDiv.style.display = 'block'; // Показуємо його
         summaryDiv.innerHTML = `
             <div class="cart-total">Загалом у замовленні: ${Math.round(macros.protein)} Білки ${Math.round(macros.fat)} Жири ${Math.round(macros.carbs)} Вуглеводи, ${totalCalories} ккал.</div>
+            <div class="cart-total">Загальна сума: ${totalPrice} грн.</div>
             <div class="cart-actions">
                 <button class="checkout-btn" onclick="proceedToCheckout()">Оформити замовлення</button>
                 <a href="${window.getHomePath()}" class="continue-shopping-btn">Повернутися на головну</a>

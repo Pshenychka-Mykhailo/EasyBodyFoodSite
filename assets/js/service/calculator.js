@@ -296,6 +296,10 @@ function renderPersonalMenu(menuArr, dishes, day) {
   
   menuSlider.innerHTML = '';
   const menuObj = getMenuForDayLocal(menuArr, day);
+
+  // Отримуємо ціну для вибраного меню
+  const currentMenuTypeData = globalMenuData[globalMenuType];
+  const currentPrice = (currentMenuTypeData && currentMenuTypeData.price) ? currentMenuTypeData.price : 0;
   
   if (!menuObj) {
     menuSlider.innerHTML = '<div style="padding:2rem">Немає меню для цього дня.</div>';
@@ -328,7 +332,7 @@ function renderPersonalMenu(menuArr, dishes, day) {
   const totalKcal = Math.round(totalP * 4 + totalF * 9 + totalC * 4);
   
   if (menuTotal) {
-    menuTotal.textContent = `Б: ${totalP} г, Ж: ${totalF} г, В: ${totalC} г; ${totalKcal} ккал`;
+    menuTotal.textContent = `Б: ${totalP} г, Ж: ${totalF} г, В: ${totalC} г; ${totalKcal} ккал. Ціна: ${currentPrice} грн/день.`;
   }
   
   // Интерактивность (сердечки обрабатываются универсальным HeartsManager)
@@ -409,7 +413,7 @@ function setupCalculatorFormSubmit() {
     }
     
     // Первичный рендер
-    renderPersonalMenu(globalMenuData[globalMenuType], globalDishesData, currentDay);
+    renderPersonalMenu(globalMenuData[globalMenuType].menus, globalDishesData, currentDay);
     // Показать секцию с анимацией
     var dietSection = document.getElementById('personal-diet-section');
     if (dietSection) {
@@ -650,7 +654,7 @@ function setupDietSectionAnimation() {
     
     allDays.forEach(day => {
       // Получаем меню для этого дня
-      const menuObj = getMenuForDayLocal(globalMenuData[globalMenuType], day);
+      const menuObj = getMenuForDayLocal(globalMenuData[globalMenuType].menus, day);
       if (menuObj) {
         // Получаем все блюда для этого дня
         mealMap.forEach(meal => {
@@ -698,9 +702,12 @@ function setupDietSectionAnimation() {
       return;
     }
 
+    // Отримуєсо ціну для вибраного меню
+    const price = (globalMenuData[globalMenuType] && globalMenuData[globalMenuType].price) ? globalMenuData[globalMenuType].price : 0;
+
     // Используем CartManager для добавления блюд в корзину
     if (window.cartManager) {
-      window.cartManager.addOrder(selectedDishes, `Меню з калькулятора`);
+      window.cartManager.addOrder(selectedDishes, `Меню з калькулятора`, price);
     } else {
       // Fallback для случая, если CartManager не загружен
       let cart = JSON.parse(localStorage.getItem('cart') || '[]');
@@ -745,9 +752,12 @@ function setupDietSectionAnimation() {
         return;
       }
 
+      // Отримуєсо ціну для вибраного меню
+      const price = (globalMenuData[globalMenuType] && globalMenuData[globalMenuType].price) ? globalMenuData[globalMenuType].price : 0;
+
       // Используем CartManager для добавления блюд в корзину
       if (window.cartManager) {
-        window.cartManager.addOrder(selectedDishes, `Меню з калькулятора`);
+        window.cartManager.addOrder(selectedDishes, `Меню з калькулятора`, price);
       } else {
         // Fallback для случая, если CartManager не загружен
         let cart = JSON.parse(localStorage.getItem('cart') || '[]');
@@ -771,14 +781,18 @@ function setupDietSectionAnimation() {
       }
       
       // Теперь открываем форму заказа
-      if (typeof window.proceedToCheckout === 'function') {
-        window.proceedToCheckout();
-      } else {
-        // Fallback - перенаправляем в корзину
-        let cartPath = window.getPagePath('cart');
+      // if (typeof window.proceedToCheckout === 'function') {
+      //   window.proceedToCheckout();
+      // } else {
+      //   // Fallback - перенаправляем в корзину
+      //   let cartPath = window.getPagePath('cart');
         
-        window.location.href = cartPath;
-      }
+      //   window.location.href = cartPath;
+      // }
+
+      // Перенаправляем в корзину
+      let cartPath = window.getPagePath('cart');
+      window.location.href = cartPath;
     });
   }
 
@@ -805,7 +819,7 @@ function setupDietSectionAnimation() {
       
       if (selectedDay && globalMenuData && globalMenuType) {
         // Перерендерим меню для выбранного дня
-        renderPersonalMenu(globalMenuData[globalMenuType], globalDishesData, selectedDay);
+        renderPersonalMenu(globalMenuData[globalMenuType].menus, globalDishesData, selectedDay);
       }
     });
   });

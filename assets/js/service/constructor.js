@@ -15,11 +15,16 @@ async function initConstructorPage() {
 
   // Загрузка блюд
   let dishesData = [];
-  async function loadDishes() {
+  let menuData = {};
+
+  async function loadData() {
     try {
-      dishesData = await window.loadDishesData();
+      const data = await window.loadAllData();
+      menuData = data.menuData;
+      dishesData = data.dishesData;
     } catch (error) {
       dishesData = [];
+      menuData = {};
     }
   }
 
@@ -122,10 +127,19 @@ async function initConstructorPage() {
       // Подсчитываем общие макронутриенты и калории
       const totalMacros = window.calculateTotalMacros(selectedDishes);
       const totalCalories = Math.round(window.calculateTotalCalories(selectedDishes));
+
+      // Найближчий тип меню для ціноутворення
+      closestMenuType = window.getClosestMenuType(totalCalories);
+
+      let price = 0;
+      if (menuData && menuData[closestMenuType] && menuData[closestMenuType].price) {
+        price = menuData[closestMenuType].price;
+      }
+
       
-      totalElement.textContent = `Загалом у меню: ${totalMacros.protein} Білки ${totalMacros.fat} Жири ${totalMacros.carbs} Вуглеводи, ${totalCalories} ккал.`;
+      totalElement.textContent = `Загалом у меню: ${totalMacros.protein} Білки ${totalMacros.fat} Жири ${totalMacros.carbs} Вуглеводи, ${totalCalories} ккал. Ціна: ${price} грн.`;
     } else if (totalElement) {
-      totalElement.textContent = 'Загалом у меню: 0 Білки 0 Жири 0 Вуглеводи, 0 ккал.';
+      totalElement.textContent = 'Загалом у меню: 0 Білки 0 Жири 0 Вуглеводи, 0 ккал. Ціна: 0.00 грн.';
     }
   }
 
@@ -225,9 +239,17 @@ async function initConstructorPage() {
       return;
     }
 
+    // Розраховуємо ціну меню
+    const totalCalories = Math.round(window.calculateTotalCalories(selectedDishes));
+    const closestMenuType = window.getClosestMenuType(totalCalories);
+    let price = 0;
+    if (menuData && menuData[closestMenuType] && menuData[closestMenuType].price) {
+      price = menuData[closestMenuType].price;
+    }
+
     // Используем CartManager для добавления блюд в корзину
     if (window.cartManager) {
-      window.cartManager.addOrder(selectedDishes, 'Меню з конструктора');
+      window.cartManager.addOrder(selectedDishes, 'Меню з конструктора', price);
       
       // Проверяем, что данные действительно сохранились
       setTimeout(() => {
@@ -316,7 +338,7 @@ async function initConstructorPage() {
   }
 
   // Загрузка и первичный рендер
-  await loadDishes();
+  await loadData();
   renderCards(currentType);
   updateTotal(); // Обновляем общее количество при загрузке страницы
 }

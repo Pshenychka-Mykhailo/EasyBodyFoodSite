@@ -588,10 +588,7 @@ async function loadAllData() {
     ]);
     
     return { menuData, dishesData };
-    
-    return { menuData, dishesData };
   } catch (error) {
-
     throw error;
   }
 }
