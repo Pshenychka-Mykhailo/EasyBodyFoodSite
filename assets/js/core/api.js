@@ -392,6 +392,26 @@ async function clearCart() {
   }
 }
 
+/**
+ * Створення рахунку через Mono
+ */
+async function invoiceMonoPayment(paymentData) {
+  try {
+    const result = await apiRequest('/payment/create-invoice', {
+      method: 'POST',
+      body: JSON.stringify(paymentData)
+    });
+
+    let res = JSON.parse(result);
+
+    if (res && res.pageUrl) {
+      return { success: true, pageUrl: res.pageUrl };
+    }
+  } catch (error) {
+    return { success: false, message: error.message };
+  }
+}
+
 // ===== ДАННЫЕ =====
 
 /**
@@ -618,6 +638,7 @@ window.clearFavorites = clearFavorites;
 window.addToCart = addToCart;
 window.getCart = getCart;
 window.clearCart = clearCart;
+window.invoiceMonoPayment = invoiceMonoPayment;
 window.loadMenuData = loadMenuData;
 window.loadDishesData = loadDishesData;
 window.loadAllData = loadAllData;
