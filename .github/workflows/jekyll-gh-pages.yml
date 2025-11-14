@@ -22,26 +22,31 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Build job
   build:
     runs-on: ubuntu-latest
     env:
       SERVER_URL: ${{ secrets.SERVER_URL }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Replace env placeholders
-        run: |
-          find . -type f -name "*.js" -exec sed -i "s|__SERVER_URL__|${SERVER_URL}|g" {} \;
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
           source: ./
           destination: ./_site
+
+      - name: Replace placeholders IN GENERATED FILES
+        run: |
+          find ./_site -type f -name "*.js" -exec sed -i "s|__SERVER_URL__|${SERVER_URL}|g" {} \;
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+
 
   # Deployment job
   deploy:
