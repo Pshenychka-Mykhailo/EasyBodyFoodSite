@@ -182,7 +182,7 @@ function saveProfileData() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                credentials: 'include',
+                //credentials: 'include',
                 body: JSON.stringify(profileData)
             });
             
@@ -192,7 +192,7 @@ function saveProfileData() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                credentials: 'include',
+                //credentials: 'include',
                 body: JSON.stringify(addressData)
             }).then(response => {
                 if (!response.ok) {
@@ -209,7 +209,7 @@ function saveProfileData() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                credentials: 'include',
+                //credentials: 'include',
                 body: JSON.stringify(socialsData)
             });
             

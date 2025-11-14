@@ -104,7 +104,7 @@ async function apiRequest(endpoint, options = {}) {
     headers: {
       'Content-Type': 'application/json',
     },
-    credentials: 'include',
+    //credentials: 'include',
   };
   
   const finalOptions = { ...defaultOptions, ...options };
