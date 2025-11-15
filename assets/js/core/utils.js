@@ -409,17 +409,26 @@ function calculateTotalMacros(dishes) {
   return result;
 }
 
+function calculateCaloriesFromMacros(protein, fat, carbs) {
+  return (Number(protein) * 4) + (Number(fat) * 9) + (Number(carbs) * 4);
+}
+
 /**
  * Подсчет общих калорий для массива блюд
  */
 function calculateTotalCalories(dishes) {
-  
+  if (!Array.isArray(dishes)) return 0;
+
   const result = dishes.reduce((total, dish) => {
-    const calories = (Number(dish.p) * 4) + (Number(dish.f) * 9) + (Number(dish.c) * 4);
-    return total + calories;
+    if (!dish) return total;
+    const calories = (Number(dish.kcal) && Number(dish.kcal) > 0)
+      ? Number(dish.kcal)
+      : calculateCaloriesFromMacros(dish.p, dish.f, dish.c);
+
+    return total + (calories * (dish.quantity || 1));
   }, 0);
   
-  return result;
+  return Math.round(result);
 }
 
 // ===== ОБРАБОТКА ОШИБОК =====
@@ -468,6 +477,46 @@ async function retry(fn, maxAttempts = 3, delayMs = 1000) {
       await delay(delayMs * attempt);
     }
   }
+}
+
+/**
+ * Глобальний обробник для пошкоджених зображень
+ * Встановлює 'onerror' для всіх <img>, щоб замінити пошкоджені посилання на дефолтне зображення.
+ */
+function setDefaultImageOnError() {
+    // Використовуємо константу, якщо вона є
+    const fallbackConstant = window.FALLBACK_IMAGE || 'data/img/food1.jpg';
+    
+    // Отримуємо правильний шлях до fallback
+    let defaultImagePath;
+    if (window.getPath) {
+        // getPath (з path-utils.js) - найкращий варіант
+        defaultImagePath = window.getPath(fallbackConstant);
+    } else {
+        // Запасний варіант, якщо path-utils не завантажився
+        defaultImagePath = (window.location.pathname.includes('/pages/main/') ? '../../' : './') + fallbackConstant;
+    }
+
+    document.addEventListener('error', function(event) {
+        const target = event.target;
+
+        // Перевіряємо, що це <img> і що ми ще не застосували fallback
+        if (target.tagName === 'IMG' && !target.hasAttribute('data-fallback-applied')) {
+            
+            // Встановлюємо атрибут, щоб уникнути нескінченного циклу
+            target.setAttribute('data-fallback-applied', 'true');
+            
+            // Встановлюємо дефолтне зображення
+            target.src = defaultImagePath;
+        }
+    }, true); // Використовуємо "capture phase"
+}
+
+// Запускаємо наш обробник
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', setDefaultImageOnError);
+} else {
+  setDefaultImageOnError(); // DOM вже завантажений
 }
 
 // Экспорт в глобальную область

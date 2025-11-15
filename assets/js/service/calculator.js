@@ -329,7 +329,7 @@ function renderPersonalMenu(menuArr, dishes, day) {
     totalF += Number(dish.f) || 0;
     totalC += Number(dish.c) || 0;
   });
-  const totalKcal = Math.round(totalP * 4 + totalF * 9 + totalC * 4);
+  const totalKcal = Math.round(window.calculateTotalCalories(selectedDishes));
   
   if (menuTotal) {
     menuTotal.textContent = `Б: ${totalP} г, Ж: ${totalF} г, В: ${totalC} г; ${totalKcal} ккал. Ціна: ${currentPrice} грн/день.`;

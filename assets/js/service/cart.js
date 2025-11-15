@@ -111,14 +111,20 @@ class CartManager {
 
     // Получение общей калорийности
     getTotalCalories() {
-        let totalKcal = 0;
+        // let totalKcal = 0;
+        // this.cart.orders.forEach(order => {
+        //     order.dishes.forEach(item => {
+        //         const calories = window.calculateCaloriesFromMacros(item.p || 0, item.f || 0, item.c || 0);
+        //         totalKcal += calories * item.quantity;
+        //     });
+        // });
+        // return Math.round(totalKcal);
+        let allDishes = [];
         this.cart.orders.forEach(order => {
-            order.dishes.forEach(item => {
-                const calories = window.calculateCaloriesFromMacros(item.p || 0, item.f || 0, item.c || 0);
-                totalKcal += calories * item.quantity;
-            });
+            allDishes = allDishes.concat(order.dishes);
         });
-        return Math.round(totalKcal);
+
+        return window.calculateTotalCalories(allDishes);
     }
 
     getTotalPrice() {
@@ -649,8 +655,11 @@ function loadCart() {
 
             // --- Цикл по Стравах ---
             dayData.dishes.forEach(item => {
-                const calories = Math.round(window.calculateCaloriesFromMacros(item.p || 0, item.f || 0, item.c || 0));
-                
+                //const calories = Math.round(window.calculateCaloriesFromMacros(item.p || 0, item.f || 0, item.c || 0));
+                const calories = (Number(item.kcal) && Number(item.kcal) > 0) 
+                    ? Number(item.kcal) 
+                    : Math.round(window.calculateCaloriesFromMacros(item.p || 0, item.f || 0, item.c || 0));
+
                 cartHTML += `
                     <div class="cart-item">
                         <img src="${window.getDishImage ? window.getDishImage(item) : (item.img || 'data/img/food1.jpg')}" alt="${item.title}" class="cart-item-img">

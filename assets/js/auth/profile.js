@@ -358,7 +358,9 @@ function getDishById(id) {
 function createFavoriteCard(dish) {
     if (!dish) return '';
     
-    const calories = (dish.p * 4) + (dish.f * 9) + (dish.c * 4);
+    const calories = (Number(dish.kcal) && Number(dish.kcal) > 0)
+        ? Number(dish.kcal)
+        : (dish.p * 4) + (dish.f * 9) + (dish.c * 4);
     
     return `
         <div class="cart-item" data-dish-id="${dish.id}">

@@ -389,6 +389,32 @@ body {
     background: #4CAF50;
     color: #fff;
 }
+
+.menu-week-tabs {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.menu-week-tab {
+    border: 1.5px solid #a3c7a3;
+    background: transparent;
+    color: #4CAF50;
+    border-radius: 20px;
+    padding: 8px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+.menu-week-tab.active, .menu-week-tab:hover {
+    background: #4CAF50;
+    color: #fff;
+    border-color: #4CAF50;
+}
+
 .menu-days {
     display: flex;
     gap: 16px;
@@ -424,6 +450,60 @@ body {
     outline: none;
     z-index: 1;
 }
+
+.menu-card-choice-group {
+    background: #f8f7f3;
+    border: 2px solid #4CAF50;
+    border-radius: 24px;
+    padding: 20px;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.menu-card-choice-group legend {
+    font-size: 18px;
+    font-weight: 600;
+    color: #388e3c;
+    padding: 0 10px;
+    margin-left: 10px;
+}
+.menu-card-choice-option {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #fff;
+    border-radius: 16px;
+    padding: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.menu-card-choice-option input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    accent-color: #4CAF50;
+}
+.menu-card-choice-option .menu-card-content {
+    padding: 0;
+    flex: 1;
+}
+.menu-card-choice-option .menu-card-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+.menu-card-choice-option .menu-card-macros {
+    font-size: 13px;
+    color: #a3c7a3;
+    margin-bottom: 4px;
+}
+.menu-card-choice-option .menu-card-desc {
+    font-size: 14px;
+    color: #4CAF50;
+}
+
 .menu-slider-wrapper {
     display: flex;
     align-items: center;
@@ -1235,6 +1315,20 @@ body {
     .menu-day:focus-visible {
         outline: 2px solid #4CAF50;
         outline-offset: 2px;
+    }
+    .menu-card-choice-group {
+        padding: 12px;
+    }
+    .menu-card-choice-option {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .menu-card-choice-option .menu-card-title {
+        font-size: 14px;
+    }
+    .menu-card-choice-option .menu-card-macros,
+    .menu-card-choice-option .menu-card-desc {
+        font-size: 12px;
     }
     .menu-slider-wrapper {
         max-width: 100%;

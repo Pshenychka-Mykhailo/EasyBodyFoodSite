@@ -6,57 +6,217 @@
         "type": 900,
         "weekType": 1,
         "dayOfWeek": "Mon",
-        "breakfastId": 1,
-        "additionaldishesId": 58,
-        "sweetbreakfastId": 12,
-        "dinnerdishId": 21,
-        "eveningmealdishId": 43
+        "breakfastId": [1,2,3],
+        "chosebreakfast":true,
+        "dinnerdishId": 7,
+        "eveningmealdishId": 68
       },
       {
         "type": 900,
         "weekType": 1,
         "dayOfWeek": "Tue",
-        "breakfastId": 2,
-        "additionaldishesId": 59,
-        "sweetbreakfastId": 16,
-        "dinnerdishId": 22,
-        "eveningmealdishId": 44
+        "breakfastId": [70,71,12],
+        "chosebreakfast":true,
+        "dinnerdishId": 18,
+        "eveningmealdishId": 138
       },
       {
         "type": 900,
         "weekType": 1,
         "dayOfWeek": "Wed",
-        "breakfastId": 3,
-        "sweetbreakfastId": 15,
-        "dinnerdishId": 23,
-        "eveningmealdishId": 45
+        "breakfastId": [22,23,24],
+        "chosebreakfast":true,
+        "dinnerdishId": 28,
+        "eveningmealdishId": 86 
       },
       {
         "type": 900,
         "weekType": 1,
         "dayOfWeek": "Thu",
-        "breakfastId": 4,
-        "sweetbreakfastId": 14,
-        "dinnerdishId": 24,
-        "eveningmealdishId": 46
+        "breakfastId": [32,33,34],
+        "chosebreakfast":true,
+        "dinnerdishId": 38,
+        "eveningmealdishId": 39
       },
       {
         "type": 900,
         "weekType": 1,
         "dayOfWeek": "Fri",
-        "breakfastId": 5,
-        "sweetbreakfastId": 13,
-        "dinnerdishId": 25,
-        "eveningmealdishId": 47
+        "breakfastId": [41,41,43],
+        "chosebreakfast":true,
+        "dinnerdishId": 46,
+        "eveningmealdishId": 150
       },
       {
         "type": 900,
         "weekType": 1,
         "dayOfWeek": "Sat",
-        "breakfastId": 6,
-        "sweetbreakfastId": 11,
-        "dinnerdishId": 26,
+        "breakfastId": [50,47,52],
+        "chosebreakfast":true,
+        "dinnerdishId": 56,
+        "eveningmealdishId": 126
+      },
+      {
+        "type": 900,
+        "weekType": 2,
+        "dayOfWeek": "Mon",
+        "breakfastId": [1,162,3],
+        "chosebreakfast":true,
+        "dinnerdishId": 7,
+        "eveningmealdishId": 126
+      },
+      {
+        "type": 900,
+        "weekType": 2,
+        "dayOfWeek": "Tue",
+        "breakfastId": [70,141,72],
+        "chosebreakfast":true,
+        "dinnerdishId": 75,
+        "eveningmealdishId":138
+      },
+      {
+        "type": 900,
+        "weekType": 2,
+        "dayOfWeek": "Wed",
+        "breakfastId": [78,180,202],
+        "chosebreakfast":true,
+        "dinnerdishId": 82,
+        "eveningmealdishId": 84
+      },
+      {
+        "type": 900,
+        "weekType": 2,
+        "dayOfWeek": "Thu",
+        "breakfastId": [85,29,87],
+        "chosebreakfast":true,
+        "dinnerdishId": 38,
+        "eveningmealdishId": 46
+      },
+      {
+        "type": 900,
+        "weekType": 2,
+        "dayOfWeek": "Fri",
+        "breakfastId": [94,42,95],
+        "chosebreakfast":true,
+        "dinnerdishId": 97,
+        "eveningmealdishId": 99
+      },
+      {
+        "type": 900,
+        "weekType": 2,
+        "dayOfWeek": "Sat",
+        "breakfastId": [101,47,103],
+        "chosebreakfast":true,
+        "dinnerdishId": 106,
+        "eveningmealdishId": 108
+      },
+      {
+        "type": 900,
+        "weekType": 3,
+        "dayOfWeek": "Mon",
+        "breakfastId": [110,111,112],
+        "chosebreakfast":true,
+        "dinnerdishId": 115,
+        "eveningmealdishId": 117
+      },
+      {
+        "type": 900,
+        "weekType": 3,
+        "dayOfWeek": "Tue",
+        "breakfastId": [119,120,121],
+        "chosebreakfast":true,
+        "dinnerdishId": 124,
+        "eveningmealdishId": 126
+      },
+      {
+        "type": 900,
+        "weekType": 3,
+        "dayOfWeek": "Wed",
+        "breakfastId": [128,180,129],
+        "chosebreakfast":true,
+        "dinnerdishId": 132,
+        "eveningmealdishId": 134
+      },
+      {
+        "type": 900,
+        "weekType": 3,
+        "dayOfWeek": "Thu",
+        "breakfastId": [85,185,137],
+        "chosebreakfast":true,
+        "dinnerdishId": 140,
+        "eveningmealdishId": 140
+      },
+      {
+        "type": 900,
+        "weekType": 3,
+        "dayOfWeek": "Fri",
+        "breakfastId": [144,199,145],
+        "chosebreakfast":true,
+        "dinnerdishId": 148,
+        "eveningmealdishId": 155
+      },
+      {
+        "type": 900,
+        "weekType": 3,
+        "dayOfWeek": "Sat",
+        "breakfastId": [152,149,154],
+        "chosebreakfast":true,
+        "dinnerdishId": 157,
+        "eveningmealdishId": 159
+      },
+      {
+        "type": 900,
+        "weekType": 4,
+        "dayOfWeek": "Mon",
+        "breakfastId": [161,162,163],
+        "chosebreakfast":true,
+        "dinnerdishId": 166,
+        "eveningmealdishId": 168
+      },
+      {
+        "type": 900,
+        "weekType": 4,
+        "dayOfWeek": "Tue",
+        "breakfastId": [170,141,172],
+        "chosebreakfast":true,
+        "dinnerdishId": 175,
+        "eveningmealdishId": 177
+      },
+      {
+        "type": 900,
+        "weekType": 4,
+        "dayOfWeek": "Wed",
+        "breakfastId": [179,180,181],
+        "chosebreakfast":true,
+        "dinnerdishId": 184,
+        "eveningmealdishId": 186
+      },
+      {
+        "type": 900,
+        "weekType": 4,
+        "dayOfWeek": "Thu",
+        "breakfastId": [32,185,34],
+        "chosebreakfast":true,
+        "dinnerdishId": 38,
+        "eveningmealdishId": 39
+      },
+      {
+        "type": 900,
+        "weekType": 4,
+        "dayOfWeek": "Fri",
+        "breakfastId": [41,42,43],
+        "chosebreakfast":true,
+        "dinnerdishId": 46,
         "eveningmealdishId": 48
+      },
+      {
+        "type": 900,
+        "weekType": 4,
+        "dayOfWeek": "Sat",
+        "breakfastId": [50,51,52],
+        "chosebreakfast":true,
+        "dinnerdishId": 56,
+        "eveningmealdishId": 222
       }
     ]
   },
@@ -67,63 +227,217 @@
         "type": 1200,
         "weekType": 1,
         "dayOfWeek": "Mon",
-        "breakfastId": 1,
-        "additionaldishesId": 58,
-        "sweetbreakfastId": 12,
-        "sweetafternoonsnaskId": 42,
-        "dinnerdishId": 21,
-        "eveningmealdishId": 43
+        "breakfastId": [1,2,3],
+        "chosebreakfast":true,
+        "dinnerdishId": 7,
+        "eveningmealdishId": 68
       },
       {
         "type": 1200,
         "weekType": 1,
         "dayOfWeek": "Tue",
-        "breakfastId": 2,
-        "additionaldishesId": 59,
-        "sweetbreakfastId": 16,
-        "sweetafternoonsnaskId": 39,
-        "dinnerdishId": 22,
+        "breakfastId": [70,71,12],
+        "chosebreakfast":true,
+        "dinnerdishId": 18,
         "eveningmealdishId": 44
       },
       {
         "type": 1200,
         "weekType": 1,
         "dayOfWeek": "Wed",
-        "breakfastId": 3,
-        "sweetbreakfastId": 15,
-        "sweetafternoonsnaskId": 41,
-        "dinnerdishId": 23,
-        "eveningmealdishId": 45
+        "breakfastId": [22,23,24],
+        "chosebreakfast":true,
+        "dinnerdishId": 28,
+        "eveningmealdishId": 86
       },
       {
         "type": 1200,
         "weekType": 1,
         "dayOfWeek": "Thu",
-        "breakfastId": 4,
-        "sweetbreakfastId": 14,
-        "sweetafternoonsnaskId": 40,
-        "dinnerdishId": 24,
-        "eveningmealdishId": 46
+        "breakfastId": [32,33,34],
+        "chosebreakfast":true,
+        "dinnerdishId": 38,
+        "eveningmealdishId": 39
       },
       {
         "type": 1200,
         "weekType": 1,
         "dayOfWeek": "Fri",
-        "breakfastId": 5,
-        "sweetbreakfastId": 13,
-        "sweetafternoonsnaskId": 38,
-        "dinnerdishId": 25,
-        "eveningmealdishId": 47
+        "breakfastId": [41,41,43],
+        "chosebreakfast":true,
+        "dinnerdishId": 46,
+        "eveningmealdishId": 150
       },
       {
         "type": 1200,
         "weekType": 1,
         "dayOfWeek": "Sat",
-        "breakfastId": 6,
-        "sweetbreakfastId": 11,
-        "sweetafternoonsnaskId": 37,
-        "dinnerdishId": 26,
+        "breakfastId": [50,47,52],
+        "chosebreakfast":true,
+        "dinnerdishId": 56,
+        "eveningmealdishId": 126
+      },
+      {
+        "type": 1200,
+        "weekType": 2,
+        "dayOfWeek": "Mon",
+        "breakfastId": [1,162,3],
+        "chosebreakfast":true,
+        "dinnerdishId": 7,
+        "eveningmealdishId": 126
+      },
+      {
+        "type": 1200,
+        "weekType": 2,
+        "dayOfWeek": "Tue",
+        "breakfastId": [70,141,72],
+        "chosebreakfast":true,
+        "dinnerdishId": 75,
+        "eveningmealdishId":138
+      },
+      {
+        "type": 1200,
+        "weekType": 2,
+        "dayOfWeek": "Wed",
+        "breakfastId": [78,180,202],
+        "chosebreakfast":true,
+        "dinnerdishId": 82,
+        "eveningmealdishId": 84
+      },
+      {
+        "type": 1200,
+        "weekType": 2,
+        "dayOfWeek": "Thu",
+        "breakfastId": [85,29,87],
+        "chosebreakfast":true,
+        "dinnerdishId": 38,
+        "eveningmealdishId": 46
+      },
+      {
+        "type": 1200,
+        "weekType": 2,
+        "dayOfWeek": "Fri",
+        "breakfastId": [94,42,95],
+        "chosebreakfast":true,
+        "dinnerdishId": 97,
+        "eveningmealdishId": 99
+      },
+      {
+        "type": 1200,
+        "weekType": 2,
+        "dayOfWeek": "Sat",
+        "breakfastId": [101,47,103],
+        "chosebreakfast":true,
+        "dinnerdishId": 106,
+        "eveningmealdishId": 108
+      },
+      {
+        "type": 1200,
+        "weekType": 3,
+        "dayOfWeek": "Mon",
+        "breakfastId": [110,111,112],
+        "chosebreakfast":true,
+        "dinnerdishId": 115,
+        "eveningmealdishId": 117
+      },
+      {
+        "type": 1200,
+        "weekType": 3,
+        "dayOfWeek": "Tue",
+        "breakfastId": [119,120,121],
+        "chosebreakfast":true,
+        "dinnerdishId": 124,
+        "eveningmealdishId": 126
+      },
+      {
+        "type": 1200,
+        "weekType": 3,
+        "dayOfWeek": "Wed",
+        "breakfastId": [128,180,129],
+        "chosebreakfast":true,
+        "dinnerdishId": 132,
+        "eveningmealdishId": 134
+      },
+      {
+        "type": 1200,
+        "weekType": 3,
+        "dayOfWeek": "Thu",
+        "breakfastId": [85,185,137],
+        "chosebreakfast":true,
+        "dinnerdishId": 140,
+        "eveningmealdishId": 140
+      },
+      {
+        "type": 1200,
+        "weekType": 3,
+        "dayOfWeek": "Fri",
+        "breakfastId": [144,199,145],
+        "chosebreakfast":true,
+        "dinnerdishId": 148,
+        "eveningmealdishId": 155
+      },
+      {
+        "type": 1200,
+        "weekType": 3,
+        "dayOfWeek": "Sat",
+        "breakfastId": [152,149,154],
+        "chosebreakfast":true,
+        "dinnerdishId": 157,
+        "eveningmealdishId": 159
+      },
+      {
+        "type": 1200,
+        "weekType": 4,
+        "dayOfWeek": "Mon",
+        "breakfastId": [161,162,163],
+        "chosebreakfast":true,
+        "dinnerdishId": 166,
+        "eveningmealdishId": 168
+      },
+      {
+        "type": 1200,
+        "weekType": 4,
+        "dayOfWeek": "Tue",
+        "breakfastId": [170,141,172],
+        "chosebreakfast":true,
+        "dinnerdishId": 175,
+        "eveningmealdishId": 177
+      },
+      {
+        "type": 1200,
+        "weekType": 4,
+        "dayOfWeek": "Wed",
+        "breakfastId": [179,180,181],
+        "chosebreakfast":true,
+        "dinnerdishId": 184,
+        "eveningmealdishId": 186
+      },
+      {
+        "type": 1200,
+        "weekType": 4,
+        "dayOfWeek": "Thu",
+        "breakfastId": [32,185,34],
+        "chosebreakfast":true,
+        "dinnerdishId": 38,
+        "eveningmealdishId": 39
+      },
+      {
+        "type": 1200,
+        "weekType": 4,
+        "dayOfWeek": "Fri",
+        "breakfastId": [41,42,43],
+        "chosebreakfast":true,
+        "dinnerdishId": 46,
         "eveningmealdishId": 48
+      },
+      {
+        "type": 1200,
+        "weekType": 4,
+        "dayOfWeek": "Sat",
+        "breakfastId": [50,51,52],
+        "chosebreakfast":true,
+        "dinnerdishId": 56,
+        "eveningmealdishId": 222
       }
     ]
   },
@@ -134,61 +448,217 @@
         "type": 1600,
         "weekType": 1,
         "dayOfWeek": "Mon",
-        "breakfastId": 1,
-        "sweetbreakfastId": 12,
-        "sweetafternoonsnaskId": 42,
-        "dinnerdishId": 21,
-        "eveningmealdishId": 43
+        "breakfastId": [1,2,3],
+        "afternoonsnask":6,
+        "dinnerdishId": 7,
+        "eveningmealdishId": 68
       },
       {
         "type": 1600,
         "weekType": 1,
         "dayOfWeek": "Tue",
-        "breakfastId": 2,
-        "sweetbreakfastId": 16,
-        "sweetafternoonsnaskId": 39,
-        "dinnerdishId": 22,
+        "breakfastId": [70,71,12],
+        "afternoonsnask":15,
+        "dinnerdishId": 18,
         "eveningmealdishId": 44
       },
       {
         "type": 1600,
         "weekType": 1,
         "dayOfWeek": "Wed",
-        "breakfastId": 3,
-        "sweetbreakfastId": 15,
-        "sweetafternoonsnaskId": 41,
-        "dinnerdishId": 23,
-        "eveningmealdishId": 45
+        "breakfastId": [22,23,24],
+        "afternoonsnask":27,
+        "dinnerdishId": 28,
+        "eveningmealdishId": 86
       },
       {
         "type": 1600,
         "weekType": 1,
         "dayOfWeek": "Thu",
-        "breakfastId": 4,
-        "sweetbreakfastId": 14,
-        "sweetafternoonsnaskId": 40,
-        "dinnerdishId": 24,
-        "eveningmealdishId": 46
+        "breakfastId": [32,33,34],
+        "afternoonsnask":37,
+        "dinnerdishId": 38,
+        "eveningmealdishId": 39
       },
       {
         "type": 1600,
         "weekType": 1,
         "dayOfWeek": "Fri",
-        "breakfastId": 5,
-        "sweetbreakfastId": 13,
-        "sweetafternoonsnaskId": 38,
-        "dinnerdishId": 25,
-        "eveningmealdishId": 47
+        "breakfastId": [41,41,43],
+        "afternoonsnask":45,
+        "dinnerdishId": 46,
+        "eveningmealdishId": 150
       },
       {
         "type": 1600,
         "weekType": 1,
         "dayOfWeek": "Sat",
-        "breakfastId": 6,
-        "sweetbreakfastId": 11,
-        "sweetafternoonsnaskId": 37,
-        "dinnerdishId": 26,
+        "breakfastId": [50,47,52],
+        "afternoonsnask":54,
+        "dinnerdishId": 56,
+        "eveningmealdishId": 126
+      },
+      {
+        "type": 1600,
+        "weekType": 2,
+        "dayOfWeek": "Mon",
+        "breakfastId": [1,162,3],
+        "afternoonsnask":221,
+        "dinnerdishId": 7,
+        "eveningmealdishId": 126
+      },
+      {
+        "type": 1600,
+        "weekType": 2,
+        "dayOfWeek": "Tue",
+        "breakfastId": [70,141,72],
+        "afternoonsnask":74,
+        "dinnerdishId": 75,
+        "eveningmealdishId":138
+      },
+      {
+        "type": 1600,
+        "weekType": 2,
+        "dayOfWeek": "Wed",
+        "breakfastId": [78,180,202],
+        "afternoonsnask":81,
+        "dinnerdishId": 82,
+        "eveningmealdishId": 84
+      },
+      {
+        "type": 1600,
+        "weekType": 2,
+        "dayOfWeek": "Thu",
+        "breakfastId": [85,29,87],
+        "afternoonsnask":89,
+        "dinnerdishId": 38,
+        "eveningmealdishId": 46
+      },
+      {
+        "type": 1600,
+        "weekType": 2,
+        "dayOfWeek": "Fri",
+        "breakfastId": [94,42,95],
+        "afternoonsnask":96,
+        "dinnerdishId": 97,
+        "eveningmealdishId": 99
+      },
+      {
+        "type": 1600,
+        "weekType": 2,
+        "dayOfWeek": "Sat",
+        "breakfastId": [101,47,103],
+        "afternoonsnask":105,
+        "dinnerdishId": 106,
+        "eveningmealdishId": 108
+      },
+      {
+        "type": 1600,
+        "weekType": 3,
+        "dayOfWeek": "Mon",
+        "breakfastId": [110,111,112],
+        "afternoonsnask":114,
+        "dinnerdishId": 115,
+        "eveningmealdishId": 117
+      },
+      {
+        "type": 1600,
+        "weekType": 3,
+        "dayOfWeek": "Tue",
+        "breakfastId": [119,120,121],
+        "afternoonsnask":123,
+        "dinnerdishId": 124,
+        "eveningmealdishId": 126
+      },
+      {
+        "type": 1600,
+        "weekType": 3,
+        "dayOfWeek": "Wed",
+        "breakfastId": [128,180,129],
+        "afternoonsnask":131,
+        "dinnerdishId": 132,
+        "eveningmealdishId": 134
+      },
+      {
+        "type": 1600,
+        "weekType": 3,
+        "dayOfWeek": "Thu",
+        "breakfastId": [85,185,137],
+        "afternoonsnask":139,
+        "dinnerdishId": 140,
+        "eveningmealdishId": 140
+      },
+      {
+        "type": 1600,
+        "weekType": 3,
+        "dayOfWeek": "Fri",
+        "breakfastId": [144,199,145],
+        "afternoonsnask":147,
+        "dinnerdishId": 148,
+        "eveningmealdishId": 155
+      },
+      {
+        "type": 1600,
+        "weekType": 3,
+        "dayOfWeek": "Sat",
+        "breakfastId": [152,149,154],
+        "afternoonsnask":156,
+        "dinnerdishId": 157,
+        "eveningmealdishId": 159
+      },
+      {
+        "type": 1600,
+        "weekType": 4,
+        "dayOfWeek": "Mon",
+        "breakfastId": [161,162,163],
+        "afternoonsnask":165,
+        "dinnerdishId": 166,
+        "eveningmealdishId": 168
+      },
+      {
+        "type": 1600,
+        "weekType": 4,
+        "dayOfWeek": "Tue",
+        "breakfastId": [170,141,172],
+        "afternoonsnask":174,
+        "dinnerdishId": 175,
+        "eveningmealdishId": 177
+      },
+      {
+        "type": 1600,
+        "weekType": 4,
+        "dayOfWeek": "Wed",
+        "breakfastId": [179,180,181],
+        "afternoonsnask":183,
+        "dinnerdishId": 184,
+        "eveningmealdishId": 186
+      },
+      {
+        "type": 1600,
+        "weekType": 4,
+        "dayOfWeek": "Thu",
+        "breakfastId": [32,185,34],
+        "afternoonsnask":37,
+        "dinnerdishId": 38,
+        "eveningmealdishId": 39
+      },
+      {
+        "type": 1600,
+        "weekType": 4,
+        "dayOfWeek": "Fri",
+        "breakfastId": [41,42,43],
+        "afternoonsnask":45,
+        "dinnerdishId": 46,
         "eveningmealdishId": 48
+      },
+      {
+        "type": 1600,
+        "weekType": 4,
+        "dayOfWeek": "Sat",
+        "breakfastId": [50,51,52],
+        "afternoonsnask":54,
+        "dinnerdishId": 56,
+        "eveningmealdishId": 222
       }
     ]
   },
@@ -199,63 +669,217 @@
         "type": 1800,
         "weekType": 1,
         "dayOfWeek": "Mon",
-        "breakfastId": 1,
-        "additionaldishesId": 58,
-        "sweetbreakfastId": 12,
-        "afternoonsnaskId": 29,
-        "dinnerdishId": 21,
-        "eveningmealdishId": 43
+        "breakfastId": [1,2,3],
+        "afternoonsnask":63,
+        "dinnerdishId": 7,
+        "eveningmealdishId": 68
       },
       {
         "type": 1800,
         "weekType": 1,
         "dayOfWeek": "Tue",
-        "breakfastId": 2,
-        "additionaldishesId": 59,
-        "sweetbreakfastId": 16,
-        "afternoonsnaskId": 30,
-        "dinnerdishId": 22,
+        "breakfastId": [70,71,12],
+        "afternoonsnask":13,
+        "dinnerdishId": 18,
         "eveningmealdishId": 44
       },
       {
         "type": 1800,
         "weekType": 1,
         "dayOfWeek": "Wed",
-        "breakfastId": 3,
-        "sweetbreakfastId": 15,
-        "afternoonsnaskId": 31,
-        "dinnerdishId": 23,
-        "eveningmealdishId": 45
+        "breakfastId": [22,23,24],
+        "afternoonsnask":25,
+        "dinnerdishId": 28,
+        "eveningmealdishId": 86
       },
       {
         "type": 1800,
         "weekType": 1,
         "dayOfWeek": "Thu",
-        "breakfastId": 4,
-        "sweetbreakfastId": 14,
-        "afternoonsnaskId": 32,
-        "dinnerdishId": 24,
-        "eveningmealdishId": 46
+        "breakfastId": [32,33,34],
+        "afternoonsnask":88,
+        "dinnerdishId": 38,
+        "eveningmealdishId": 39
       },
       {
         "type": 1800,
         "weekType": 1,
         "dayOfWeek": "Fri",
-        "breakfastId": 5,
-        "sweetbreakfastId": 13,
-        "afternoonsnaskId": 33,
-        "dinnerdishId": 25,
-        "eveningmealdishId": 47
+        "breakfastId": [41,41,43],
+        "afternoonsnask":201,
+        "dinnerdishId": 46,
+        "eveningmealdishId": 150
       },
       {
         "type": 1800,
         "weekType": 1,
         "dayOfWeek": "Sat",
-        "breakfastId": 6,
-        "sweetbreakfastId": 11,
-        "afternoonsnaskId": 34,
-        "dinnerdishId": 26,
+        "breakfastId": [50,47,52],
+        "afternoonsnask":53,
+        "dinnerdishId": 56,
+        "eveningmealdishId": 126
+      },
+      {
+        "type": 1800,
+        "weekType": 2,
+        "dayOfWeek": "Mon",
+        "breakfastId": [1,162,3],
+        "afternoonsnask":63,
+        "dinnerdishId": 7,
+        "eveningmealdishId": 126
+      },
+      {
+        "type": 1800,
+        "weekType": 2,
+        "dayOfWeek": "Tue",
+        "breakfastId": [70,141,72],
+        "afternoonsnask":73,
+        "dinnerdishId": 75,
+        "eveningmealdishId":138
+      },
+      {
+        "type": 1800,
+        "weekType": 2,
+        "dayOfWeek": "Wed",
+        "breakfastId": [78,180,202],
+        "afternoonsnask":80,
+        "dinnerdishId": 82,
+        "eveningmealdishId": 84
+      },
+      {
+        "type": 1800,
+        "weekType": 2,
+        "dayOfWeek": "Thu",
+        "breakfastId": [85,29,87],
+        "afternoonsnask":225,
+        "dinnerdishId": 38,
+        "eveningmealdishId": 46
+      },
+      {
+        "type": 1800,
+        "weekType": 2,
+        "dayOfWeek": "Fri",
+        "breakfastId": [94,42,95],
+        "afternoonsnask":226,
+        "dinnerdishId": 97,
+        "eveningmealdishId": 99
+      },
+      {
+        "type": 1800,
+        "weekType": 2,
+        "dayOfWeek": "Sat",
+        "breakfastId": [101,47,103],
+        "afternoonsnask":104,
+        "dinnerdishId": 106,
+        "eveningmealdishId": 108
+      },
+      {
+        "type": 1800,
+        "weekType": 3,
+        "dayOfWeek": "Mon",
+        "breakfastId": [110,111,112],
+        "afternoonsnask":113,
+        "dinnerdishId": 115,
+        "eveningmealdishId": 117
+      },
+      {
+        "type": 1800,
+        "weekType": 3,
+        "dayOfWeek": "Tue",
+        "breakfastId": [119,120,121],
+        "afternoonsnask":122,
+        "dinnerdishId": 124,
+        "eveningmealdishId": 126
+      },
+      {
+        "type": 1800,
+        "weekType": 3,
+        "dayOfWeek": "Wed",
+        "breakfastId": [128,180,129],
+        "afternoonsnask":130,
+        "dinnerdishId": 132,
+        "eveningmealdishId": 134
+      },
+      {
+        "type": 1800,
+        "weekType": 3,
+        "dayOfWeek": "Thu",
+        "breakfastId": [85,185,137],
+        "afternoonsnask":138,
+        "dinnerdishId": 140,
+        "eveningmealdishId": 140
+      },
+      {
+        "type": 1800,
+        "weekType": 3,
+        "dayOfWeek": "Fri",
+        "breakfastId": [144,199,145],
+        "afternoonsnask":146,
+        "dinnerdishId": 148,
+        "eveningmealdishId": 155
+      },
+      {
+        "type": 1800,
+        "weekType": 3,
+        "dayOfWeek": "Sat",
+        "breakfastId": [152,149,154],
+        "afternoonsnask":155,
+        "dinnerdishId": 157,
+        "eveningmealdishId": 159
+      },
+      {
+        "type": 1800,
+        "weekType": 4,
+        "dayOfWeek": "Mon",
+        "breakfastId": [161,162,163],
+        "afternoonsnask":164,
+        "dinnerdishId": 166,
+        "eveningmealdishId": 168
+      },
+      {
+        "type": 1800,
+        "weekType": 4,
+        "dayOfWeek": "Tue",
+        "breakfastId": [170,141,172],
+        "afternoonsnask":173,
+        "dinnerdishId": 175,
+        "eveningmealdishId": 177
+      },
+      {
+        "type": 1800,
+        "weekType": 4,
+        "dayOfWeek": "Wed",
+        "breakfastId": [179,180,181],
+        "afternoonsnask":182,
+        "dinnerdishId": 184,
+        "eveningmealdishId": 186
+      },
+      {
+        "type": 1800,
+        "weekType": 4,
+        "dayOfWeek": "Thu",
+        "breakfastId": [32,185,34],
+        "afternoonsnask":35,
+        "dinnerdishId": 38,
+        "eveningmealdishId": 39
+      },
+      {
+        "type": 1800,
+        "weekType": 4,
+        "dayOfWeek": "Fri",
+        "breakfastId": [41,42,43],
+        "afternoonsnask":44,
+        "dinnerdishId": 46,
         "eveningmealdishId": 48
+      },
+      {
+        "type": 1800,
+        "weekType": 4,
+        "dayOfWeek": "Sat",
+        "breakfastId": [50,51,52],
+        "afternoonsnask":53,
+        "dinnerdishId": 56,
+        "eveningmealdishId": 222
       }
     ]
   },
@@ -266,67 +890,215 @@
         "type": 2500,
         "weekType": 1,
         "dayOfWeek": "Mon",
-        "breakfastId": 1,
-        "additionaldishesId": 58,
-        "sweetbreakfastId": 12,
-        "afternoonsnaskId": 29,
-        "sweetafternoonsnaskId": 42,
-        "dinnerdishId": 21,
-        "eveningmealdishId": 43
+        "breakfastId": [1,2,3],
+        "afternoonsnask":[63,65],
+        "dinnerdishId": 7,
+        "eveningmealdishId": 68
       },
       {
         "type": 2500,
         "weekType": 1,
         "dayOfWeek": "Tue",
-        "breakfastId": 2,
-        "additionaldishesId": 59,
-        "sweetbreakfastId": 16,
-        "afternoonsnaskId": 30,
-        "sweetafternoonsnaskId": 39,
-        "dinnerdishId": 22,
+        "breakfastId": [70,71,12],
+        "afternoonsnask":[13,15],
+        "dinnerdishId": 18,
         "eveningmealdishId": 44
       },
       {
         "type": 2500,
         "weekType": 1,
         "dayOfWeek": "Wed",
-        "breakfastId": 3,
-        "sweetbreakfastId": 15,
-        "afternoonsnaskId": 31,
-        "sweetafternoonsnaskId": 41,
-        "dinnerdishId": 23,
-        "eveningmealdishId": 45
+        "breakfastId": [22,23,24],
+        "afternoonsnask":[25,27],
+        "dinnerdishId": 28,
+        "eveningmealdishId": 86
       },
       {
         "type": 2500,
         "weekType": 1,
         "dayOfWeek": "Thu",
-        "breakfastId": 4,
-        "sweetbreakfastId": 14,
-        "afternoonsnaskId": 32,
-        "sweetafternoonsnaskId": 40,
-        "dinnerdishId": 24,
-        "eveningmealdishId": 46
+        "breakfastId": [32,33,34],
+        "afternoonsnask":[35,37],
+        "dinnerdishId": 38,
+        "eveningmealdishId": 39
       },
       {
         "type": 2500,
         "weekType": 1,
         "dayOfWeek": "Fri",
-        "breakfastId": 5,
-        "sweetbreakfastId": 13,
-        "afternoonsnaskId": 33,
-        "sweetafternoonsnaskId": 38,
-        "dinnerdishId": 25,
-        "eveningmealdishId": 47
+        "breakfastId": [41,41,43],
+        "afternoonsnask":[44,45],
+        "dinnerdishId": 46,
+        "eveningmealdishId": 150
       },
       {
         "type": 2500,
         "weekType": 1,
         "dayOfWeek": "Sat",
-        "breakfastId": 6,
-        "sweetbreakfastId": 11,
-        "afternoonsnaskId": 34,
-        "sweetafternoonsnaskId": 37,
+        "breakfastId": [50,47,52],
+        "afternoonsnask":[53,54],
+        "dinnerdishId": 56,
+        "eveningmealdishId": 126
+      },
+      {
+        "type": 2500,
+        "weekType": 2,
+        "dayOfWeek": "Mon",
+        "breakfastId": [1,162,3],
+        "afternoonsnask":[63,221],
+        "dinnerdishId": 7,
+        "eveningmealdishId": 126
+      },
+      {
+        "type": 2500,
+        "weekType": 2,
+        "dayOfWeek": "Tue",
+        "breakfastId": [70,141,72],
+        "afternoonsnask":[73,74],
+        "dinnerdishId": 75,
+        "eveningmealdishId":138
+      },
+      {
+        "type": 2500,
+        "weekType": 2,
+        "dayOfWeek": "Wed",
+        "breakfastId": [78,180,202],
+        "afternoonsnask":[80,81],
+        "dinnerdishId": 82,
+        "eveningmealdishId": 84
+      },
+      {
+        "type": 2500,
+        "weekType": 2,
+        "dayOfWeek": "Thu",
+        "breakfastId": [85,29,87],
+        "afternoonsnask":[88,89],
+        "dinnerdishId": 38,
+        "eveningmealdishId": 46
+      },
+      {
+        "type": 2500,
+        "weekType": 2,
+        "dayOfWeek": "Fri",
+        "breakfastId": [94,42,95],
+        "afternoonsnask":[201,96],
+        "dinnerdishId": 97,
+        "eveningmealdishId": 99
+      },
+      {
+        "type": 2500,
+        "weekType": 2,
+        "dayOfWeek": "Sat",
+        "breakfastId": [101,47,103],
+        "afternoonsnask":[104,105],
+        "dinnerdishId": 106,
+        "eveningmealdishId": 108
+      },
+      {
+        "type": 2500,
+        "weekType": 3,
+        "dayOfWeek": "Mon",
+        "breakfastId": [110,111,112],
+        "afternoonsnask":[113,114],
+        "dinnerdishId": 115,
+        "eveningmealdishId": 117
+      },
+      {
+        "type": 2500,
+        "weekType": 3,
+        "dayOfWeek": "Tue",
+        "breakfastId": [119,120,121],
+        "afternoonsnask":[122,123],
+        "dinnerdishId": 124,
+        "eveningmealdishId": 126
+      },
+      {
+        "type": 2500,
+        "weekType": 3,
+        "dayOfWeek": "Wed",
+        "breakfastId": [128,180,129],
+        "afternoonsnask":[130,131],
+        "dinnerdishId": 132,
+        "eveningmealdishId": 134
+      },
+      {
+        "type": 2500,
+        "weekType": 3,
+        "dayOfWeek": "Thu",
+        "breakfastId": [85,185,137],
+        "afternoonsnask":[135,139],
+        "dinnerdishId": 140,
+        "eveningmealdishId": 140
+      },
+      {
+        "type": 2500,
+        "weekType": 3,
+        "dayOfWeek": "Fri",
+        "breakfastId": [144,199,145],
+        "afternoonsnask":[146,147],
+        "dinnerdishId": 148,
+        "eveningmealdishId": 155
+      },
+      {
+        "type": 2500,
+        "weekType": 3,
+        "dayOfWeek": "Sat",
+        "breakfastId": [152,149,154],
+        "afternoonsnask":[155,156],
+        "dinnerdishId": 157,
+        "eveningmealdishId": 159
+      },
+      {
+        "type": 2500,
+        "weekType": 4,
+        "dayOfWeek": "Mon",
+        "breakfastId": [161,162,163],
+        "afternoonsnask":[164,165],
+        "dinnerdishId": 21,
+        "eveningmealdishId": 43
+      },
+      {
+        "type": 2500,
+        "weekType": 4,
+        "dayOfWeek": "Tue",
+        "breakfastId": [170,171,172],
+        "afternoonsnask":[173,174],
+        "dinnerdishId": 22,
+        "eveningmealdishId": 44
+      },
+      {
+        "type": 2500,
+        "weekType": 4,
+        "dayOfWeek": "Wed",
+        "breakfastId": [179,180,181],
+        "afternoonsnask":[182,183],
+        "dinnerdishId": 23,
+        "eveningmealdishId": 45
+      },
+      {
+        "type": 2500,
+        "weekType": 4,
+        "dayOfWeek": "Thu",
+        "breakfastId": [32,33,34],
+        "afternoonsnask":[35,37],
+        "dinnerdishId": 24,
+        "eveningmealdishId": 46
+      },
+      {
+        "type": 2500,
+        "weekType": 4,
+        "dayOfWeek": "Fri",
+        "breakfastId": [198,199,223],
+        "afternoonsnask":[201,202],
+        "dinnerdishId": 25,
+        "eveningmealdishId": 47
+      },
+      {
+        "type": 2500,
+        "weekType": 4,
+        "dayOfWeek": "Sat",
+        "breakfastId": [209,210,211],
+        "afternoonsnask":[212,213],
         "dinnerdishId": 26,
         "eveningmealdishId": 48
       }
@@ -339,69 +1111,217 @@
         "type": 3000,
         "weekType": 1,
         "dayOfWeek": "Mon",
-        "breakfastId": 1,
-        "additionaldishesId": 58,
-        "sweetbreakfastId": 12,
-        "afternoonsnaskId": 29,
-        "sweetafternoonsnaskId": 42,
-        "dinnerdishId": 21,
-        "eveningmealdishId": 43
+        "breakfastId": [1,2,3],
+        "afternoonsnask":[63,65],
+        "dinnerdishId": [7,8],
+        "eveningmealdishId": 68
       },
       {
         "type": 3000,
         "weekType": 1,
         "dayOfWeek": "Tue",
-        "breakfastId": 2,
-        "additionaldishesId": 59,
-        "sweetbreakfastId": 16,
-        "afternoonsnaskId": 30,
-        "sweetafternoonsnaskId": 39,
-        "dinnerdishId": 22,
-        "eveningmealdishId": 44
+        "breakfastId": [70,71,12],
+        "afternoonsnask":[13,15],
+        "dinnerdishId": [18,86],
+        "eveningmealdishId": [44,127]
       },
       {
         "type": 3000,
         "weekType": 1,
         "dayOfWeek": "Wed",
-        "breakfastId": 3,
-        "sweetbreakfastId": 15,
-        "afternoonsnaskId": 31,
-        "sweetafternoonsnaskId": 41,
-        "dinnerdishId": 23,
-        "eveningmealdishId": 45
+        "breakfastId": [22,23,24],
+        "afternoonsnask":[25,27],
+        "dinnerdishId": [28,91],
+        "eveningmealdishId": [86,187]
       },
       {
         "type": 3000,
         "weekType": 1,
         "dayOfWeek": "Thu",
-        "breakfastId": 4,
-        "sweetbreakfastId": 14,
-        "afternoonsnaskId": 32,
-        "sweetafternoonsnaskId": 40,
-        "dinnerdishId": 24,
-        "eveningmealdishId": 46
+        "breakfastId": [32,33,34],
+        "afternoonsnask":[35,37],
+        "dinnerdishId": [38,98],
+        "eveningmealdishId": [39,143]
       },
       {
         "type": 3000,
         "weekType": 1,
         "dayOfWeek": "Fri",
-        "breakfastId": 5,
-        "sweetbreakfastId": 13,
-        "afternoonsnaskId": 33,
-        "sweetafternoonsnaskId": 38,
-        "dinnerdishId": 25,
-        "eveningmealdishId": 47
+        "breakfastId": [41,41,43],
+        "afternoonsnask":[44,45],
+        "dinnerdishId": [46,149],
+        "eveningmealdishId": [150,151]
       },
       {
         "type": 3000,
         "weekType": 1,
         "dayOfWeek": "Sat",
-        "breakfastId": 6,
-        "sweetbreakfastId": 11,
-        "afternoonsnaskId": 34,
-        "sweetafternoonsnaskId": 37,
-        "dinnerdishId": 26,
-        "eveningmealdishId": 48
+        "breakfastId": [50,47,52],
+        "afternoonsnask":[53,54],
+        "dinnerdishId": [56,107],
+        "eveningmealdishId": [126,160]
+      },
+      {
+        "type": 3000,
+        "weekType": 2,
+        "dayOfWeek": "Mon",
+        "breakfastId": [1,162,3],
+        "afternoonsnask":[63,221],
+        "dinnerdishId": [7,167],
+        "eveningmealdishId": 126
+      },
+      {
+        "type": 3000,
+        "weekType": 2,
+        "dayOfWeek": "Tue",
+        "breakfastId": [70,141,72],
+        "afternoonsnask":[73,74],
+        "dinnerdishId": [75,176],
+        "eveningmealdishId":138
+      },
+      {
+        "type": 3000,
+        "weekType": 2,
+        "dayOfWeek": "Wed",
+        "breakfastId": [78,180,202],
+        "afternoonsnask":[80,81],
+        "dinnerdishId": [82,185],
+        "eveningmealdishId": 84
+      },
+      {
+        "type": 3000,
+        "weekType": 2,
+        "dayOfWeek": "Thu",
+        "breakfastId": [85,29,87],
+        "afternoonsnask":[88,89],
+        "dinnerdishId": [38,195],
+        "eveningmealdishId": 46
+      },
+      {
+        "type": 3000,
+        "weekType": 2,
+        "dayOfWeek": "Fri",
+        "breakfastId": [94,42,95],
+        "afternoonsnask":[201,96],
+        "dinnerdishId": [97,210],
+        "eveningmealdishId": 99
+      },
+      {
+        "type": 3000,
+        "weekType": 2,
+        "dayOfWeek": "Sat",
+        "breakfastId": [101,47,103],
+        "afternoonsnask":[104,105],
+        "dinnerdishId": [106,107],
+        "eveningmealdishId": 108
+      },
+      {
+        "type": 3000,
+        "weekType": 3,
+        "dayOfWeek": "Mon",
+        "breakfastId": [110,111,112],
+        "afternoonsnask":[113,114],
+        "dinnerdishId": [115,8],
+        "eveningmealdishId": 117
+      },
+      {
+        "type": 3000,
+        "weekType": 3,
+        "dayOfWeek": "Tue",
+        "breakfastId": [119,120,121],
+        "afternoonsnask":[122,123],
+        "dinnerdishId": [124,17],
+        "eveningmealdishId": 126
+      },
+      {
+        "type": 3000,
+        "weekType": 3,
+        "dayOfWeek": "Wed",
+        "breakfastId": [128,180,129],
+        "afternoonsnask":[130,131],
+        "dinnerdishId": [132,29],
+        "eveningmealdishId": 134
+      },
+      {
+        "type": 3000,
+        "weekType": 3,
+        "dayOfWeek": "Thu",
+        "breakfastId": [85,185,137],
+        "afternoonsnask":[135,139],
+        "dinnerdishId": [140,71],
+        "eveningmealdishId": 140
+      },
+      {
+        "type": 3000,
+        "weekType": 3,
+        "dayOfWeek": "Fri",
+        "breakfastId": [144,199,145],
+        "afternoonsnask":[146,147],
+        "dinnerdishId": [148,98],
+        "eveningmealdishId": 155
+      },
+      {
+        "type": 3000,
+        "weekType": 3,
+        "dayOfWeek": "Sat",
+        "breakfastId": [152,149,154],
+        "afternoonsnask":[155,156],
+        "dinnerdishId": [157,107],
+        "eveningmealdishId": 159
+      },
+      {
+        "type": 3000,
+        "weekType": 4,
+        "dayOfWeek": "Mon",
+        "breakfastId": [161,162,163],
+        "afternoonsnask":[164,165],
+        "dinnerdishId": [21,116],
+        "eveningmealdishId": 43
+      },
+      {
+        "type": 3000,
+        "weekType": 4,
+        "dayOfWeek": "Tue",
+        "breakfastId": [170,171,172],
+        "afternoonsnask":[173,174],
+        "dinnerdishId": [22,125],
+        "eveningmealdishId": 44
+      },
+      {
+        "type": 3000,
+        "weekType": 4,
+        "dayOfWeek": "Wed",
+        "breakfastId": [179,180,181],
+        "afternoonsnask":[182,183],
+        "dinnerdishId": [23,133],
+        "eveningmealdishId": 45
+      },
+      {
+        "type": 3000,
+        "weekType": 4,
+        "dayOfWeek": "Thu",
+        "breakfastId": [32,33,34],
+        "afternoonsnask":[35,37],
+        "dinnerdishId": [24,141],
+        "eveningmealdishId": [46,143]
+      },
+      {
+        "type": 3000,
+        "weekType": 4,
+        "dayOfWeek": "Fri",
+        "breakfastId": [198,199,43],
+        "afternoonsnask":[201,202],
+        "dinnerdishId": [25,148],
+        "eveningmealdishId": [47,151]
+      },
+      {
+        "type": 3000,
+        "weekType": 4,
+        "dayOfWeek": "Sat",
+        "breakfastId": [165,205,52],
+        "afternoonsnask":[53,54],
+        "dinnerdishId": [56,57],
+        "eveningmealdishId": [222,160]
       }
     ]
   },
@@ -412,69 +1332,217 @@
         "type": 3500,
         "weekType": 1,
         "dayOfWeek": "Mon",
-        "breakfastId": 1,
-        "additionaldishesId": 58,
-        "sweetbreakfastId": 12,
-        "afternoonsnaskId": 29,
-        "sweetafternoonsnaskId": 42,
-        "dinnerdishId": 21,
-        "eveningmealdishId": 43
+        "breakfastId": [1,2,3],
+        "afternoonsnask":[63,64,65],
+        "dinnerdishId": [7,8],
+        "eveningmealdishId": 9
       },
       {
         "type": 3500,
         "weekType": 1,
         "dayOfWeek": "Tue",
-        "breakfastId": 2,
-        "additionaldishesId": 59,
-        "sweetbreakfastId": 16,
-        "afternoonsnaskId": 30,
-        "sweetafternoonsnaskId": 39,
-        "dinnerdishId": 22,
-        "eveningmealdishId": 44
+        "breakfastId": [10,11,12],
+        "afternoonsnask":[13,14,15],
+        "dinnerdishId": [16,17],
+        "eveningmealdishId": [18,19,20,21]
       },
       {
         "type": 3500,
         "weekType": 1,
         "dayOfWeek": "Wed",
-        "breakfastId": 3,
-        "sweetbreakfastId": 15,
-        "afternoonsnaskId": 31,
-        "sweetafternoonsnaskId": 41,
-        "dinnerdishId": 23,
-        "eveningmealdishId": 45
+        "breakfastId":[22,23,24],
+        "afternoonsnask":[25,26,27],
+        "dinnerdishId": [28,29],
+        "eveningmealdishId": [84,187]
       },
       {
         "type": 3500,
         "weekType": 1,
         "dayOfWeek": "Thu",
-        "breakfastId": 4,
-        "sweetbreakfastId": 14,
-        "afternoonsnaskId": 32,
-        "sweetafternoonsnaskId": 40,
-        "dinnerdishId": 24,
-        "eveningmealdishId": 46
+        "breakfastId":[32,33,34],
+        "afternoonsnask":[35,36,37],
+        "dinnerdishId": [38,71],
+        "eveningmealdishId": [39,40,180]
       },
       {
         "type": 3500,
         "weekType": 1,
         "dayOfWeek": "Fri",
-        "breakfastId": 5,
-        "sweetbreakfastId": 13,
-        "afternoonsnaskId": 33,
-        "sweetafternoonsnaskId": 38,
-        "dinnerdishId": 25,
-        "eveningmealdishId": 47
+        "breakfastId":  [41,42,43],
+        "afternoonsnask":[44,45,203],
+        "dinnerdishId":[46,47],
+        "eveningmealdishId": [207,208]
       },
       {
         "type": 3500,
         "weekType": 1,
         "dayOfWeek": "Sat",
-        "breakfastId": 6,
-        "sweetbreakfastId": 11,
-        "afternoonsnaskId": 34,
-        "sweetafternoonsnaskId": 37,
-        "dinnerdishId": 26,
-        "eveningmealdishId": 48
+        "breakfastId":[50,51,52],
+        "afternoonsnask":[53,54,55],
+        "dinnerdishId": [56,57],
+        "eveningmealdishId": [222,218]
+      },
+      {
+        "type": 3500,
+        "weekType": 2,
+        "dayOfWeek": "Mon",
+        "breakfastId":[1,2,3],
+        "afternoonsnask":[63,64,65],
+        "dinnerdishId": [66,67],
+        "eveningmealdishId": [68,69]
+      },
+      {
+        "type": 3500,
+        "weekType": 2,
+        "dayOfWeek": "Tue",
+        "breakfastId":[10,11,72],
+        "afternoonsnask":[73,74],
+        "dinnerdishId":  [75,76],
+        "eveningmealdishId": [77,127]
+      },
+      {
+        "type": 3500,
+        "weekType": 2,
+        "dayOfWeek": "Wed",
+        "breakfastId":[78,180,79],
+        "afternoonsnask":[80,81],
+        "dinnerdishId":  [82,83],
+        "eveningmealdishId": [84,187]
+      },
+      {
+        "type": 3500,
+        "weekType": 2,
+        "dayOfWeek": "Thu",
+        "breakfastId": [85,86,87],
+        "afternoonsnask":[88,89],
+        "dinnerdishId":  [90,91],
+        "eveningmealdishId": [92,93]
+      },
+      {
+        "type": 3500,
+        "weekType": 2,
+        "dayOfWeek": "Fri",
+        "breakfastId": [94,42,95],
+        "afternoonsnask":[201,96],
+        "dinnerdishId":  [97,98],
+        "eveningmealdishId": [99,100]
+      },
+      {
+        "type": 3500,
+        "weekType": 2,
+        "dayOfWeek": "Sat",
+        "breakfastId": [101,102,103],
+        "afternoonsnask":[104,105],
+        "dinnerdishId": [106,107],
+        "eveningmealdishId": [224,59]
+      },
+      {
+        "type": 3500,
+        "weekType": 3,
+        "dayOfWeek": "Mon",
+        "breakfastId": [110,111,112],
+        "afternoonsnask":[113,114],
+        "dinnerdishId":  [115,116],
+        "eveningmealdishId": [117,118]
+      },
+      {
+        "type": 3500,
+        "weekType": 3,
+        "dayOfWeek": "Tue",
+        "breakfastId": [119,120,121],
+        "afternoonsnask":[122,123],
+        "dinnerdishId":  [16,17],
+        "eveningmealdishId": [126,127]
+      },
+      {
+        "type": 3000,
+        "weekType": 3,
+        "dayOfWeek": "Wed",
+        "breakfastId": [128,180,129],
+        "afternoonsnask":[130,131],
+        "dinnerdishId":  [132,133],
+        "eveningmealdishId": [134,187]
+      },
+      {
+        "type": 3500,
+        "weekType": 3,
+        "dayOfWeek": "Thu",
+        "breakfastId": [135,136,137],
+        "afternoonsnask":[138,139],
+        "dinnerdishId":  [140,141],
+        "eveningmealdishId": [142,143]
+      },
+      {
+        "type": 3500,
+        "weekType": 3,
+        "dayOfWeek": "Fri",
+        "breakfastId": [144,199,145],
+        "afternoonsnask":[146,147],
+        "dinnerdishId":  [148,149],
+        "eveningmealdishId":  [150,151]
+      },
+      {
+        "type": 3500,
+        "weekType": 3,
+        "dayOfWeek": "Sat",
+        "breakfastId": [152,153,154],
+        "afternoonsnask":[155,156],
+        "dinnerdishId":  [157,158],
+        "eveningmealdishId":  [159,160]
+      },
+      {
+        "type": 3500,
+        "weekType": 4,
+        "dayOfWeek": "Mon",
+        "breakfastId": [161,162,163],
+        "afternoonsnask":[164,165],
+        "dinnerdishId":[166,167] ,
+        "eveningmealdishId":  [168,169]
+      },
+      {
+        "type": 3500,
+        "weekType": 4,
+        "dayOfWeek": "Tue",
+        "breakfastId": [170,171,172],
+        "afternoonsnask":[173,174],
+        "dinnerdishId": [175,176],
+        "eveningmealdishId":  [177,178]
+      },
+      {
+        "type": 3500,
+        "weekType": 4,
+        "dayOfWeek": "Wed",
+        "breakfastId": [179,180,181],
+        "afternoonsnask":[182,183],
+        "dinnerdishId": [184,185],
+        "eveningmealdishId":  [186,187]
+      },
+      {
+        "type": 3500,
+        "weekType": 4,
+        "dayOfWeek": "Thu",
+        "breakfastId": [188,189,190],
+        "afternoonsnask":[191,192,193],
+        "dinnerdishId": [194,195],
+        "eveningmealdishId":  [196,197]
+      },
+      {
+        "type": 3500,
+        "weekType": 4,
+        "dayOfWeek": "Fri",
+        "breakfastId": [198,199,200],
+        "afternoonsnask":[201,202,203],
+        "dinnerdishId": [204,205,220,206],
+        "eveningmealdishId":  [207,208]
+      },
+      {
+        "type": 3500,
+        "weekType": 4,
+        "dayOfWeek": "Sat",
+        "breakfastId": [209,210,211],
+        "afternoonsnask":[112,113,114],
+        "dinnerdishId": [215,216],
+        "eveningmealdishId":  [217,218,219,220]
       }
     ]
   }

@@ -1,10 +1,11 @@
 async function initStandartPage() {
-  // Логика карусели перенесена в carousel.js
-  // Карусель будет инициализирована автоматически через createMenuCarousel
+  // Логіка каруселі перенесена в carousel.js
+  // Карусель буде ініціалізована автоматично через createMenuCarousel
 
-  // Маппинг дней недели и калорийности
+  // Маппінг днів тижня і калорійності
   const dayButtons = document.querySelectorAll('.menu-day');
   const typeTabs = document.querySelectorAll('.menu-type-tab');
+  const weekTabs = document.querySelectorAll('.menu-week-tab'); // Нові кнопки тижнів
 
   const dayMap = {
     'пн': 'Mon',
@@ -17,80 +18,117 @@ async function initStandartPage() {
 
   let selectedCalories = '900';
   let selectedDay = 'Mon';
+  let selectedWeek = 1; // Нова змінна для тижня
 
-  // Загрузка данных
+  // Завантаження даних
   let menuData = {};
   let dishesData = [];
-  
-  // Глобальные переменные для доступа к данным меню
+
+  // Глобальні змінні для доступу до даних меню
   let globalMenuData = {};
   let globalDishesData = [];
   let globalSelectedCalories = '900';
-  
+  let globalSelectedWeek = 1;
+
   async function loadData() {
     try {
-      const { menuData: menu, dishesData: dishes } = await window.loadAllData();
+      // Використовуємо новий файл menu.json
+      const menuResponse = await fetch(window.getDataPath('menu.json'));
+      const menu = await menuResponse.json();
+      
+      const dishesResponse = await fetch(window.getDataPath('dishes.json'));
+      const dishes = await dishesResponse.json();
+      
       menuData = menu;
       globalMenuData = menu;
       dishesData = dishes;
       globalDishesData = dishes;
     } catch (error) {
+      console.error("Помилка завантаження даних:", error);
       menuData = {};
       dishesData = [];
     }
   }
 
-  // Получить объект меню по калорийности и дню
-  function getMenuForSelection(calories, day) {
+  // Отримати об'єкт меню за калорійністю, днем та ТИЖНЕМ
+  function getMenuForSelection(calories, day, week) {
     const menyTypeData = menuData[calories];
     
     if (!menyTypeData || !menyTypeData.menus) {
       return null;
     }
     
-    return menyTypeData.menus.find(item => item.dayOfWeek && item.dayOfWeek.toLowerCase().startsWith(day.toLowerCase()));
+    // Нова логіка пошуку з урахуванням weekType
+    return menyTypeData.menus.find(item => 
+      item.dayOfWeek && item.dayOfWeek.toLowerCase().startsWith(day.toLowerCase()) &&
+      item.weekType === week
+    );
   }
 
-  // Получить блюдо по id
+  // Отримати страву по id
   function getDishById(id) {
+    // Використовуємо глобальну функцію, оскільки вона вже є
     return window.getDishById(dishesData, id);
   }
 
-  // Генерация карточки - логика перенесена в card.js
+  // Генерація звичайної картки
   function createMenuCard(dish, mealType) {
     if (!dish) {
       return '';
     }
+
+    const dishKcal = (Number(dish.kcal) && Number(dish.kcal) > 0)
+      ? dish.kcal
+      : window.calculateCaloriesFromMacros(dish.p, dish.f, dish.c);
     
-    // Используем функцию из card.js
+    // Використовуємо window.createStandardMenuCard, якщо він існує
     if (window.createStandardMenuCard) {
-      return window.createStandardMenuCard(dish, mealType);
-    } else {
-      return `
-        <div class="menu-card" data-dish-id="${dish.id}">
-          <div class="menu-card-img-wrap">
-                            <img src="${window.getDishImage ? window.getDishImage(dish) : (dish.img || 'data/img/food1.jpg')}" alt="${dish.title}" class="menu-card-img">
-            <div class="gallery-card-icons">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="gallery-heart icon-heart">
-                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
-                         4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
-                         14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
-                         6.86-8.55 11.54L12 21.35z"/>
-              </svg>
-            </div>
-                            <span class="menu-card-plus active">−</span>
-          </div>
-          <div class="menu-card-content">
-            <div class="menu-card-title">${mealType}</div>
-            <div class="menu-card-macros">${window.formatMacros ? window.formatMacros(dish) : `Б: ${dish.p} г, Ж: ${dish.f} г, В: ${dish.c} г`}</div>
-            <div class="menu-card-desc">${dish.title}</div>
-          </div>
-        </div>
-      `;
+      // Переконуємося, що ми передаємо правильні дані в існуючу функцію
+      // (можливо, їй потрібен лише dish і mealType, а kcal вона бере сама)
+      // Для надійності, використовуємо fallback, який ми точно контролюємо
     }
+    
+    // Fallback, якщо createStandardMenuCard не знайдено або для гарантії
+    return `
+      <div class="menu-card" data-dish-id="${dish.id}">
+        <div class="menu-card-img-wrap">
+          <img src="${window.getDishImage ? window.getDishImage(dish) : (dish.img || 'data/img/food1.jpg')}" alt="${dish.title}" class="menu-card-img">
+          <div class="gallery-card-icons">
+            ${window.heartIconSVG || '<svg></svg>'}
+          </div>
+          <span class="menu-card-plus active" data-dish-id="${dish.id}" data-meal-type="${mealType}">−</span>
+        </div>
+        <div class="menu-card-content">
+          <div class="menu-card-title">${mealType}</div>
+          <div class="menu-card-macros">${window.formatMacros ? window.formatMacros(dish) : ''} (${dishKcal} ккал)</div>
+          <div class="menu-card-desc">${dish.title}</div>
+        </div>
+      </div>
+    `;
   }
 
-  // Маппинг типов приёмов пищи к ключам в menu.json и названиям для карточек
+  // Нова функція для генерації картки з вибором (радіокнопка)
+  function createChoiceMenuCard(dish, mealType, choiceGroupName, isChecked, dishId) {
+    if (!dish) return '';
+
+    const dishKcal = (Number(dish.kcal) && Number(dish.kcal) > 0)
+      ? dish.kcal
+      : window.calculateCaloriesFromMacros(dish.p, dish.f, dish.c);
+
+    return `
+        <label class="menu-card-choice-option" data-dish-id="${dishId}">
+            <input type="radio" name="${choiceGroupName}" ${isChecked ? 'checked' : ''} data-dish-id="${dishId}">
+            <div class="menu-card-content">
+                <div class="menu-card-title">${dish.title}</div>
+                <div class="menu-card-macros">${window.formatMacros(dish)} (${dishKcal} ккал)</div>
+                <div class="menu-card-desc">${dish.subtitle || ''}</div>
+            </div>
+        </label>
+    `;
+  }
+
+
+  // Маппінг типів прийомів їжі
   const mealMap = window.MEAL_MAP || [
     { key: 'breakfastId', name: 'Сніданок' },
     { key: 'additionaldishesId', name: 'Додаткова страва' },
@@ -101,195 +139,254 @@ async function initStandartPage() {
     { key: 'eveningmealdishId', name: 'Вечеря' }
   ];
 
-  const menuTotal = document.querySelector('.menu-total');
-
-  // Основная функция генерации карточек
+  // Основна функція генерації карток
   function renderMenuCards() {
     const menuSlider = document.querySelector('.menu-slider');
     const menuTotal = document.querySelector('.menu-total');
     
-    if (!menuSlider) {
-      return;
-    }
+    if (!menuSlider) return;
     
     menuSlider.innerHTML = '';
-    const menuObj = getMenuForSelection(selectedCalories, selectedDay);
+    const menuObj = getMenuForSelection(selectedCalories, selectedDay, selectedWeek);
 
-    // Отримуємо ціну для вибраного меню
     const currentMenuTypeData = menuData[selectedCalories];
     const currentPrice = (currentMenuTypeData && currentMenuTypeData.price) ? currentMenuTypeData.price : 0;
     
     if (!menuObj) {
-      menuSlider.innerHTML = '<div style="padding:2rem">Немає меню для цього дня.</div>';
+      menuSlider.innerHTML = '<div style="padding:2rem">Немає меню для цього дня та тижня.</div>';
       if (menuTotal) menuTotal.textContent = 'Загалом у меню: 0 Білки 0 Жири 0 Вуглеводи.';
       return;
     }
     
     let cardsHTML = '';
-    let selectedDishes = [];
+    let dishesForTotalCalc = []; // Тільки ті страви, що увійдуть в меню
     
     mealMap.forEach(meal => {
-      if (menuObj[meal.key]) {
-        const dish = getDishById(menuObj[meal.key]);
-        if (dish) {
-          selectedDishes.push(dish);
-          cardsHTML += createMenuCard(dish, meal.name);
+        const mealKey = meal.key; // e.g., 'breakfastId'
+        const choiceKey = `chose${meal.key.replace('Id', '').toLowerCase()}`; // e.g., 'chosebreakfast'
+
+        if (menuObj[mealKey]) {
+            const dishIdOrArray = menuObj[mealKey];
+
+            if (Array.isArray(dishIdOrArray)) {
+                // Це масив страв
+                if (menuObj[choiceKey] === true) {
+                    // === ВИПАДОК 1: КОРИСТУВАЧ МАЄ ОБРАТИ ОДНУ ===
+                    const choiceGroupName = `choice-${selectedDay}-${mealKey}`;
+                    cardsHTML += `<div class="menu-card-choice-group" data-meal-type="${meal.name}" data-choice-group="${choiceGroupName}">`;
+                    cardsHTML += `<legend>Оберіть один ${meal.name.toLowerCase()}:</legend>`;
+                    
+                    let firstDish = null; // Для розрахунку калорій "за замовчуванням"
+                    
+                    dishIdOrArray.forEach((dishId, index) => {
+                        const dish = getDishById(dishId);
+                        if (dish) {
+                            if (index === 0) firstDish = dish; // Додаємо першу страву до підрахунку
+                            // Передаємо dish.id в createChoiceMenuCard
+                            cardsHTML += createChoiceMenuCard(dish, meal.name, choiceGroupName, index === 0, dish.id);
+                        }
+                    });
+                    
+                    if(firstDish) dishesForTotalCalc.push(firstDish); // Додаємо обрану за замовчуванням
+                    cardsHTML += `</div>`;
+
+                } else {
+                    // === ВИПАДОК 2: ВСІ СТРАВИ З МАСИВУ ВКЛЮЧЕНІ ===
+                    dishIdOrArray.forEach(dishId => {
+                        const dish = getDishById(dishId);
+                        if (dish) {
+                            dishesForTotalCalc.push(dish);
+                            cardsHTML += createMenuCard(dish, meal.name);
+                        }
+                    });
+                }
+            } else {
+                // === ВИПАДОК 3: ОДНА СТРАВА (ЗВИЧАЙНИЙ ID) ===
+                const dish = getDishById(dishIdOrArray);
+                if (dish) {
+                    dishesForTotalCalc.push(dish);
+                    cardsHTML += createMenuCard(dish, meal.name);
+                }
+            }
         }
-      }
     });
     
     menuSlider.innerHTML = cardsHTML;
     
-    // Подсчёт макронутриентов и калорий
-    const totalMacros = window.calculateTotalMacros(selectedDishes);
-    const totalKcal = Math.round(window.calculateTotalCalories(selectedDishes));
-    
-    if (menuTotal) {
-      menuTotal.textContent = `Загалом у меню: ${totalMacros.protein} Білки ${totalMacros.fat} Жири ${totalMacros.carbs} Вуглеводи, ${totalKcal} ккал. Ціна: ${currentPrice} грн/день.`;
-    }
+    // Підрахунок макронутрієнтів і калорій
+    updateTotalCalories(dishesForTotalCalc, currentPrice);
     
     attachCardEvents();
   }
 
-  // Восстановление интерактивности для сердечек и плюсиков
+  // Функція оновлення загальних калорій
+  function updateTotalCalories(dishes, price) {
+      const menuTotal = document.querySelector('.menu-total');
+      // Використовуємо глобальні функції для розрахунку
+      const totalMacros = window.calculateTotalMacros(dishes);
+      const totalKcal = Math.round(window.calculateTotalCalories(dishes));
+      
+      if (menuTotal) {
+          menuTotal.textContent = `Загалом у меню: ${totalMacros.protein} Білки ${totalMacros.fat} Жири ${totalMacros.carbs} Вуглеводи, ${totalKcal} ккал. Ціна: ${price} грн/день.`;
+      }
+  }
+
+  // Восстановление интерактивности
   function attachCardEvents() {
-    // Сердечки обрабатываются универсальным HeartsManager
+    // Сердечки
     if (window.heartsManager) {
       window.heartsManager.refresh();
     }
     
-    // Добавляем обработчики для плюсиков/минусов с небольшой задержкой
-    setTimeout(() => {
-      const plusIcons = document.querySelectorAll('.menu-card-plus');
-      plusIcons.forEach(plus => {
-        plus.addEventListener('click', function() {
-          // Переключаем состояние
-          const isCurrentlyActive = this.classList.contains('active');
-          
-          if (isCurrentlyActive) {
-            // Если активно (красный минус), то убираем из меню
-            this.classList.remove('active');
-            this.textContent = '+';
-          } else {
-            // Если неактивно (зеленый плюс), то добавляем в меню
-            this.classList.add('active');
-            this.textContent = '−';
-          }
-        });
+    // Плюсики/мінуси (для звичайних карток)
+    document.querySelectorAll('.menu-card-plus').forEach(plus => {
+      plus.addEventListener('click', function() {
+        this.classList.toggle('active');
+        this.textContent = this.classList.contains('active') ? '−' : '+';
+        updateTotalAfterToggle(); // Оновлюємо загальну суму
       });
-    }, 10);
-  }
-
-  // Функция для получения выбранных блюд
-  function getSelectedDishes() {
-    const selectedDishes = [];
-    const dayMap = {
-      'Mon': 'Пн',
-      'Tue': 'Вт', 
-      'Wed': 'Ср',
-      'Thu': 'Чт',
-      'Fri': 'Пт',
-      'Sat': 'Сб'
-    };
-
-    // Проходим по всем дням недели
-    const allDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    
-    allDays.forEach(day => {
-      // Получаем меню для этого дня
-      const menuObj = getMenuForSelection(globalSelectedCalories, day);
-      if (menuObj) {
-        // Получаем все блюда для этого дня
-        mealMap.forEach(meal => {
-          if (menuObj[meal.key]) {
-            const dish = getDishById(menuObj[meal.key]);
-            if (dish) {
-              // Проверяем, есть ли карточка с этим блюдом на странице
-              const cardElement = document.querySelector(`[data-dish-id="${dish.id}"]`);
-              if (cardElement) {
-                // Проверяем состояние плюсика/минуса
-                const plusButton = cardElement.querySelector('.menu-card-plus');
-                if (plusButton && plusButton.classList.contains('active')) {
-                  // Если плюсик активен (минус), значит блюдо включено в меню
-                  selectedDishes.push({
-                    ...dish,
-                    day: day.toLowerCase(),
-                    dayName: dayMap[day],
-                    quantity: 1
-                  });
-                }
-              } else {
-                // Если карточки нет на странице, добавляем блюдо по умолчанию
-                selectedDishes.push({
-                  ...dish,
-                  day: day.toLowerCase(),
-                  dayName: dayMap[day],
-                  quantity: 1
-                });
-              }
-            }
-          }
-        });
-      }
     });
 
-    return selectedDishes;
+    // Радіокнопки (для карток вибору)
+    document.querySelectorAll('.menu-card-choice-group input[type="radio"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            updateTotalAfterToggle(); // Оновлюємо загальну суму
+        });
+    });
   }
 
-  // Функция для сохранения шаблона в корзину
+  // Оновлення загальної суми при будь-якій зміні
+  function updateTotalAfterToggle() {
+      const selectedDishes = getSelectedDishesFromDOM();
+      const price = (globalMenuData[selectedCalories] && globalMenuData[selectedCalories].price) ? globalMenuData[selectedCalories].price : 0;
+      updateTotalCalories(selectedDishes, price);
+  }
+
+  // Нова функція для отримання обраних страв ПРЯМО З DOM
+  function getSelectedDishesFromDOM() {
+      const selectedDishes = [];
+      const menuSlider = document.querySelector('.menu-slider');
+      if (!menuSlider) return [];
+
+      // 1. Збираємо звичайні картки (з плюсиками)
+      menuSlider.querySelectorAll('.menu-card-plus.active').forEach(plus => {
+          const dishId = plus.getAttribute('data-dish-id');
+          const dish = getDishById(dishId);
+          if (dish) {
+              selectedDishes.push(dish);
+          }
+      });
+
+      // 2. Збираємо картки з вибором (радіокнопки)
+      menuSlider.querySelectorAll('.menu-card-choice-group').forEach(group => {
+          const checkedRadio = group.querySelector('input[type="radio"]:checked');
+          if (checkedRadio) {
+              // Отримуємо ID страви з радіокнопки або її батьківського <label>
+              const dishId = checkedRadio.getAttribute('data-dish-id') || checkedRadio.closest('[data-dish-id]').getAttribute('data-dish-id');
+              const dish = getDishById(dishId);
+              if (dish) {
+                  selectedDishes.push(dish);
+              }
+          }
+      });
+
+      return selectedDishes;
+  }
+
+  // Функція для отримання всіх обраних страв за ВСІ дні (для кошика)
+  // !!! ОНОВЛЕНА ЛОГІКА (ВИПРАВЛЕНА) !!!
+  function getAllSelectedDishesForCart() {
+    const allSelectedDishes = [];
+    const dayMap = {
+      'Mon': 'Пн', 'Tue': 'Вт', 'Wed': 'Ср',
+      'Thu': 'Чт', 'Fri': 'Пт', 'Sat': 'Сб'
+    };
+    const allDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+    // 1. Отримуємо страви, обрані в DOM на ПОТОЧНОМУ дні
+    const currentDayDOMDishes = getSelectedDishesFromDOM().map(dish => ({
+        ...dish,
+        day: selectedDay.toLowerCase(), // selectedDay is global ('Mon', 'Tue', etc.)
+        dayName: dayMap[selectedDay],
+        quantity: 1
+    }));
+    
+    // Додаємо страви поточного дня до фінального списку
+    allSelectedDishes.push(...currentDayDOMDishes);
+
+    // 2. Збираємо страви "за замовчуванням" для ВСІХ ІНШИХ днів
+    allDays.forEach(day => {
+        // Пропускаємо поточний день, оскільки ми його вже додали з DOM
+        if (day === selectedDay) return; 
+
+        const menuObj = getMenuForSelection(globalSelectedCalories, day, globalSelectedWeek);
+        if (!menuObj) return;
+
+        mealMap.forEach(meal => {
+            const mealKey = meal.key;
+            const choiceKey = `chose${meal.key.replace('Id', '').toLowerCase()}`;
+
+            if (menuObj[mealKey]) {
+                const dishIdOrArray = menuObj[mealKey];
+
+                if (Array.isArray(dishIdOrArray)) {
+                    if (menuObj[choiceKey] === true) {
+                        // === ВИПАДОК 1 (ІНШІ ДНІ): Беремо ПЕРШУ страву за замовчуванням ===
+                        const dish = getDishById(dishIdOrArray[0]);
+                        if(dish) allSelectedDishes.push({ ...dish, day: day.toLowerCase(), dayName: dayMap[day], quantity: 1 });
+
+                    } else {
+                        // === ВИПАДОК 2 (ІНШІ ДНІ): Беремо ВСІ страви з масиву ===
+                        dishIdOrArray.forEach(dishId => {
+                            const dish = getDishById(dishId);
+                            if (dish) allSelectedDishes.push({ ...dish, day: day.toLowerCase(), dayName: dayMap[day], quantity: 1 });
+                        });
+                    }
+                } else {
+                    // === ВИПАДОК 3 (ІНШІ ДНІ): Беремо ОДНУ страву ===
+                    const dish = getDishById(dishIdOrArray);
+                    if (dish) allSelectedDishes.push({ ...dish, day: day.toLowerCase(), dayName: dayMap[day], quantity: 1 });
+                }
+            }
+        });
+    }); // Кінець allDays.forEach
+
+    return allSelectedDishes;
+  }
+
+
+  // Функція для збереження шаблону в кошик
   function saveTemplateToCart() {
-    const selectedDishes = getSelectedDishes();
+    // Використовуємо нову функцію, яка збирає вибір з DOM
+    const selectedDishes = getAllSelectedDishesForCart();
     
     if (selectedDishes.length === 0) {
       showWarning('Будь ласка, залиште хоча б одну страву в меню');
       return;
     }
 
-    // Отримуємо ціну для вибраного меню
-    const calories = globalSelectedCalories || '900';
-    const price = (globalMenuData[calories] && globalMenuData[calories].price) ? globalMenuData[calories].price : 0;
+    const price = (globalMenuData[globalSelectedCalories] && globalMenuData[globalSelectedCalories].price) ? globalMenuData[globalSelectedCalories].price : 0;
 
-    // Используем CartManager для добавления блюд в корзину
     if (window.cartManager) {
       const calories = globalSelectedCalories || 'Стандартне';
-      window.cartManager.addOrder(selectedDishes, `Меню на ${calories} ккал`, price);
+      window.cartManager.addOrder(selectedDishes, `Меню на ${calories} ккал (Тиждень ${globalSelectedWeek})`, price);
     } else {
-      // Fallback для случая, если CartManager не загружен
-      let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-      
-      selectedDishes.forEach(dish => {
-        const existingDishIndex = cart.findIndex(item => 
-          item.id === dish.id && item.day === dish.day
-        );
-        
-        if (existingDishIndex !== -1) {
-          cart[existingDishIndex].quantity += 1;
-        } else {
-          cart.push({
-            ...dish,
-            quantity: 1
-          });
-        }
-      });
-
-      localStorage.setItem('cart', JSON.stringify(cart));
+      // Fallback
+      console.error("CartManager не знайдено!");
     }
     
-    // Перенаправляем в корзину с правильным путем
     let cartPath = window.getPagePath('cart');
-    
     window.location.href = cartPath;
   }
 
-  // Обработчик для кнопки "Обрати це меню"
+  // Обробник для кнопки "Обрати це меню"
   const chooseBtn = document.querySelector('.menu-choose-btn');
   if (chooseBtn) {
-    // Удаляем существующие обработчики, чтобы избежать дублирования
     chooseBtn.removeEventListener('click', saveTemplateToCart);
     chooseBtn.addEventListener('click', saveTemplateToCart);
   }
 
-  // Обработчики для дней недели
+  // Обробники для днів тижня
   dayButtons.forEach(button => {
     button.addEventListener('click', function() {
       dayButtons.forEach(btn => btn.classList.remove('active'));
@@ -300,7 +397,7 @@ async function initStandartPage() {
     });
   });
 
-  // Обработчики для калорийности
+  // Обробники для калорійності
   typeTabs.forEach(tab => {
     tab.addEventListener('click', function() {
       typeTabs.forEach(t => t.classList.remove('active'));
@@ -311,10 +408,21 @@ async function initStandartPage() {
     });
   });
 
-  // Загрузка данных и первичный рендер
+  // Обробники для НОВИХ кнопок тижня
+  weekTabs.forEach(tab => {
+    tab.addEventListener('click', function() {
+        weekTabs.forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        selectedWeek = parseInt(this.getAttribute('data-week')) || 1;
+        globalSelectedWeek = selectedWeek;
+        renderMenuCards();
+    });
+  });
+
+  // Завантаження даних і первинний рендер
   await loadData();
   renderMenuCards();
 }
 
-// Экспорт функций для использования в main.js
+// Експорт функцій для використання в main.js
 window.initStandartPage = initStandartPage;
